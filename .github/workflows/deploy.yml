@@ -25,4 +25,4 @@ jobs:
           password: ${{ secrets.KAZI }}
           local-dir: ./dist/
           server-dir: /
-          protocol: ftp
+          protocol: ftps
