@@ -17,12 +17,15 @@ jobs:
       - name: Include web.config
         run: cp web.config dist/web.config
 
-      - name: Upload dist/ to the site folder over FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: win8232.site4now.net
-          username: kazi
-          password: ${{ secrets.KAZI }}
-          local-dir: ./dist/
-          server-dir: /
-          protocol: ftps
+      - name: Upload dist/ to the site folder over FTP (curl)
+        env:
+          FTP_PASSWORD: ${{ secrets.KAZI }}
+        run: |
+          set -e
+          cd dist
+          find . -type f | sed 's|^\./||' | while read -r f; do
+            echo "uploading $f"
+            curl --silent --show-error --fail --ftp-create-dirs \
+              --user "kazi:$FTP_PASSWORD" -T "$f" "ftp://win8232.site4now.net/$f"
+          done
+          echo "Upload finished"
