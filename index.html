@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kazi Additive Limited Website</title>
+<meta name="description" content="Kazi Additive Limited: feed additives and ingredients, PP woven packaging, Kazi Yarn Industry and Kazi Consumer Products (FMCG). Head office Dhaka, industrial plant Tangail, Bangladesh.">
+<meta name="theme-color" content="#18334B">
+<link rel="icon" href="assets/logo/logo-mark.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js" } }
+</script>
+<style>
+/* ---------- Tokens: palette taken from the client's sample ---------- */
+:root{
+  --primary:#18334B;        /* Prussian Blue */
+  --primary-hover:#102436;
+  --bg:#FAEEE5;             /* Linen */
+  --tan:#C9B79F;            /* Isabelline */
+  --tan-soft:rgba(201,183,159,.24);
+  --badge:#566746;          /* Hunter Green */
+  --on-dark:#FAEEE5;
+  --text:#2A4660;           /* body copy on linen */
+  --border:rgba(201,183,159,.9);
+  --font-head:"Cormorant Garamond",Georgia,serif;
+  --font-body:"Inter",system-ui,sans-serif;
+  --r-card:24px; --r-in:16px; --r-btn:10px;
+  --ease:cubic-bezier(.2,0,0,1);
+  --t-micro:150ms; --t-ui:260ms;
+  --header:80px; --wrap:1240px;
+}
+body.theme-hunter{
+  --primary:#566746; --primary-hover:#435235; --badge:#18334B; --text:#3A4730;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--primary);font-family:var(--font-body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0;color:var(--text)}
+h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.12;margin:0;color:var(--primary);letter-spacing:-.005em}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+[hidden]{display:none !important}
+.skip{position:absolute;left:-999px;top:8px;background:var(--primary);color:var(--on-dark);padding:10px 16px;border-radius:var(--r-btn);z-index:100}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--badge);outline-offset:3px;border-radius:6px}
+header :focus-visible,footer :focus-visible,.on-dark :focus-visible{outline-color:var(--tan)}
+body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{outline-color:var(--on-dark)}
+
+/* pills / badges */
+.badge{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--badge);color:var(--on-dark);font:600 11.5px/1.2 var(--font-body);letter-spacing:.16em;text-transform:uppercase}
+.badge.tan{background:var(--tan);color:var(--primary)}
+.badge.navy{background:var(--primary);color:var(--on-dark)}
+.crumb{font:500 12px/1 var(--font-body);letter-spacing:.24em;text-transform:uppercase;color:var(--text)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 28px;border-radius:var(--r-btn);border:1.5px solid var(--primary);background:var(--primary);color:var(--on-dark);font:500 15px/1 var(--font-body);letter-spacing:.02em;cursor:pointer;text-decoration:none;transition:background var(--t-micro) var(--ease),color var(--t-micro) var(--ease),transform var(--t-micro) var(--ease)}
+.btn:hover{background:var(--primary-hover);border-color:var(--primary-hover)}
+.btn:active{transform:translateY(1px)}
+.btn.out{background:transparent;color:var(--primary)}
+.btn.out:hover{background:var(--tan-soft)}
+.btn.sm{min-height:38px;padding:0 20px;font-size:13.5px}
+.btn.caps{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.btn.light{background:var(--bg);color:var(--primary);border-color:var(--bg)}
+.btn.light:hover{background:#fff;border-color:#fff}
+.btn.block{width:100%}
+.link{background:none;border:0;padding:6px 0;font:600 12px/1 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--primary);border-bottom:1.5px solid var(--primary);cursor:pointer;text-decoration:none;transition:opacity var(--t-micro)}
+.link:hover{opacity:.7}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:60;background:var(--primary);color:var(--on-dark);height:var(--header);box-shadow:0 2px 14px rgba(16,36,54,.25)}
+.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center}
+.brand img{height:36px;width:auto}
+.nav{display:flex;align-items:center;gap:clamp(14px,2vw,28px)}
+.nav a{position:relative;font-size:14.5px;font-weight:500;color:var(--on-dark);text-decoration:none;padding:6px 0;opacity:.9}
+.nav a:hover{opacity:1}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--on-dark);transform:scaleX(0);transform-origin:left;transition:transform var(--t-ui) var(--ease)}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.nav a[aria-current="page"]{opacity:1}
+.menu-btn{display:none;width:44px;height:44px;border:1px solid rgba(250,238,229,.3);border-radius:var(--r-btn);background:transparent;cursor:pointer;align-items:center;justify-content:center}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:2px;background:var(--on-dark);position:relative;transition:transform var(--t-ui) var(--ease)}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+.menu-btn[aria-expanded="true"] span{background:transparent}
+.menu-btn[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+.hcta{display:flex;align-items:center;gap:10px}
+@media (max-width:1060px){
+  .menu-btn{display:inline-flex}
+  .hcta .btn{display:none}
+  .nav{position:absolute;top:var(--header);left:0;right:0;background:var(--primary);flex-direction:column;align-items:stretch;gap:0;padding:6px clamp(20px,4vw,40px) 20px;display:none;border-top:1px solid rgba(250,238,229,.15)}
+  .nav.open{display:flex}
+  .nav a{padding:15px 0;border-bottom:1px solid rgba(250,238,229,.14);font-size:16px}
+  .nav a::after{display:none}
+}
+
+/* ---------- Page banners (sub pages) ---------- */
+.banner{background:var(--tan-soft);border-bottom:1px solid var(--border);padding:28px 0 22px}
+.banner h1{font-size:clamp(30px,3.4vw,44px);margin:8px 0 6px}
+.banner p{max-width:52em;font-size:16px}
+.banner .row{display:flex;flex-wrap:wrap;gap:24px 40px;justify-content:space-between;align-items:flex-end}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{min-height:40px;padding:0 18px;border-radius:var(--r-btn);border:1.5px solid var(--primary);background:transparent;color:var(--primary);font:500 13.5px/1 var(--font-body);cursor:pointer;transition:background var(--t-micro) var(--ease),color var(--t-micro) var(--ease)}
+.pill:hover{background:var(--tan-soft)}
+.pill[aria-selected="true"],.pill[aria-pressed="true"]{background:var(--primary);color:var(--on-dark)}
+.pill small{opacity:.75;margin-left:6px;font-weight:500}
+.pill.brand{min-height:34px;padding:0 14px;font-size:13px;border-color:var(--border);border-width:1px}
+.pill.brand[aria-pressed="true"]{border-color:var(--primary)}
+
+.section{padding:44px 0}
+.soft{background:var(--tan-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.shead{display:flex;flex-wrap:wrap;gap:20px 40px;justify-content:space-between;align-items:flex-end;margin-bottom:22px}
+.shead h2{font-size:clamp(32px,3.8vw,48px);margin-top:12px}
+.shead .sub{margin-top:10px;max-width:40em}
+@media (max-width:800px){.section{padding:30px 0}.banner{padding:22px 0 18px}}
+
+/* ---------- Cards ---------- */
+.card{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-card);padding:28px;transition:transform var(--t-ui) var(--ease),box-shadow var(--t-ui) var(--ease)}
+/* every card lifts up on hover / keyboard focus (uses `translate` so it never fights GSAP's inline transform) */
+.card,.tm,.portrait,.xin,.mosaic{transition:translate .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease),transform .5s var(--ease)}
+.card:hover,.card:focus-within,.tm:hover,.tm:focus-within,.portrait:hover,.mosaic:hover{translate:0 -8px !important;box-shadow:0 26px 44px -24px rgba(24,51,75,.55);border-color:var(--tan)}
+.xcard:hover .xin,.xcard:focus-within .xin{translate:0 -8px !important}
+.profile{padding:clamp(24px,3.6vw,44px);background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(201,183,159,.16));box-shadow:0 18px 40px -30px rgba(24,51,75,.45)}
+.profile h2{margin-top:14px}
+@media (prefers-reduced-motion:reduce){.card:hover,.card:focus-within,.tm:hover,.tm:focus-within,.portrait:hover,.mosaic:hover,.xcard:hover .xin{translate:none !important}}
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:1000px){.cards3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:660px){.cards3{grid-template-columns:1fr}}
+.card h3{font-size:28px;margin:18px 0 12px}
+.card hr{border:0;border-top:1px solid var(--border);margin:18px 0}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.card li{display:flex;gap:10px;font-size:14.5px;color:var(--text)}
+.card li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--primary);margin-top:10px}
+.cards3>.card{display:flex;flex-direction:column}
+.cards3>.card .foot{margin-top:auto;padding-top:20px}
+.card .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}
+
+/* ---------- Hero: one enterprise, three industries (auto-playing morph, 75% viewport) ---------- */
+.hero{position:relative;background:var(--primary);color:var(--on-dark);--sc:#A9C98A}
+.hero-stick{position:relative;height:calc((100vh - var(--header))*.75);height:calc((100svh - var(--header))*.75);min-height:560px;overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
+.hero-stick::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(55% 75% at 74% 45%,color-mix(in srgb,var(--sc) 26%,transparent),transparent 70%),radial-gradient(50% 60% at 8% 100%,rgba(86,103,70,.45),transparent 70%);transition:background 1s var(--ease)}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:-1}
+.hfallback{position:absolute;inset:0;display:none;place-items:center;z-index:-1}
+.hfallback img{width:min(30%,240px);opacity:.18;margin-left:40%}
+.no-webgl .hfallback{display:grid}
+.hero-main{flex:1;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);align-items:center;width:100%;padding-top:clamp(14px,2.4vh,28px)}
+.hero .badge{background:rgba(250,238,229,.1);border:1px solid rgba(250,238,229,.25);color:var(--on-dark)}
+/* highlighted division name */
+.hk{display:flex;align-items:center;gap:14px;margin:16px 0 10px;min-height:1.15em;font:700 clamp(40px,4.6vw,70px)/1.05 var(--font-head)}
+.hk-box{position:relative;display:inline-block;padding:.04em .28em .1em;color:var(--primary);white-space:nowrap}
+.hk-bg{position:absolute;inset:0;background:var(--sc);border-radius:.18em;transform-origin:left;box-shadow:0 18px 40px -16px color-mix(in srgb,var(--sc) 70%,transparent);transition:background .6s var(--ease)}
+.hk-bg::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:250% 100%;animation:shine 6s linear infinite}
+@keyframes shine{from{background-position:120% 0}to{background-position:-130% 0}}
+.hk-word{position:relative;display:inline-block;perspective:600px}
+.hk-word span{display:inline-block;transform-origin:50% 100%;will-change:transform}
+.hero h1{color:rgba(250,238,229,.92);font-size:clamp(24px,2.3vw,34px);line-height:1.15;margin:0 0 12px;text-wrap:balance;font-weight:600}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .w>span{display:inline-block}
+.hero h1 em{font-style:italic;color:var(--tan)}
+.hero .lead{color:rgba(250,238,229,.78);font-size:clamp(14.5px,1.1vw,16.5px);max-width:36em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hero .lead strong{color:var(--on-dark);font-weight:600}
+.hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:20px}
+.hero .btn{background:var(--bg);color:var(--primary);border-color:var(--bg)}
+.hero .btn:hover{background:#fff;border-color:#fff}
+.hero .btn.out{background:transparent;color:var(--on-dark);border-color:rgba(250,238,229,.5)}
+.hero .btn.out:hover{background:rgba(250,238,229,.1)}
+.hstage{position:relative;height:100%;max-height:440px;min-height:260px}
+.hshot{position:absolute;right:0;bottom:4%;width:clamp(110px,11vw,160px);aspect-ratio:3/4;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),0 0 0 3px var(--sc);background:var(--bg);transform:rotate(4deg);transition:box-shadow .6s var(--ease)}
+.hshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.15);transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
+.hshot img.on{opacity:1;transform:scale(1)}
+.hnum{position:absolute;left:0;top:2%;font:600 13px/1 var(--font-body);letter-spacing:.14em;color:var(--sc);transition:color .6s var(--ease)}
+.hnum b{font:700 clamp(50px,5.4vw,78px)/1 var(--font-head);letter-spacing:0;color:var(--on-dark);display:block;margin-bottom:6px}
+/* giant kinetic category word, filled with a moving sheen */
+.hword{position:absolute;left:40%;right:clamp(20px,4vw,40px);bottom:clamp(92px,13vh,118px);z-index:-1;pointer-events:none;white-space:nowrap;overflow:hidden;font:700 clamp(52px,7vw,124px)/.95 var(--font-head);letter-spacing:-.02em;text-align:right;perspective:800px;opacity:.32}
+.hword span{display:inline-block;will-change:transform;background:linear-gradient(100deg,var(--sc) 0%,var(--bg) 45%,var(--sc) 90%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 9s linear infinite}
+@keyframes sheen{from{background-position:0 0}to{background-position:-300% 0}}
+/* progress rail */
+.hrail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:clamp(12px,2vw,28px);padding-top:14px;padding-bottom:clamp(16px,2.6vh,24px);align-items:start}
+.hrail button[data-s]{all:unset;cursor:pointer;display:block;padding-top:14px;position:relative;min-height:44px}
+.hrail button[data-s]::before,.hrail i{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:rgba(250,238,229,.18);border-radius:3px}
+.hrail i{background:var(--sc);width:0}
+.hrail b{display:flex;gap:10px;align-items:baseline;font:700 clamp(18px,1.6vw,23px)/1.15 var(--font-head);color:rgba(250,238,229,.5);transition:color var(--t-ui) var(--ease)}
+.hrail b small{font:600 11px/1 var(--font-body);letter-spacing:.14em;color:var(--tan)}
+.hrail span{display:block;font-size:13px;line-height:1.45;color:rgba(250,238,229,.6);margin-top:5px;max-width:30em}
+.hrail button[aria-current="step"] b{color:var(--on-dark)}
+.hrail button[aria-current="step"] b small{color:var(--sc)}
+.hrail button:focus-visible{outline:3px solid var(--tan);outline-offset:4px;border-radius:6px}
+.hplay{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,238,229,.3);display:grid;place-items:center;color:var(--on-dark);margin-top:6px}
+.hplay svg{width:16px;height:16px;fill:currentColor}
+.hplay:hover{background:rgba(250,238,229,.1)}
+@media (max-width:900px){
+  .hero-stick{height:auto;min-height:0}
+  .hero-main{grid-template-columns:1fr;gap:4px;align-items:start;align-content:start}
+  .hk{font-size:clamp(32px,10vw,48px);margin:12px 0 8px}
+  .hero h1{font-size:clamp(19px,5.2vw,24px)}
+  .hero .lead{font-size:14.5px;-webkit-line-clamp:2}
+  .hero .cta{margin-top:14px}
+  .hero .cta .btn.out{display:none}
+  .hstage{height:clamp(170px,30svh,240px);min-height:0}
+  .hshot{width:clamp(84px,22vw,116px);bottom:0}
+  .hnum b{font-size:40px}
+  .hword{left:0;right:0;font-size:clamp(30px,9vw,72px);bottom:84px;text-align:center}
+  .hrail{grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px}
+  .hrail span{display:none}
+  .hrail b{font-size:15px;flex-direction:column;gap:4px}
+}
+@media (max-width:420px){.hero .cta .btn{padding:0 18px;min-height:44px;font-size:14px}.hrail b{font-size:14px}}
+@media (prefers-reduced-motion:reduce){.hk-bg::after,.hword span{animation:none}.hshot img{transition:none}}
+
+/* ---------- Pillar cards: tilt + spotlight, fanned product stack, UGC product peek ---------- */
+.xcard{perspective:1100px;display:flex}
+.xin{position:relative;flex:1;display:flex;flex-direction:column;border-radius:var(--r-card);background:var(--bg);border:1px solid var(--border);overflow:hidden;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--ease),box-shadow .4s var(--ease);transform-style:preserve-3d}
+.xcard:hover .xin,.xcard.open .xin{box-shadow:0 30px 60px -28px rgba(16,36,54,.55)}
+.xin::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(201,183,159,.28),transparent 45%);opacity:0;transition:opacity .3s}
+.xcard:hover .xin::after{opacity:1}
+.xmedia{position:relative;height:250px;background:radial-gradient(120% 90% at 50% 110%,rgba(201,183,159,.35),transparent 60%),var(--primary);overflow:hidden;cursor:pointer}
+.xmedia .num{position:absolute;left:18px;top:16px;background:rgba(250,238,229,.12);border:1px solid rgba(250,238,229,.25);z-index:4}
+.xmedia .badge{position:absolute;right:16px;top:20px;z-index:4}
+.fan{position:absolute;left:50%;bottom:-26px;width:128px;height:170px}
+.fan figure{position:absolute;inset:0;margin:0;padding:6px 6px 22px;background:#fff;border-radius:6px;box-shadow:0 14px 30px -10px rgba(0,0,0,.6);transform-origin:50% 120%;transition:transform .6s cubic-bezier(.2,.9,.25,1.2)}
+.fan img{width:100%;height:100%;object-fit:cover;border-radius:3px}
+.fan img.contain{object-fit:contain}
+.fan figure:nth-child(1){transform:translateX(-50%) rotate(-9deg)}
+.fan figure:nth-child(2){transform:translateX(-50%) rotate(7deg)}
+.fan figure:nth-child(3){transform:translateX(-50%) rotate(-1deg)}
+.xcard:hover .fan figure:nth-child(1),.xcard.open .fan figure:nth-child(1){transform:translateX(-128%) translateY(-14px) rotate(-16deg)}
+.xcard:hover .fan figure:nth-child(2),.xcard.open .fan figure:nth-child(2){transform:translateX(28%) translateY(-14px) rotate(15deg)}
+.xcard:hover .fan figure:nth-child(3),.xcard.open .fan figure:nth-child(3){transform:translateX(-50%) translateY(-30px) rotate(0)}
+.xhint{position:absolute;left:18px;bottom:14px;z-index:4;font:600 11px/1 var(--font-body);letter-spacing:.08em;color:var(--on-dark);background:rgba(16,36,54,.6);backdrop-filter:blur(6px);padding:7px 11px;border-radius:999px;display:flex;gap:6px;align-items:center}
+.xhint::before{content:"";width:6px;height:6px;border-radius:50%;background:#7fd17f;box-shadow:0 0 0 0 rgba(127,209,127,.7);animation:ping 1.6s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(127,209,127,0)}100%{box-shadow:0 0 0 0 rgba(127,209,127,0)}}
+.xbody{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+.xbody h3{font-size:28px;margin:0 0 10px}
+.xbody ul{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--border);display:grid;gap:8px}
+.xbody li{display:flex;gap:10px;font-size:14.5px;color:var(--text)}
+.xbody li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--primary);margin-top:10px}
+.xbody .foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:20px;flex-wrap:wrap}
+.xbody .foot .acts{display:flex;gap:8px}
+/* peek popup */
+.peek{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;background:rgba(16,36,54,.97);backdrop-filter:blur(10px);color:var(--on-dark);padding:18px 0 18px;transform:translateY(102%);transition:transform .55s cubic-bezier(.2,.9,.25,1);border-radius:inherit}
+.xcard.open .peek{transform:none}
+.peek header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:0 18px}
+.peek h4{font:700 22px/1.1 var(--font-head);color:var(--on-dark);margin:0}
+.peek header p{font-size:12.5px;color:rgba(250,238,229,.65);margin-top:4px}
+.peek .x{all:unset;cursor:pointer;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(250,238,229,.3);flex:none;font-size:18px}
+.peek .x:focus-visible,.chips button:focus-visible,.ugc:focus-visible{outline:3px solid var(--tan);outline-offset:2px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:14px 18px 4px;scrollbar-width:none}
+.chips button{all:unset;cursor:pointer;flex:none;padding:7px 12px;border-radius:999px;border:1px solid rgba(250,238,229,.28);font:600 12px/1 var(--font-body);color:rgba(250,238,229,.85);white-space:nowrap}
+.chips button[aria-pressed="true"]{background:var(--bg);color:var(--primary);border-color:var(--bg)}
+.chips small{opacity:.6;margin-left:4px}
+.strip{flex:1;display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,max-content);grid-auto-columns:148px;gap:16px 14px;overflow:auto;scroll-snap-type:x mandatory;padding:16px 18px 10px;align-content:center;scrollbar-width:thin;scrollbar-color:rgba(250,238,229,.3) transparent}
+.ugc{all:unset;box-sizing:border-box;cursor:pointer;width:148px;scroll-snap-align:start;background:#fff;color:#1b1b1b;border-radius:14px;padding:8px 8px 10px;box-shadow:0 14px 28px -14px rgba(0,0,0,.7);transform:rotate(var(--tilt,0deg));transition:transform .3s var(--ease);opacity:0;animation:arrive .55s cubic-bezier(.2,.9,.25,1.25) forwards;animation-delay:var(--d,0s)}
+.ugc:hover{transform:rotate(0) translateY(-6px) scale(1.04)}
+@keyframes arrive{from{opacity:0;translate:0 44px;scale:.8}to{opacity:1;translate:0 0;scale:1}}
+.uhead{display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.uhead i{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:700 11px/1 var(--font-body);font-style:normal;color:#fff;background:conic-gradient(from 200deg,#f58529,#dd2a7b,#8134af,#515bd4,#f58529);padding:2px}
+.uhead i span{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:var(--primary)}
+.uhead b{font:600 12px/1.1 var(--font-body);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100px}
+.uhead small{font-size:10px;color:#777;display:block;line-height:1.2}
+.uimg{display:block;position:relative;aspect-ratio:4/5;border-radius:8px;overflow:hidden;background:#f3f0ec}
+.uimg img{width:100%;height:100%;object-fit:cover}
+.uimg img.contain{object-fit:contain;padding:6px}
+.uimg em{position:absolute;left:6px;bottom:6px;font:700 10px/1 var(--font-body);font-style:normal;letter-spacing:.06em;text-transform:uppercase;background:#ffe14d;color:#1b1b1b;padding:5px 7px;border-radius:4px;transform:rotate(-4deg)}
+.uact{display:flex;gap:10px;margin:8px 2px 4px;color:#222}
+.uact svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.uact svg:last-child{margin-left:auto}
+.ucap{display:block;font:600 17px/1.15 "Caveat",cursive;color:#222;padding:0 2px}
+.peek .more{padding:4px 18px 0;font-size:12px;color:rgba(250,238,229,.6)}
+.peek .more button{all:unset;cursor:pointer;color:var(--on-dark);font-weight:600;border-bottom:1px solid currentColor}
+@media (max-width:660px){.xmedia{height:220px}.strip{grid-template-rows:max-content}}
+@media (hover:none){.xcard:hover .fan figure:nth-child(1){transform:translateX(-50%) rotate(-9deg)}.xcard:hover .fan figure:nth-child(2){transform:translateX(-50%) rotate(7deg)}.xcard:hover .fan figure:nth-child(3){transform:translateX(-50%) rotate(-1deg)}}
+@media (prefers-reduced-motion:reduce){.xin,.fan figure,.peek,.ugc{transition:none;animation:none;opacity:1}.xhint::before{animation:none}}
+
+/* ---------- Product showcase: 3D oval carousel ---------- */
+.showcase{background:var(--primary);color:var(--on-dark);padding:24px 0 20px;overflow:hidden}
+.showcase .shead{margin-bottom:10px}
+.showcase .shead h2{font-size:clamp(28px,3vw,40px);margin-top:8px}
+.showcase .shead h2{color:var(--on-dark)}
+.showcase .shead .sub{color:rgba(250,238,229,.72)}
+.showcase .shead .link{color:var(--on-dark);border-color:var(--on-dark)}
+.ring{position:relative;height:clamp(230px,21vw,258px);perspective:1400px;touch-action:pan-y;cursor:grab;user-select:none}
+.ring.drag{cursor:grabbing}
+.ring::before{content:"";position:absolute;left:50%;top:50%;width:min(92%,1240px);height:130px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(201,183,159,.22),transparent);border:1px solid rgba(250,238,229,.12);pointer-events:none}
+.sitem{all:unset;box-sizing:border-box;cursor:pointer;position:absolute;left:50%;top:35%;width:128px;background:var(--bg);color:var(--primary);border-radius:16px;padding:8px 8px 12px;box-shadow:0 22px 40px -22px rgba(0,0,0,.85);will-change:transform,opacity;transform-origin:50% 50%}
+.sitem::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--primary);opacity:var(--dim,0);pointer-events:none}
+.sitem .im{display:block;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#fff;position:relative}
+.sitem img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.sitem img.contain{object-fit:contain;padding:8px}
+.sitem:hover img{transform:scale(1.08)}
+.sitem:focus-visible{outline:3px solid var(--tan);outline-offset:3px}
+.sitem .tag{position:absolute;left:6px;top:6px;padding:3px 7px;border-radius:999px;white-space:nowrap;font:600 9px/1.2 var(--font-body);letter-spacing:.06em;color:var(--primary);background:var(--c,#C9B79F)}
+.sitem b{display:block;font:600 11px/1.2 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--text);margin:10px 4px 3px}
+.sitem span.n{display:block;font:700 16px/1.2 var(--font-head);margin:0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rnav{display:flex;justify-content:center;align-items:center;gap:12px;margin-top:0}
+.rnav button{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,238,229,.35);display:grid;place-items:center;color:var(--on-dark);font-size:18px}
+.rnav button:hover{background:rgba(250,238,229,.1)}
+.rnav button:focus-visible{outline:3px solid var(--tan);outline-offset:3px}
+.rnav p{font-size:12.5px;color:rgba(250,238,229,.6);min-width:15em;text-align:center}
+@media (max-width:660px){.sitem,.ring.dense .sitem{width:100px;padding:6px 6px 9px}.sitem span.n{font-size:13.5px}.sitem b{font-size:9.5px}.sitem .tag{font-size:8.5px}.ring{height:220px}.showcase .shead .sub{display:none}}
+.rfilter{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 auto 4px;padding:0 16px}
+.rfilter button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid rgba(250,238,229,.3);font:600 13px/1 var(--font-body);color:var(--on-dark);transition:background var(--t-ui) var(--ease),color var(--t-ui) var(--ease),border-color var(--t-ui) var(--ease)}
+.rfilter button::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--bg))}
+.rfilter button small{font-weight:500;opacity:.6}
+.rfilter button:hover{background:rgba(250,238,229,.1)}
+.rfilter button[aria-pressed="true"]{background:var(--c,var(--bg));border-color:var(--c,var(--bg));color:var(--primary)}
+.rfilter button[aria-pressed="true"]::before{background:var(--primary)}
+.rfilter button:focus-visible{outline:3px solid var(--tan);outline-offset:3px}
+.ring.dense .sitem{width:118px}
+/* About preview (home) */
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:center}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px;border:1px solid var(--border);border-radius:var(--r-card);background:var(--tan-soft)}
+.mosaic figure{margin:0;aspect-ratio:4/5;border-radius:var(--r-in);overflow:hidden;background:#fff}
+.mosaic img{width:100%;height:100%;object-fit:cover}
+.mosaic img.contain{object-fit:contain;padding:8px}
+.split h2{font-size:clamp(32px,3.8vw,48px);margin:14px 0 18px}
+.split p+p{margin-top:14px}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px;padding-top:22px;border-top:1px solid var(--border)}
+.minis b{display:block;font:700 26px/1.1 var(--font-head)}
+.minis span{font-size:14px;color:var(--text)}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+
+/* MD + people */
+.md{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,72px);align-items:start}
+.quote{font:600 clamp(26px,3vw,36px)/1.25 var(--font-head);color:var(--primary);margin:18px 0}
+.person{display:grid;grid-template-columns:84px 1fr;gap:20px;align-items:center}
+.mono{width:84px;height:84px;border-radius:var(--r-in);background:var(--primary);display:grid;place-items:center;font:700 28px/1 var(--font-head);letter-spacing:.06em;color:var(--on-dark);overflow:hidden}
+.mono img{width:100%;height:100%;object-fit:cover}
+.person h3{font-size:26px;margin:6px 0 4px}
+.person p{font-size:14.5px}
+.stack{display:grid;gap:20px}
+@media (max-width:900px){.md{grid-template-columns:1fr}}
+
+/* Product / division grid */
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:1000px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.pgrid{grid-template-columns:1fr}}
+.pcard{display:flex;flex-direction:column;padding:16px 16px 22px;cursor:pointer}
+.pcard figure{margin:0 0 16px;aspect-ratio:10/11;border-radius:var(--r-in);overflow:hidden;background:#fff;border:1px solid var(--border);display:grid;place-items:center}
+.pcard figure.tint{background:var(--tan-soft)}
+.pcard figure.panel{background:var(--primary);border-color:var(--primary)}
+.pcard figure.panel img{width:34%;height:auto;object-fit:contain;padding:0}
+.pcard img{width:100%;height:100%;object-fit:cover}
+.pcard img.contain{object-fit:contain;padding:10px}
+.pcard .inner{padding:0 8px;display:flex;flex-direction:column;flex:1}
+.pcard h3{font-size:26px;margin:14px 0 4px}
+.pcard .by{font-size:14px}
+.pcard .by b{color:var(--primary);font-weight:600}
+.pcard .foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.pcard .spacer{flex:1;min-height:14px}
+.count{font-size:14px;color:var(--text)}
+.toolrow{display:flex;flex-wrap:wrap;gap:12px 20px;justify-content:space-between;align-items:center;margin-bottom:14px}
+.brandrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px;min-height:34px}
+
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.thumbs figure{margin:0;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--border)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs img.contain{object-fit:contain;padding:4px}
+.numtag{display:flex;justify-content:space-between;align-items:center}
+.num{width:46px;height:46px;border-radius:12px;background:var(--primary);color:var(--on-dark);display:grid;place-items:center;font:700 20px/1 var(--font-head)}
+
+/* About page */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:800px){.two{grid-template-columns:1fr}}
+.prose p+p{margin-top:16px}
+.prose{font-size:18px}
+.prose strong{color:var(--primary)}
+
+/* inquiry send buttons */
+.sendrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sendrow .btn{gap:8px;padding:0 14px;text-decoration:none}
+.sendrow svg{width:18px;height:18px;fill:currentColor;flex:none}
+.sendrow .wa{background:#1FA855;border-color:#1FA855;color:#fff}
+.sendrow .wa:hover{background:#178a45;border-color:#178a45}
+.sendnote{font-size:12.5px;margin-top:8px;text-align:center}
+@media (max-width:420px){.sendrow{grid-template-columns:1fr}}
+/* About: MD message + team */
+.mdmsg{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:stretch}
+.portrait{border-radius:var(--r-card);background:var(--primary);color:var(--on-dark);display:flex;flex-direction:column;justify-content:flex-end;min-height:420px;padding:28px;position:relative;overflow:hidden}
+.portrait::before{content:attr(data-ini);position:absolute;top:50%;left:50%;transform:translate(-50%,-62%);font:700 clamp(96px,12vw,150px)/1 var(--font-head);color:rgba(250,238,229,.14);letter-spacing:.04em}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait h3{color:var(--on-dark);font-size:30px;position:relative}
+.portrait p{color:rgba(250,238,229,.82);font-size:14.5px;position:relative}
+.portrait .badge{align-self:flex-start;margin-bottom:14px;position:relative;background:var(--bg);color:var(--primary)}
+.mdtext{display:flex;flex-direction:column;justify-content:center}
+.mdtext .quote{position:relative;padding-left:26px;border-left:3px solid var(--badge);margin:20px 0 22px}
+.gov{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.gov span{font-size:14px}
+.gov b{color:var(--primary)}
+.team4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+@media (max-width:1100px){.team4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.team4{grid-template-columns:1fr}}
+.tm{display:flex;flex-direction:column;padding:24px}
+.tm .av{width:72px;height:72px;border-radius:var(--r-in);background:var(--primary);color:var(--on-dark);display:grid;place-items:center;font:700 26px/1 var(--font-head);letter-spacing:.05em;overflow:hidden}
+.tm .av img{width:100%;height:100%;object-fit:cover}
+.tm.alt .av{background:var(--badge)}
+.tm h3{font-size:25px;margin:18px 0 2px}
+.tm .role{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:12px}
+.tm p{font-size:14.5px}
+.tm .loc{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);font:600 11.5px/1.3 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--text)}
+.tm p{margin-bottom:16px}
+.tm .badge{letter-spacing:.08em;font-size:10.5px}
+@media (max-width:900px){.mdmsg{grid-template-columns:1fr}.portrait{min-height:300px}}
+
+/* Gallery */
+.masonry{columns:3 320px;column-gap:20px}
+.gitem{break-inside:avoid;margin:0 0 20px;position:relative;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--border);background:var(--tan-soft);cursor:zoom-in;padding:0;display:block;width:100%;text-align:left;font:inherit;color:inherit}
+.gitem img{width:100%;height:auto;display:block;transition:transform 450ms var(--ease)}
+.gitem:hover img{transform:scale(1.03)}
+.gitem figcaption,.gitem .cap{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 16px;background:linear-gradient(to top,rgba(16,36,54,.88),rgba(16,36,54,0));color:var(--on-dark);font:500 14px/1.35 var(--font-body);opacity:0;transform:translateY(8px);transition:opacity var(--t-ui) var(--ease),transform var(--t-ui) var(--ease)}
+.gitem:hover .cap,.gitem:focus-visible .cap{opacity:1;transform:none}
+.gitem .tag{position:absolute;top:14px;left:14px}
+@media (hover:none){.gitem .cap{opacity:1;transform:none}}
+#lb{width:min(1100px,calc(100vw - 20px));background:#0f1f2d;color:var(--on-dark)}
+#lb .lbwrap{display:grid;grid-template-rows:1fr auto;max-height:calc(100vh - 20px)}
+#lb img{max-width:100%;max-height:calc(100vh - 150px);margin:0 auto;display:block;object-fit:contain}
+#lb .lbcap{padding:14px 20px 18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+#lb .lbcap p{color:var(--on-dark);font-size:15px}
+#lb .nav2{display:flex;gap:8px}
+#lb .nav2 button,#lb .x{width:44px;height:44px;border-radius:var(--r-btn);border:1px solid rgba(250,238,229,.35);background:rgba(15,31,45,.7);color:var(--on-dark);font-size:20px;cursor:pointer}
+#lb .nav2 button:hover,#lb .x:hover{background:rgba(250,238,229,.15)}
+#lb .x{position:absolute;top:12px;right:12px;z-index:2}
+.teamphoto{margin:0 0 36px;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--border);position:relative}
+.teamphoto img{width:100%;height:auto;max-height:520px;object-fit:cover;object-position:center 60%;display:block}
+.teamphoto figcaption{position:absolute;left:0;right:0;bottom:0;padding:48px 24px 20px;background:linear-gradient(to top,rgba(16,36,54,.9),rgba(16,36,54,0));color:var(--on-dark);font:600 16px/1.3 var(--font-body)}
+
+/* Page background: moving dots */
+#bgdots{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
+
+/* Insights */
+.ins h3{font-size:26px}
+
+/* Contact */
+.cgrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px;align-items:start}
+@media (max-width:900px){.cgrid{grid-template-columns:1fr}}
+.form{display:grid;gap:16px}
+.field{display:grid;gap:6px}
+.field label{font:600 13px/1.3 var(--font-body);letter-spacing:.04em;color:var(--primary)}
+.field input,.field select,.field textarea{width:100%;min-height:48px;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;background:#fff;font:inherit;font-size:16px;color:var(--primary);transition:border-color var(--t-micro) var(--ease),box-shadow var(--t-micro) var(--ease)}
+.field textarea{min-height:120px;resize:vertical}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:var(--primary)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--tan-soft)}
+.field [aria-invalid="true"]{border-color:#9B2C2C}
+.two-f{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.two-f{grid-template-columns:1fr}}
+.enq{display:none;margin-top:4px;padding:20px;border:1.5px solid var(--primary);border-radius:var(--r-in);background:#fff}
+.enq.show{display:block}
+.enq pre{white-space:pre-wrap;font:inherit;font-size:15px;margin:0 0 14px;color:var(--primary)}
+.enq .note{font-size:14px;margin-top:10px}
+.info p{margin-top:8px}
+.info p strong{color:var(--primary)}
+
+/* Footer */
+footer{background:var(--primary);color:var(--on-dark);padding:64px 0 28px;margin-top:0}
+footer p,footer li,footer a{color:rgba(250,238,229,.82);font-size:15px}
+footer .cols{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,3fr);gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(250,238,229,.2)}
+footer img{height:38px;width:auto;margin-bottom:16px}
+footer h4{font:600 12px/1 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:var(--tan);margin-bottom:16px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+footer a{text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer;text-align:left}
+footer a:hover{color:#fff;text-decoration:underline}
+.legal{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;align-items:center;padding-top:24px;font-size:13.5px;color:rgba(250,238,229,.75)}
+.themes{display:inline-flex;gap:6px;align-items:center}
+.themes button{min-height:34px;padding:0 14px;border-radius:999px;border:1px solid rgba(250,238,229,.35);background:transparent;color:var(--on-dark);font:500 12.5px/1 var(--font-body);cursor:pointer;transition:background var(--t-micro)}
+.themes button:hover{background:rgba(250,238,229,.12)}
+.themes button[aria-pressed="true"]{background:var(--bg);color:var(--primary);border-color:var(--bg)}
+@media (max-width:800px){footer .cols{grid-template-columns:1fr}}
+
+/* Quote dialog */
+dialog{border:0;padding:0;border-radius:var(--r-card);width:min(940px,calc(100vw - 24px));max-height:calc(100vh - 24px);background:var(--bg);color:var(--primary);overflow:auto}
+dialog::backdrop{background:rgba(16,36,54,.62)}
+dialog[open]{animation:dlg 280ms var(--ease)}
+@keyframes dlg{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.dlg{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.dlg.noimg{grid-template-columns:1fr}
+.dlg-img{background:#fff;display:grid;place-items:center;min-height:320px;border-right:1px solid var(--border)}
+.dlg-img img{width:100%;height:100%;max-height:600px;object-fit:contain}
+.dlg-img img.cover{object-fit:cover;max-height:none}
+.dlg-body{padding:clamp(22px,3vw,40px);display:grid;gap:14px;align-content:start;position:relative}
+.dlg-body h3{font-size:clamp(28px,3vw,38px);padding-right:44px}
+.x{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:var(--r-btn);border:1.5px solid var(--border);background:var(--bg);font-size:22px;line-height:1;cursor:pointer;color:var(--primary)}
+.x:hover{border-color:var(--primary)}
+@media (max-width:760px){.dlg{grid-template-columns:1fr}.dlg-img{min-height:0;height:230px;overflow:hidden;border-right:0;border-bottom:1px solid var(--border)}.dlg-img img,.dlg-img img.cover{max-height:230px;height:230px}}
+
+/* View transition + reduced motion */
+.page{animation:viewin 320ms var(--ease)}
+@keyframes viewin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+  .card.lift:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<canvas id="bgfx" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="bgdots" aria-hidden="true"></canvas>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Kazi Additive Limited, home"><img src="assets/logo/logo-full-light.png" alt="Kazi Additive Limited" width="258" height="36"></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#home" data-v="home">Home</a>
+      <a href="#about" data-v="about">About Us</a>
+      <a href="#divisions" data-v="divisions">Business Divisions</a>
+      <a href="#leadership" data-v="leadership">Leadership &amp; Team</a>
+      <a href="#gallery" data-v="gallery">Gallery</a>
+      <a href="#insights" data-v="insights">Insights</a>
+      <a href="#contact" data-v="contact">Contact</a>
+    </nav>
+    <div class="hcta">
+      <button class="btn light sm caps" data-enquire="General Corporate Inquiry">Request Quote</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- =================== HOME =================== -->
+<div class="page" id="page-home" data-title="KAZI ADDITIVE LIMITED | Agro-Nutrition, Packaging, Yarn & Consumer Products">
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-stick">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hfallback" aria-hidden="true"><img src="assets/logo/logo-mark-light.png" alt=""></div>
+      <div class="hword" id="hword" aria-hidden="true">Feed &amp; Additives</div>
+      <div class="wrap hero-main">
+        <div class="hcopy">
+          <span class="badge">Dhaka &bull; Tangail &bull; Global Partners</span>
+          <p class="hk" aria-live="polite"><span class="hk-box"><span class="hk-bg"></span><span class="hk-word" id="hkword">Feed &amp; Additives</span></span></p>
+          <h1 id="hero-h1">Advancing Agro-Nutrition, Industrial Packaging &amp; <em>Everyday Essentials.</em></h1>
+          <p class="lead"><strong>Kazi Additive Limited</strong> unites European feed additive science (<strong>Dr. Eckel, Germany</strong>), high-tensile PP woven packaging, <strong>Kazi Yarn Industry</strong>, and <strong>Kazi Consumer Products (FMCG)</strong> under one trusted Bangladeshi enterprise.</p>
+          <div class="cta">
+            <a class="btn" href="#divisions">Explore Business Divisions</a>
+            <a class="btn out" href="#about">About Our Company</a>
+          </div>
+        </div>
+        <div class="hstage" aria-hidden="true">
+          <div class="hnum"><b id="hnum">01</b>OF 03 &bull; <span id="hname">FEED &amp; ADDITIVES</span></div>
+          <div class="hshot">
+            <img class="on" src="assets/products/additives-01.jpg" alt="">
+            <img src="assets/products/yarn-01.jpg" alt="">
+            <img src="assets/products/fmcg-06.jpg" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="wrap hrail" id="stages" aria-label="Group portfolio">
+        <button type="button" data-s="0" aria-current="step"><i></i><b><small>01</small>Feed &amp; Additives</b><span>Dr. Eckel additives, premixes, minerals and PP woven packaging for poultry, aqua and dairy.</span></button>
+        <button type="button" data-s="1"><i></i><b><small>02</small>Yarn</b><span>Kazi Yarn Industry: dyed, multi-filament and specialty yarns for textile makers.</span></button>
+        <button type="button" data-s="2"><i></i><b><small>03</small>Consumer Goods</b><span>Kazi Consumer Products: Manha and L&eacute;ya soaps, face washes, shower gels and home care.</span></button>
+        <button type="button" class="hplay" id="hplay" aria-label="Pause slideshow"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" aria-labelledby="pillars-h">
+    <div class="wrap">
+      <div class="shead reveal">
+        <div><span class="badge">Group Portfolio &bull; Three Core Pillars</span><h2 id="pillars-h">Our Three-Column Business Architecture</h2></div>
+        <button class="link" data-go="divisions">View Full Division Details &rarr;</button>
+      </div>
+      <div class="cards3" id="pillars"></div>
+    </div>
+  </section>
+
+  <section class="showcase" aria-labelledby="showcase-h">
+    <div class="wrap shead reveal">
+      <div><span class="badge tan">Product Showcase</span><h2 id="showcase-h">From Our Divisions to Your Shelf</h2><p class="sub">Feed additives, yarn and everyday consumer goods on one turning stage. Drag to spin, click any product to inquire.</p></div>
+      <button class="link" data-go="divisions">Browse Full Catalogue &rarr;</button>
+    </div>
+    <div class="rfilter" id="rfilter" role="group" aria-label="Filter showcase by division"></div>
+    <div class="ring" id="ring" aria-label="Rotating product showcase">
+    </div>
+    <div class="rnav"><button type="button" id="rprev" aria-label="Previous product">&larr;</button><p id="rnow" aria-live="polite"></p><button type="button" id="rnext" aria-label="Next product">&rarr;</button></div>
+  </section>
+
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="mosaic reveal" id="mosaic" aria-label="Selected products"></div>
+      <div class="reveal">
+        <span class="badge">About Kazi Additive Limited</span>
+        <h2>Building Self-Reliant Manufacturing &amp; Global Technical Partnerships</h2>
+        <p><strong>Kazi Additive Limited</strong> is a progressive Bangladeshi enterprise operating at the intersection of modern animal nutrition, industrial polymer packaging, yarn, and daily consumer goods. With our corporate headquarters in <strong>Dhaka</strong> and an integrated manufacturing complex in <strong>Tangail</strong>, we serve feed mills, commercial livestock farms, textile producers, and retail consumers nationwide.</p>
+        <p>Guided by Chairman <strong>Maksuda Easmin</strong> and led by Managing Director <strong>Kazi Salah Uddin</strong>, our company pairs exclusive international formulations such as German feed additives from Dr. Eckel Animal Nutrition with disciplined domestic production.</p>
+        <div class="minis"><div><b>Dhaka</b><span>Corporate HQ</span></div><div><b>Tangail</b><span>Industrial Plant</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="wrap md">
+      <div class="reveal">
+        <span class="badge">Executive Leadership</span>
+        <p class="quote">&ldquo;Our mission is to empower Bangladesh&rsquo;s agricultural, textile, and household sectors with world-class quality, combining trusted European nutritional science with resilient local manufacturing.&rdquo;</p>
+        <p>Under the leadership of <strong>Kazi Salah Uddin</strong>, Kazi Additive Limited has evolved from a specialized feed additive distributor into a multi-sector industrial group, with modern production lines in Tangail and an expanding consumer products range.</p>
+        <p style="margin-top:20px"><button class="link" data-go="leadership">Meet Full Leadership Team &rarr;</button></p>
+      </div>
+      <div class="stack reveal"><div class="card person" data-person="md"></div><div class="card person" data-person="chairman"></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- =================== ABOUT =================== -->
+<div class="page" id="page-about" hidden data-title="About Us | KAZI ADDITIVE LIMITED">
+  <section class="banner"><div class="wrap">
+    <span class="crumb">Home / About Us</span>
+    <h1>About Kazi Additive Limited</h1>
+    <p>A trusted Bangladeshi industrial enterprise bridging European agro-nutritional science with domestic manufacturing across packaging, textiles, and consumer goods.</p>
+  </div></section>
+  <section class="section"><div class="wrap">
+    <div class="split card profile reveal" style="align-items:start">
+      <div><span class="badge">Corporate Profile</span>
+        <h2 style="font-size:clamp(30px,3.4vw,44px);margin:14px 0 18px">Committed to Quality, Integrity &amp; Sustainable Growth</h2>
+      </div>
+      <div class="prose">
+        <p><strong>Kazi Additive Limited</strong> was founded with a clear commitment: to raise the standard of animal nutrition, industrial packaging, and daily consumer essentials in Bangladesh. Headquartered in <strong>Dhaka</strong> with a modern industrial plant in <strong>Tangail</strong>, we operate across three synergistic verticals.</p>
+        <p>As an authorized partner of <strong>Dr. Eckel Animal Nutrition GmbH &amp; Co. KG (Germany)</strong>, we bring research-backed phytogenic feed additives and toxin binders to Bangladesh&rsquo;s leading poultry, dairy, and aqua feed mills, while manufacturing durable PP woven bags, multi-filament yarn, and household FMCG products locally.</p>
+      </div>
+    </div>
+    <div class="two" style="margin-top:48px">
+      <div class="card reveal"><span class="badge">Our Mission</span><h3>Serving farmers, businesses and families</h3><p>To deliver safe, innovative, and cost-effective nutritional, industrial, and consumer solutions that empower farmers, businesses, and families nationwide.</p></div>
+      <div class="card reveal"><span class="badge tan">Our Vision</span><h3>A benchmark Bangladeshi industrial group</h3><p>To be recognized as a benchmark Bangladeshi industrial group synonymous with international quality compliance, ethical governance, and manufacturing self-reliance.</p></div>
+    </div>
+    <div class="card reveal" style="margin-top:24px;background:var(--tan-soft)"><span class="badge navy">Infrastructure &amp; Compliance</span><h3>Dhaka warehousing, Tangail production</h3><p>Active member of <strong>BAFIITA</strong> (Bangladesh Agro Feed Ingredients Importers &amp; Traders Association), operating temperature-controlled warehousing in Dhaka and high-capacity extrusion, weaving, and packaging lines in Tangail.</p></div>
+  </div></section>
+
+  <section class="section soft"><div class="wrap">
+    <div class="mdmsg">
+      <div class="portrait reveal" id="mdPortrait" data-ini="KSU"><span class="badge">Managing Director</span><h3>Kazi Salah Uddin</h3><p>Kazi Additive Limited, Kazi Yarn Industry &amp; Kazi Consumer Products</p></div>
+      <div class="mdtext reveal">
+        <span class="badge">Executive Leadership &bull; Message from the Managing Director</span>
+        <p class="quote">&ldquo;Our mission is to empower Bangladesh&rsquo;s agricultural, textile, and household sectors with world-class quality, combining trusted European nutritional science with resilient local manufacturing.&rdquo;</p>
+        <p>Under the visionary leadership of <strong>Kazi Salah Uddin</strong>, Kazi Additive Limited has evolved from a specialized feed additive distributor into a multi-sector industrial group. By establishing modern production lines in Tangail for PP woven bags and multi-filament yarn, alongside expanding Kazi Consumer Products (FMCG), he continues to drive sustainable employment and import-substitution excellence.</p>
+        <div class="gov"><span><b>Chairman:</b> Maksuda Easmin</span><span>&bull;</span><span><b>Managing Director &amp; Chief Executive:</b> Kazi Salah Uddin</span></div>
+        <p style="margin-top:20px"><button class="link" data-go="leadership">Meet Full Leadership Team &rarr;</button></p>
+      </div>
+    </div>
+  </div></section>
+  <section class="section"><div class="wrap">
+    <div class="shead reveal"><div><span class="badge tan">People Behind Our Excellence</span><h2>Kazi Additive Team Members</h2><p class="sub">Our dedicated corporate, technical, and manufacturing leadership team.</p></div></div>
+    <figure class="teamphoto reveal"><img src="assets/gallery/g07.jpg" alt="The Kazi Additive team at the Tangail plant" loading="lazy"><figcaption>The Kazi Additive team at our Tangail plant</figcaption></figure>
+    <div class="team4" id="team4">
+      <article class="card lift tm reveal"><div class="av" data-p="chairman">ME</div><h3>Maksuda Easmin</h3><div class="role">Chairman</div><span><span class="badge navy">Board of Directors</span></span><p style="margin-top:14px">Provides strategic oversight, corporate values, and long-term governance across Kazi Additive Limited &amp; group concerns.</p><div class="loc">Corporate HQ &bull; Dhaka</div></article>
+      <article class="card lift tm alt reveal"><div class="av" data-p="gm">GM</div><h3>Head of Operations</h3><div class="role">General Manager (Admin &amp; Commercial)</div><span><span class="badge">Corporate Operations</span></span><p style="margin-top:14px">Oversees import logistics, international supplier coordination with Germany, and nationwide distribution networks.</p><div class="loc">Kazi Additive Limited</div></article>
+      <article class="card lift tm reveal"><div class="av" data-p="tn">TN</div><h3>Technical &amp; Nutrition Lead</h3><div class="role">DVM / Animal Nutrition Specialist</div><span><span class="badge tan">Agro-Nutrition Division</span></span><p style="margin-top:14px">Leads feed formulation advisory, farm trials, and technical support for Dr. Eckel feed additives across Bangladesh.</p><div class="loc">Feed Additives &amp; Veterinary</div></article>
+      <article class="card lift tm alt reveal"><div class="av" data-p="pm">PM</div><h3>Factory &amp; Production Head</h3><div class="role">Plant Manager (PP Bags, Yarn &amp; FMCG)</div><span><span class="badge navy">Industrial Manufacturing</span></span><p style="margin-top:14px">Directs extrusion, weaving, yarn spinning, and FMCG packaging quality control at our Tangail industrial facility.</p><div class="loc">Tangail Manufacturing Complex</div></article>
+    </div>
+  </div></section>
+</div>
+
+<!-- =================== DIVISIONS =================== -->
+<div class="page" id="page-divisions" hidden data-title="Business Divisions | KAZI ADDITIVE LIMITED">
+  <section class="banner"><div class="wrap">
+    <span class="crumb">Home / Business Divisions</span>
+    <div class="row">
+      <div><h1>Three Core Industrial Divisions</h1>
+      <p>Explore our complete catalog across Animal Feed &amp; PP Woven Bags, Kazi Yarn Industry, and Kazi Consumer Products (FMCG).</p></div>
+      <div class="pills" id="gpills" role="tablist" aria-label="Divisions"></div>
+    </div>
+  </div></section>
+  <section class="section"><div class="wrap">
+    <div class="toolrow"><div class="pills" id="bpills" role="group" aria-label="Filter by brand"></div><span class="count" id="count" aria-live="polite"></span></div>
+    <div class="brandrow" hidden></div>
+    <div class="pgrid" id="pgrid" role="tabpanel"></div>
+  </div></section>
+</div>
+
+<!-- =================== LEADERSHIP =================== -->
+<div class="page" id="page-leadership" hidden data-title="Leadership & Team | KAZI ADDITIVE LIMITED">
+  <section class="banner"><div class="wrap">
+    <span class="crumb">Home / Leadership &amp; Team</span>
+    <h1>Board of Directors &amp; Management Team</h1>
+    <p>Meet the executive leadership guiding Kazi Additive Limited, Kazi Yarn Industry, and Kazi Consumer Products.</p>
+  </div></section>
+  <section class="section"><div class="wrap">
+    <div class="two">
+      <div class="card person reveal" data-person="chairman" data-long="1"></div>
+      <div class="card person reveal" data-person="md" data-long="1"></div>
+    </div>
+    <div class="shead" style="margin:64px 0 28px"><div><span class="badge tan">Operational &amp; Technical Department Leads</span></div></div>
+    <div class="cards3">
+      <div class="card reveal"><span class="badge">Corporate &amp; Supply Chain</span><h3>General Manager, Operations</h3><p>Dhaka head office. Import, banking, supplier coordination with Germany and nationwide logistics.</p></div>
+      <div class="card reveal"><span class="badge">Agro-Nutrition &amp; Veterinary</span><h3>Head of Technical Sales</h3><p>Feed mill advisory, farm trials, poultry and aqua technical services.</p></div>
+      <div class="card reveal"><span class="badge navy">Manufacturing &amp; Quality</span><h3>Plant Manager, Tangail</h3><p>PP woven sacks, Kazi Yarn Industry and FMCG production and quality control.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- =================== GALLERY =================== -->
+<div class="page" id="page-gallery" hidden data-title="Gallery | KAZI ADDITIVE LIMITED">
+  <section class="banner"><div class="wrap">
+    <span class="crumb">Home / Gallery</span>
+    <div class="row">
+      <div><h1>Our Gallery</h1><p>The Tangail plant, our team, management meetings with international partners, and exhibitions in Bangladesh and Germany.</p></div>
+      <div class="pills" id="galPills" role="group" aria-label="Gallery categories"></div>
+    </div>
+  </div></section>
+  <section class="section"><div class="wrap"><div class="masonry" id="galGrid"></div></div></section>
+</div>
+
+<!-- =================== INSIGHTS =================== -->
+<div class="page" id="page-insights" hidden data-title="Insights | KAZI ADDITIVE LIMITED">
+  <section class="banner"><div class="wrap">
+    <span class="crumb">Home / Insights</span>
+    <h1>Industry Insights &amp; Technical Briefs</h1>
+    <p>Research updates on sustainable animal nutrition, woven packaging durability, and consumer quality standards.</p>
+  </div></section>
+  <section class="section"><div class="wrap"><div class="cards3 ins">
+    <article class="card lift reveal"><span class="badge">Animal Nutrition</span><h3>Phytogenic Feed Additives: Improving FCR &amp; Gut Resilience Naturally</h3><p>Modern poultry and aquaculture operations in Bangladesh face rising feed costs and climate stress. How plant-derived formulations enhance nutrient absorption while reducing reliance on antibiotic growth promoters.</p><div class="foot"><button class="link" data-enquire="Technical paper: phytogenic feed additives">Request Technical Paper</button></div></article>
+    <article class="card lift reveal"><span class="badge tan">Packaging &amp; Yarn</span><h3>Moisture-Barrier PP Woven Bags for Tropical Feed Storage</h3><p>How lamination and high-tenacity multi-filament stitching yarn from our Tangail plant protect pelleted feed against humidity and transit damage.</p><div class="foot"><button class="link" data-enquire="Technical paper: moisture-barrier woven bags">Request Technical Paper</button></div></article>
+    <article class="card lift reveal"><span class="badge navy">Consumer Goods (FMCG)</span><h3>Quality Assurance in Everyday Household &amp; Culinary Products</h3><p>Inside Kazi Consumer Products&rsquo; batch-testing workflow ensuring purity in packaged products and skin-safe formulations in soaps and detergents.</p><div class="foot"><button class="link" data-enquire="Technical paper: FMCG quality assurance">Request Technical Paper</button></div></article>
+  </div></div></section>
+</div>
+
+<!-- =================== CONTACT =================== -->
+<div class="page" id="page-contact" hidden data-title="Contact | KAZI ADDITIVE LIMITED">
+  <section class="banner"><div class="wrap">
+    <span class="crumb">Home / Contact</span>
+    <h1>Connect With Kazi Additive Limited</h1>
+    <p>Reach out for bulk feed additive orders, custom PP woven bags, yarn specifications, or FMCG dealership inquiries.</p>
+  </div></section>
+  <section class="section"><div class="wrap cgrid">
+    <div class="card reveal">
+      <form class="form" id="contactForm" novalidate>
+        <div class="two-f">
+          <div class="field"><label for="c-name">Your Name / Organization</label><input id="c-name" autocomplete="name" required></div>
+          <div class="field"><label for="c-contact">Phone or Email</label><input id="c-contact" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="c-div">Business Division</label>
+          <select id="c-div"><option>Animal Feed, Additives &amp; Veterinary Solutions</option><option>PP Woven Bags &amp; Industrial Packaging</option><option>Kazi Yarn Industry (Multi-Filament Yarn)</option><option>Kazi Consumer Products (FMCG Dealership)</option></select></div>
+        <div class="field"><label for="c-msg">Requirements &amp; Quantity</label><textarea id="c-msg" required></textarea></div>
+        <button class="btn block caps" type="submit">Submit Corporate Inquiry</button>
+        <div class="enq" id="cOut" role="status"></div>
+      </form>
+    </div>
+    <div class="stack info reveal">
+      <div class="card"><span class="badge">Corporate Headquarters</span><h3>Dhaka, Bangladesh</h3><p>Executive management, international trade &amp; import operations, and commercial sales desk.</p><p><strong>Phone / WhatsApp:</strong> <a href="https://wa.me/8801971025000">+880 1971-025000</a></p>
+      <p><strong>Hours:</strong> Sat &ndash; Thu, 9:30 AM &ndash; 6:30 PM</p><p><strong>Websites:</strong> www.kaziagro.com &bull; www.kaziagroltd.com</p></div>
+      <div class="card"><span class="badge tan">Tangail Industrial Plant</span><h3>Tangail District</h3><p>Integrated extrusion, weaving, yarn and FMCG packaging facility in Tangail District, Dhaka Division.</p></div>
+    </div>
+  </div></section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><img src="assets/logo/logo-full-light.png" alt="Kazi Additive Limited" width="258" height="36"><p>Uniting German agro-nutritional innovation (Dr. Eckel), industrial PP woven packaging, Kazi Yarn Industry, and Kazi Consumer Products (FMCG) under one commitment to quality.</p></div>
+      <div><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#divisions">Business Divisions</a></li><li><a href="#leadership">Leadership &amp; Team</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Group Concerns</h4><ul><li>Kazi Additive Limited</li><li>Kazi Yarn Industry</li><li>Kazi Consumer Products (FMCG)</li><li>Head Office: Dhaka &nbsp;|&nbsp; Plant: Tangail</li></ul></div>
+    </div>
+    <div class="legal">
+      <span>&copy; 2026 KAZI ADDITIVE LIMITED. All Rights Reserved.</span>
+      <span>Chairman: Maksuda Easmin &nbsp;|&nbsp; MD: Kazi Salah Uddin</span>
+    </div>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg" id="dlgBox">
+    <div class="dlg-img" id="dlgImgWrap"><img id="dlgImg" alt="" width="600" height="750"></div>
+    <div class="dlg-body">
+      <button class="x" id="dlgClose" aria-label="Close">&times;</button>
+      <span><span class="badge" id="dlgKicker">Request Quote</span></span>
+      <h3 id="dlgTitle">Request Corporate Quote</h3>
+      <p id="dlgSub"></p>
+      <form class="form" id="dlgForm" novalidate>
+        <div class="field"><label for="d-name">Contact Name</label><input id="d-name" required autocomplete="name"></div>
+        <div class="field"><label for="d-contact">Phone or Email</label><input id="d-contact" required autocomplete="email"></div>
+        <div class="field"><label for="d-msg">Message / Order Volume</label><textarea id="d-msg" required></textarea></div>
+        <div class="sendrow">
+          <a class="btn caps wa" id="dWa" href="https://wa.me/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.6-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>Send on WhatsApp</a>
+          <a class="btn caps out" id="dMail" href="mailto:"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.2V17h16V7.2l-8 5.3-8-5.3zM5.6 7l6.4 4.2L18.4 7H5.6z"/></svg>Send by Email</a>
+        </div>
+        <p class="sendnote" id="dNote"></p>
+        <div class="enq" id="dOut" role="status"></div>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="lb" aria-label="Photo viewer">
+  <div class="lbwrap"><button class="x" id="lbClose" aria-label="Close">&times;</button><img id="lbImg" alt="">
+    <div class="lbcap"><p id="lbCap"></p><div class="nav2"><button id="lbPrev" aria-label="Previous photo">&larr;</button><button id="lbNext" aria-label="Next photo">&rarr;</button></div></div></div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* =====================================================================
+   SITE CONFIG: fill these in before going live.
+   email    : inquiry forms open the visitor's mail app to this address
+   whatsapp : digits with country code, adds a "Send on WhatsApp" button
+   team     : optional photo paths, e.g. "assets/team/md.jpg"
+   Both email and whatsapp empty = the inquiry text is shown with a Copy button.
+   ===================================================================== */
+var CONFIG = { email:"", whatsapp:"8801971025000", team:{ md:"", chairman:"" } };
+
+var GROUPS = [
+  {k:"all", label:"All Divisions"},
+  {k:"feed", label:"Feed & PP Bags"},
+  {k:"yarn", label:"Kazi Yarn"},
+  {k:"fmcg", label:"Consumer FMCG"}
+];
+var DIV = {
+  additives:{group:"feed", badge:"Animal Nutrition", cls:"", full:"Animal Feed Additives & Premix"},
+  ingredients:{group:"feed", badge:"Animal Nutrition", cls:"", full:"Feed Ingredients & Minerals"},
+  bags:{group:"feed", badge:"Industrial Packaging", cls:"navy", full:"PP Woven Bags & Industrial Packaging"},
+  yarn:{group:"yarn", badge:"Kazi Yarn Industry", cls:"tan", full:"Kazi Yarn Industry"},
+  fmcg:{group:"fmcg", badge:"Kazi Consumer Products", cls:"tan", full:"Kazi Consumer Products (FMCG)"}
+};
+var CATALOG = [{"div": "additives", "brand": "Dr. Eckel", "name": "Anta®Ferm MT 80", "img": "assets/products/additives-01.jpg", "w": 667, "h": 1000}, {"div": "additives", "brand": "Dr. Eckel", "name": "MoldCid", "img": "assets/products/additives-02.jpg", "w": 831, "h": 1000}, {"div": "additives", "brand": "Dr. Eckel", "name": "Anta®Mix ME", "img": "assets/products/additives-03.jpg", "w": 831, "h": 1000}, {"div": "additives", "brand": "Bestmix BD", "name": "Premix – Red Series", "img": "assets/products/additives-04.jpg", "w": 1000, "h": 1000}, {"div": "additives", "brand": "Bestmix BD", "name": "Premix – Green Series", "img": "assets/products/additives-05.jpg", "w": 1000, "h": 1000}, {"div": "additives", "brand": "Bivigro", "name": "Bivigro Super Quality Prebiotic", "img": "assets/products/additives-06.jpg", "w": 667, "h": 1000}, {"div": "additives", "brand": "Bestmix BD", "name": "Calcid Pro Max", "img": "assets/products/additives-07.jpg", "w": 1000, "h": 943}, {"div": "additives", "brand": "Vegamax", "name": "VeGuard Pro", "img": "assets/products/additives-08.jpg", "w": 667, "h": 1000}, {"div": "additives", "brand": "Sustar", "name": "VitaminPro – Aquatic Animals", "img": "assets/products/additives-09.jpg", "w": 800, "h": 800}, {"div": "additives", "brand": "HZM", "name": "Montsorb Feed Raw Material", "img": "assets/products/additives-10.jpg", "w": 709, "h": 1000}, {"div": "additives", "brand": "Sustar", "name": "VitaminPro – Aquatic (Shrimp)", "img": "assets/products/additives-11.jpg", "w": 800, "h": 800}, {"div": "additives", "brand": "Sustar", "name": "VitaminPro – Poultry", "img": "assets/products/additives-12.jpg", "w": 800, "h": 800}, {"div": "additives", "brand": "Sustar", "name": "VitaminPro – Ruminant", "img": "assets/products/additives-13.jpg", "w": 800, "h": 800}, {"div": "ingredients", "brand": "Unearthed", "name": "Powdered Limestone", "img": "assets/products/ingredients-01.jpg", "w": 562, "h": 728}, {"div": "ingredients", "brand": "Feed Grade", "name": "Toxin Binder", "img": "assets/products/ingredients-02.jpg", "w": 667, "h": 1000}, {"div": "ingredients", "brand": "Sunson", "name": "Feed Enzyme for Pig", "img": "assets/products/ingredients-03.jpg", "w": 800, "h": 800}, {"div": "ingredients", "brand": "Xingmao", "name": "L-Lysine HCl", "img": "assets/products/ingredients-04.webp", "w": 1000, "h": 1000}, {"div": "ingredients", "brand": "Unearthed", "name": "Fish Meal 60% Protein", "img": "assets/products/ingredients-05.jpg", "w": 667, "h": 1000}, {"div": "ingredients", "brand": "Zohdy Minerals", "name": "Limestone Granules", "img": "assets/products/ingredients-06.jpg", "w": 500, "h": 500}, {"div": "ingredients", "brand": "Focuswell", "name": "Choline Chloride", "img": "assets/products/ingredients-07.jpg", "w": 1000, "h": 1000}, {"div": "ingredients", "brand": "Xingmao", "name": "Corn Gluten Meal", "img": "assets/products/ingredients-08.webp", "w": 1000, "h": 1000}, {"div": "ingredients", "brand": "Sealine", "name": "Steam Dried Fish Meal", "img": "assets/products/ingredients-09.jpg", "w": 1000, "h": 1000}, {"div": "fmcg", "brand": "Manha", "name": "Beauty Soap – Lavender", "img": "assets/products/fmcg-01.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Manha", "name": "Beauty Soap – Orange", "img": "assets/products/fmcg-02.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Manha", "name": "Beauty Soap – Neem", "img": "assets/products/fmcg-03.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Manha", "name": "Beauty Soap – Rose", "img": "assets/products/fmcg-04.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Manha", "name": "Neem Radiance Face Wash", "img": "assets/products/fmcg-05.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Detergent Powder", "img": "assets/products/fmcg-06.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Dishwash Liquid – Lime", "img": "assets/products/fmcg-07.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Powerful Toilet Cleaner", "img": "assets/products/fmcg-08.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Manha", "name": "Papaya Radiance Face Wash", "img": "assets/products/fmcg-09.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Refreshing Shower Gel – Lotus", "img": "assets/products/fmcg-10.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Shower Gel – Violet", "img": "assets/products/fmcg-11.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Shower Gel – Holly Berry", "img": "assets/products/fmcg-12.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Orange Hand Wash", "img": "assets/products/fmcg-13.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Dishwash Bar", "img": "assets/products/fmcg-14.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Beauty Sachet", "img": "assets/products/fmcg-15.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Kiwi Shower Gel", "img": "assets/products/fmcg-16.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Manha", "name": "Shower Gel – Mint", "img": "assets/products/fmcg-17.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Manha & Safir", "name": "Thickening Shampoo – Ginger", "img": "assets/products/fmcg-18.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Léya", "name": "Melons Hand Wash", "img": "assets/products/fmcg-19.jpg", "w": 750, "h": 1000}, {"div": "fmcg", "brand": "Manha & Safir", "name": "Fiery Pink Pepper Bath & Shower Gel", "img": "assets/products/fmcg-20.jpg", "w": 750, "h": 1000}, {"div": "yarn", "brand": "Kazi Yarn", "name": "Dyed Filament Yarn – Red", "img": "assets/products/yarn-01.jpg", "w": 667, "h": 1000}, {"div": "yarn", "brand": "Kazi Yarn", "name": "Multi-Filament Yarn – White", "img": "assets/products/yarn-02.jpg", "w": 667, "h": 1000}, {"div": "yarn", "brand": "Kazi Yarn", "name": "Specialty Yarn – Silver", "img": "assets/products/yarn-03.jpg", "w": 667, "h": 1000}];
+CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags",img:"",w:0,h:0});
+
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasGsap=!!window.gsap&&!!window.ScrollTrigger; if(hasGsap)gsap.registerPlugin(ScrollTrigger);
+  var byImg={}; CATALOG.forEach(function(c){if(c.img)byImg[c.img.replace("assets/products/","").replace(/\.\w+$/,"")]=c});
+  function imgTag(c,cls){return '<img src="'+c.img+'" alt="'+c.brand+' '+c.name+'" loading="lazy" decoding="async" width="'+c.w+'" height="'+c.h+'" class="'+cls+'">'}
+  var isCut=function(c){return c.img.slice(-4)==="webp"};
+
+  /* ---------- views (hash routed: #home #about #divisions #leadership #insights #contact) ---------- */
+  var VIEWS=["home","about","divisions","leadership","gallery","insights","contact"], revealTriggers=[], heroST=null, current="";
+  function revealSetup(root){
+    revealTriggers.forEach(function(t){t.kill()});revealTriggers=[];
+    var els=$$(".reveal",root); if(!els.length)return;
+    if(!hasGsap||reduce){els.forEach(function(e){e.style.opacity="";e.style.visibility=""});return}
+    gsap.set(els,{autoAlpha:0,y:22});
+    revealTriggers=ScrollTrigger.batch(els,{start:"top 90%",once:true,onEnter:function(b){gsap.to(b,{autoAlpha:1,y:0,duration:.45,ease:"power2.out",stagger:.07,overwrite:true})}});
+  }
+  function heroSetup(on){window.__heroAuto&&window.__heroAuto(on)}
+  function show(v){
+    if(VIEWS.indexOf(v)<0)v="home";
+    if(v===current)return; current=v;
+    VIEWS.forEach(function(x){$("#page-"+x).hidden=(x!==v)});
+    $$("#nav a").forEach(function(a){if(a.dataset.v===v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+    document.title=$("#page-"+v).dataset.title;
+    window.scrollTo(0,0);
+    heroSetup(v==="home"); revealSetup($("#page-"+v));
+    if(hasGsap)setTimeout(function(){ScrollTrigger.refresh()},60);
+    $("#nav").classList.remove("open");$("#menuBtn").setAttribute("aria-expanded","false");
+    window.__viewChanged&&window.__viewChanged(v);
+  }
+  window.addEventListener("hashchange",function(){show(location.hash.replace("#",""))});
+  function go(v){if(location.hash==="#"+v){current="";show(v)}else location.hash=v}
+
+  /* ---------- menu ---------- */
+  var menuBtn=$("#menuBtn"),nav=$("#nav");
+  menuBtn.addEventListener("click",function(){var o=nav.classList.toggle("open");menuBtn.setAttribute("aria-expanded",o)});
+
+  /* ---------- home: pillars, mosaic, people ---------- */
+  var pillars=[
+    {n:"01",badge:"Flagship Division",cls:"",title:"Animal Feed, Additives & PP Woven Bags",
+     text:"Importing and distributing scientifically proven feed additives and phytogenics in partnership with <strong>Dr. Eckel Animal Nutrition (Germany)</strong>, alongside feed ingredients and high-strength <strong>PP Woven Bags</strong> manufactured at our Tangail facility.",
+     thumbs:["additives-02","additives-12","ingredients-03"],bullets:["Phytogenic Feed Additives & Mycotoxin Binders","Poultry, Dairy & Aquaculture Nutrition","Laminated & Unlaminated PP Woven Sacks"],group:"feed"},
+    {n:"02",badge:"Industrial Textiles",cls:"tan",title:"Kazi Yarn Industry",
+     text:"Dedicated to manufacturing precision-engineered multi-filament polypropylene and industrial yarns. Supporting Bangladesh&rsquo;s packaging, weaving, bag-closing, and textile sectors with consistent tensile strength and colorfast durability.",
+     thumbs:["yarn-01","yarn-02","yarn-03"],bullets:["High-Tenacity Multi-Filament PP Yarn","Industrial Bag-Closing & Stitching Threads","Custom Denier & UV-Stabilized Grades"],group:"yarn"},
+    {n:"03",badge:"Consumer & FMCG",cls:"tan",title:"Kazi Consumer Products (FMCG)",
+     text:"Delivering trustworthy, affordable fast-moving consumer goods to households across Bangladesh, spanning personal care, home hygiene and laundry under the <strong>Manha</strong>, <strong>L&eacute;ya</strong> and <strong>Manha &amp; Safir</strong> brands.",
+     thumbs:["fmcg-10","fmcg-08","fmcg-01"],bullets:["Detergent Powder, Dishwash Bars & Toilet Cleaners","Beauty Soaps, Face Wash & Shower Gels","Hand Wash, Shampoo & Bath Care"],group:"fmcg"}
+  ];
+  var ICONS='<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><svg viewBox="0 0 24 24"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4z"/></svg><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>';
+  function groupItems(g){var out=[];CATALOG.forEach(function(c,i){if(c.img&&DIV[c.div].group===g)out.push({c:c,i:i})});return out}
+  function brandsOf(items){var m=[];items.forEach(function(o){if(m.indexOf(o.c.brand)<0)m.push(o.c.brand)});return m}
+  function ugcTiles(items,company){return items.map(function(o,k){var c=o.c,t=((k*37)%7-3)*0.9;
+    return '<button type="button" class="ugc" data-open="'+o.i+'" style="--tilt:'+t.toFixed(1)+'deg;--d:'+(k*0.06).toFixed(2)+'s" aria-label="'+c.brand+' '+c.name+', inquire"><span class="uhead"><i><span>'+c.brand.charAt(0)+'</span></i><span><b>'+c.brand+'</b><small>'+company+'</small></span></span><span class="uimg"><img src="'+c.img+'" alt="" loading="lazy" class="'+(isCut(c)?"contain":"")+'">'+(k%3===0?'<em>'+DIV[c.div].badge+'</em>':'')+'</span><span class="uact" aria-hidden="true">'+ICONS+'</span><span class="ucap">'+c.name+'</span></button>'}).join("")}
+  var COMPANY={feed:"Kazi Additive Ltd",yarn:"Kazi Yarn Industry",fmcg:"Kazi Consumer Products"};
+  $("#pillars").innerHTML=pillars.map(function(p,pi){
+    var items=groupItems(p.group),brands=brandsOf(items);
+    var fan=p.thumbs.map(function(k){var c=byImg[k];return '<figure>'+imgTag(c,isCut(c)?"contain":"")+'</figure>'}).join("");
+    return '<article class="xcard reveal" data-pi="'+pi+'"><div class="xin">'+
+      '<div class="xmedia" data-peek><span class="num">'+p.n+'</span><span class="badge '+p.cls+'">'+p.badge+'</span><div class="fan">'+fan+'</div><span class="xhint">'+items.length+' products &middot; '+brands.length+' '+(brands.length>1?"brands":"brand")+'</span></div>'+
+      '<div class="xbody"><h3>'+p.title+'</h3><p>'+p.text+'</p><ul>'+p.bullets.map(function(b){return "<li>"+b+"</li>"}).join("")+'</ul><div class="foot"><button class="link" data-go="divisions" data-group="'+p.group+'">Explore Division</button><span class="acts"><button class="btn sm out" type="button" data-peek aria-expanded="false" aria-controls="peek-'+pi+'">Peek products</button><button class="btn sm" data-enquire="'+p.title.replace(/"/g,"")+'">Inquire</button></span></div></div>'+
+      '<div class="peek" id="peek-'+pi+'" role="dialog" aria-label="'+p.title.replace(/"/g,"")+' products by company" inert><header><div><h4>'+COMPANY[p.group]+'</h4><p>Products by company. Tap any post to inquire.</p></div><button type="button" class="x" aria-label="Close product preview">&times;</button></header>'+
+      '<div class="chips">'+['All'].concat(brands).map(function(b,k){var n=k?items.filter(function(o){return o.c.brand===b}).length:items.length;return '<button type="button" data-brand="'+b+'" aria-pressed="'+(k===0)+'">'+b+'<small>'+n+'</small></button>'}).join("")+'</div>'+
+      '<div class="strip">'+ugcTiles(items,COMPANY[p.group])+'</div>'+
+      (p.group==="feed"?'<p class="more">PP woven sacks are made to order. <button type="button" data-enquire="PP Woven Bags custom quote">Get a bag quote</button></p>':'')+
+      '</div></div></article>';
+  }).join("");
+  (function(){
+    var fine=window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+    $$(".xcard").forEach(function(card){
+      var xin=$(".xin",card),peek=$(".peek",card),btn=$(".foot [data-peek]",card),strip=$(".strip",card),p=pillars[+card.dataset.pi],items=groupItems(p.group),timer;
+      function setOpen(o){card.classList.toggle("open",o);btn.setAttribute("aria-expanded",o);if(o){peek.removeAttribute("inert");$$(".ugc",strip).forEach(function(u){u.style.animation="none";u.offsetWidth;u.style.animation=""})}else peek.setAttribute("inert","")}
+      $$("[data-peek]",card).forEach(function(t){t.addEventListener("click",function(){setOpen(!card.classList.contains("open"))})});
+      $(".x",card).addEventListener("click",function(){setOpen(false);btn.focus()});
+      card.addEventListener("keydown",function(e){if(e.key==="Escape"&&card.classList.contains("open")){setOpen(false);btn.focus()}});
+      $(".chips",card).addEventListener("click",function(e){var b=e.target.closest("[data-brand]");if(!b)return;
+        $$(".chips button",card).forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+        var f=b.dataset.brand==="All"?items:items.filter(function(o){return o.c.brand===b.dataset.brand});
+        strip.innerHTML=ugcTiles(f,COMPANY[p.group]);strip.scrollLeft=0});
+      if(fine){
+        $(".xmedia",card).addEventListener("mouseenter",function(){clearTimeout(timer);timer=setTimeout(function(){setOpen(true)},260)});
+        $(".xmedia",card).addEventListener("mouseleave",function(){clearTimeout(timer)});
+        card.addEventListener("mouseleave",function(){clearTimeout(timer);setOpen(false);xin.style.setProperty("--rx","0deg");xin.style.setProperty("--ry","0deg")});
+        if(!reduce)card.addEventListener("mousemove",function(e){var r=xin.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+          xin.style.setProperty("--mx",(x*100)+"%");xin.style.setProperty("--my",(y*100)+"%");
+          if(!card.classList.contains("open")){xin.style.setProperty("--ry",((x-.5)*8)+"deg");xin.style.setProperty("--rx",((.5-y)*6)+"deg")}else{xin.style.setProperty("--rx","0deg");xin.style.setProperty("--ry","0deg")}});
+      }
+    });
+  })();
+  /* ---------- product showcase: 3D oval carousel with division filter ---------- */
+  (function(){
+    var ring=$("#ring"); if(!ring)return;
+    var COL={feed:"#A9C98A",yarn:"#EF8A6F",fmcg:"#F2C66D"}, LBL={feed:"Feed & Additives",yarn:"Yarn",fmcg:"Consumer Goods"};
+    var pick=function(g){var o=[];CATALOG.forEach(function(c,i){if(c.img&&DIV[c.div].group===g)o.push([c,i])});return o};
+    var ALL={feed:pick("feed"),yarn:pick("yarn"),fmcg:pick("fmcg")};
+    function mixAll(){var F=ALL.feed.slice(),Y=ALL.yarn.slice(),C=ALL.fmcg.slice(),out=[];
+      /* interleave so the divisions alternate around the oval */
+      for(var k=0;F.length||C.length||Y.length;k++){if(F.length)out.push(F.shift());if(C.length)out.push(C.shift());if(k%6===2&&Y.length)out.push(Y.shift())}return out}
+    var cards=[], n=0, step=1, rot=0, vel=0, hover=false, drag=null, Rx=500, Ry=70, front=-1, auto=reduce?0:0.07, target=null, cw=150;
+    function build(list){
+      $$(".sitem",ring).forEach(function(e){e.remove()});
+      ring.insertAdjacentHTML("beforeend",list.map(function(x){var c=x[0],g=DIV[c.div].group;
+        return '<button type="button" class="sitem" data-open="'+x[1]+'" aria-label="'+c.brand+' '+c.name+', inquire"><span class="im"><img src="'+c.img+'" alt="" loading="lazy" decoding="async" class="'+(isCut(c)?"contain":"")+'"><span class="tag" style="--c:'+COL[g]+'">'+LBL[g]+'</span></span><b>'+c.brand+'</b><span class="n">'+c.name+'</span></button>'}).join(""));
+      cards=$$(".sitem",ring); boost=[]; n=cards.length; step=Math.PI*2/n; front=-1; rot=Math.PI/2; target=null;
+      ring.classList.toggle("dense",n>24); size();
+      if(hasGsap&&!reduce)gsap.fromTo(cards,{autoAlpha:0},{autoAlpha:1,duration:.5,stagger:.02,clearProps:"visibility"});
+    }
+    function size(){var w=ring.clientWidth;if(!w)return;var sm=w<660;Rx=Math.min(w*(n<6?0.3:0.44),600);Ry=sm?36:(n<6?32:60)}
+    new ResizeObserver(size).observe(ring);
+    function layout(){
+      var best=-2,bi=0;
+      for(var j=0;j<n;j++){var sj=Math.sin(j*step+rot);if(sj>best){best=sj;bi=j}}
+      for(var i=0;i<n;i++){var a=i*step+rot, s=(Math.sin(a)+1)/2, x=Math.cos(a)*Rx, y=Math.sin(a)*Ry;
+        /* the selected (front) card and the hovered card grow 20%, eased */
+        var want=(i===bi||cards[i]===hot)?1.2:1; boost[i]=(boost[i]||1)+(want-(boost[i]||1))*.18;
+        var sc=(.5+.55*s)*boost[i];
+        var el=cards[i]; el.style.transform="translate(-50%,-50%) translate3d("+x.toFixed(1)+"px,"+y.toFixed(1)+"px,0) rotateY("+(-Math.cos(a)*38).toFixed(1)+"deg) scale("+sc.toFixed(3)+")";
+        el.style.zIndex=Math.round(s*100)+(boost[i]>1.05?50:0); el.style.setProperty("--dim",((1-s)*.55).toFixed(2)); if(!el.style.visibility||el.style.visibility==="inherit")el.style.opacity=(.25+.75*s).toFixed(2);
+        el.tabIndex=s>.75?0:-1;}
+      if(n&&bi!==front){front=bi;var c=CATALOG[+cards[bi].dataset.open];$("#rnow").textContent=c.brand+" · "+c.name}
+    }
+    var boost=[],hot=null;
+    ring.addEventListener("pointerover",function(e){hot=e.target.closest(".sitem")});
+    ring.addEventListener("pointerleave",function(){hot=null});
+    var last=performance.now();
+    function tick(now){var dt=Math.min(.05,(now-last)/1000);last=now;
+      if(target!==null){var d=target-rot;rot+=d*Math.min(1,dt*5);if(Math.abs(d)<.001)target=null}
+      else if(!drag){rot+=(hover?0:auto)*dt+vel*dt;vel*=Math.pow(.01,dt)}
+      if(ring.offsetParent&&n)layout(); requestAnimationFrame(tick)}
+    requestAnimationFrame(tick);
+    ring.addEventListener("mouseenter",function(){hover=true});ring.addEventListener("mouseleave",function(){hover=false});
+    ring.addEventListener("pointerdown",function(e){vel=0;drag={x:e.clientX,r:rot,t:performance.now(),moved:false};target=null;ring.classList.add("drag")});
+    window.addEventListener("pointermove",function(e){if(!drag)return;var dx=e.clientX-drag.x;if(Math.abs(dx)>5)drag.moved=true;var nr=drag.r+dx/Rx*0.4,now=performance.now(),iv=(nr-rot)/Math.max(.016,(now-drag.t)/1000);vel=vel*.8+iv*.2;drag.t=now;rot=nr});
+    window.addEventListener("pointerup",function(){if(!drag)return;ring.classList.remove("drag");var m=drag.moved;drag=null;vel=Math.max(-.6,Math.min(.6,vel));if(m){ring.dataset.dragged="1";setTimeout(function(){delete ring.dataset.dragged},0)}});
+    ring.addEventListener("click",function(e){if(ring.dataset.dragged){e.stopPropagation();e.preventDefault()}},true);
+    function snapTo(i){var want=Math.PI/2-i*step,d=((want-rot)%(Math.PI*2)+Math.PI*3)%(Math.PI*2)-Math.PI;target=rot+d}
+    $("#rprev").addEventListener("click",function(){snapTo((front-1+n)%n)});
+    $("#rnext").addEventListener("click",function(){snapTo((front+1)%n)});
+    ring.addEventListener("focusin",function(e){var i=cards.indexOf(e.target);if(i>=0)snapTo(i)});
+    /* filter buttons */
+    var fb=$("#rfilter");
+    fb.innerHTML=[["all","All",ALL.feed.length+ALL.yarn.length+ALL.fmcg.length],["feed","Feed & Additives",ALL.feed.length],["yarn","Yarn",ALL.yarn.length],["fmcg","Consumer Goods",ALL.fmcg.length]].map(function(f,k){
+      return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(k===0)+'"'+(f[0]!=="all"?' style="--c:'+COL[f[0]]+'"':'')+'>'+f[1]+'<small>'+f[2]+'</small></button>'}).join("");
+    fb.addEventListener("click",function(e){var b=e.target.closest("[data-f]");if(!b||b.getAttribute("aria-pressed")==="true")return;
+      $$("button",fb).forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+      build(b.dataset.f==="all"?mixAll():ALL[b.dataset.f])});
+    build(mixAll());
+  })();
+  $("#mosaic").innerHTML=["additives-02","fmcg-01","yarn-02","fmcg-10"].map(function(k){var c=byImg[k];return '<figure>'+imgTag(c,"")+'</figure>'}).join("");
+  var people={md:{ini:"KSU",role:"Managing Director",name:"Kazi Salah Uddin",short:"Managing Director, Kazi Additive Limited, Kazi Yarn Industry & Kazi Consumer Products.",long:"Directs corporate strategy, international partnerships with European nutrition leaders, and manufacturing expansion across PP woven bags, Kazi Yarn Industry, and Kazi Consumer Products."},
+              chairman:{ini:"ME",role:"Chairman",name:"Maksuda Easmin",short:"Chairman of the Board, Kazi Additive Limited.",long:"Champions ethical corporate governance, community welfare, and sustainable industrial development across all group operations in Dhaka and Tangail."}};
+  $$("[data-person]").forEach(function(el){
+    var p=people[el.dataset.person],ph=CONFIG.team[el.dataset.person],long=el.dataset.long;
+    el.innerHTML='<div class="mono">'+(ph?'<img src="'+ph+'" alt="'+p.name+'">':'<span aria-hidden="true">'+p.ini+'</span>')+'</div><div><span class="badge '+(p.ini==="ME"?"navy":"")+'">'+p.role+'</span><h3>'+p.name+'</h3><p>'+(long?p.long:p.short)+'</p></div>';
+  });
+
+  $$("#team4 [data-p]").forEach(function(a){var ph=CONFIG.team[a.dataset.p];if(ph)a.innerHTML='<img src="'+ph+'" alt="">'});
+  if(CONFIG.team.md){var pt=$("#mdPortrait");pt.insertAdjacentHTML("afterbegin",'<img src="'+CONFIG.team.md+'" alt="Kazi Salah Uddin">')}
+  /* ---------- background: moving dots + soft lines ---------- */
+  (function(){
+    var cv=$("#bgdots");if(!cv||!cv.getContext)return;
+    var cx=cv.getContext("2d"),W=0,H=0,dots=[],mx=.5,my=.5,run=true,dpr=Math.min(window.devicePixelRatio||1,2),LINK=130;
+    function col(n){return getComputedStyle(document.body).getPropertyValue(n).trim()||"#18334B"}
+    function rgb(h){h=h.replace("#","");if(h.length===3)h=h.replace(/(.)/g,"$1$1");return[parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)].join(",")}
+    var c1=rgb(col("--primary")),c2=rgb(col("--badge"));
+    function size(){W=window.innerWidth;H=window.innerHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
+      var n=Math.max(26,Math.min(80,Math.round(W*H/17000)));if(W<700)n=Math.min(n,34);
+      while(dots.length<n)dots.push({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.00007,vy:(Math.random()-.5)*.00007,r:1.2+Math.random()*1.7});
+      dots.length=n}
+    size();window.addEventListener("resize",size);
+    window.addEventListener("pointermove",function(e){mx=e.clientX/W;my=e.clientY/H},{passive:true});
+    window.addEventListener("themechange",function(){c1=rgb(col("--primary"));c2=rgb(col("--badge"))});
+    document.addEventListener("visibilitychange",function(){run=!document.hidden;if(run&&!reduce)requestAnimationFrame(draw)});
+    var last=0;
+    function draw(ts){
+      if(!run)return;var dt=Math.min(40,ts-last||16);last=ts;
+      cx.clearRect(0,0,W,H);
+      var px=(mx-.5)*14,py=(my-.5)*14;
+      for(var i=0;i<dots.length;i++){var d=dots[i];if(!reduce){d.x+=d.vx*dt;d.y+=d.vy*dt;if(d.x<-.02)d.x=1.02;if(d.x>1.02)d.x=-.02;if(d.y<-.02)d.y=1.02;if(d.y>1.02)d.y=-.02}d._x=d.x*W+px*d.r;d._y=d.y*H+py*d.r}
+      for(var a=0;a<dots.length;a++){var A=dots[a];
+        for(var b=a+1;b<dots.length;b++){var B=dots[b],dx=A._x-B._x,dy=A._y-B._y;if(dx>LINK||dx<-LINK||dy>LINK||dy<-LINK)continue;var q=Math.sqrt(dx*dx+dy*dy);if(q<LINK){cx.strokeStyle="rgba("+c1+","+(0.14*(1-q/LINK)).toFixed(3)+")";cx.lineWidth=1;cx.beginPath();cx.moveTo(A._x,A._y);cx.lineTo(B._x,B._y);cx.stroke()}}
+        cx.fillStyle="rgba("+(a%6===0?c2+",.55":c1+",.32")+")";cx.beginPath();cx.arc(A._x,A._y,A.r,0,6.2832);cx.fill()}
+      if(!reduce)requestAnimationFrame(draw)
+    }
+    requestAnimationFrame(draw);
+  })();
+
+  /* ---------- gallery ---------- */
+  var GAL=[
+    {f:"g07",c:"team",t:"The Kazi Additive team at the Tangail plant"},
+    {f:"g05",c:"factory",t:"Plant entrance, Ghatail, Tangail"},
+    {f:"g02",c:"factory",t:"Tangail campus and grounds"},
+    {f:"g03",c:"factory",t:"Factory grounds, Tangail"},
+    {f:"g04",c:"factory",t:"Factory grounds, Tangail"},
+    {f:"g11",c:"meet",t:"Management meeting with the Dr. Eckel team"},
+    {f:"g10",c:"meet",t:"Meeting with Dr. Eckel representatives"},
+    {f:"g06",c:"meet",t:"With international partners"},
+    {f:"g01",c:"expo",t:"EuroTier, Hannover (Hall 13)"},
+    {f:"g09",c:"expo",t:"Dr. Eckel stand at EuroTier"},
+    {f:"g08",c:"expo",t:"Visit to Dr. Eckel headquarters, Germany"},
+    {f:"g15",c:"expo",t:"Kazi Polymer, Kazi Agro and Bestmix stands"},
+    {f:"g13",c:"expo",t:"Bestmix BD Ltd. exhibition stand"},
+    {f:"g14",c:"expo",t:"Dr. Eckel exclusive distributor stand"},
+    {f:"g12",c:"expo",t:"With a Dr. Eckel partner"},
+    {f:"g16",c:"expo",t:"With Dr. Eckel representatives"}
+  ];
+  var GC=[["all","All Photos"],["team","Team"],["factory","Factory & Campus"],["meet","Management Meetings"],["expo","Exhibitions & Partners"]];
+  var gcat="all",gshown=[];
+  function gname(c){for(var i=0;i<GC.length;i++)if(GC[i][0]===c)return GC[i][1];return ""}
+  function renderGal(anim){
+    $("#galPills").innerHTML=GC.map(function(g){var n=g[0]==="all"?GAL.length:GAL.filter(function(x){return x.c===g[0]}).length;return '<button class="pill" data-gc="'+g[0]+'" aria-pressed="'+(gcat===g[0])+'">'+g[1]+'<small>'+n+'</small></button>'}).join("");
+    gshown=GAL.filter(function(x){return gcat==="all"||x.c===gcat});
+    $("#galGrid").innerHTML=gshown.map(function(x,i){return '<button class="gitem" data-gi="'+i+'" aria-label="Open photo: '+x.t+'"><img src="assets/gallery/'+x.f+'.jpg" alt="'+x.t+'" loading="lazy" decoding="async"><span class="tag badge '+(x.c==="team"?"":"tan")+'">'+gname(x.c)+'</span><span class="cap">'+x.t+'</span></button>'}).join("");
+    if(anim&&hasGsap&&!reduce)gsap.from("#galGrid .gitem",{autoAlpha:0,y:14,duration:.32,ease:"power2.out",stagger:{each:.03,amount:.3},clearProps:"all"});
+  }
+  var lb=$("#lb"),lbi=0;
+  function lbShow(i){lbi=(i+gshown.length)%gshown.length;var x=gshown[lbi];$("#lbImg").src="assets/gallery/"+x.f+".jpg";$("#lbImg").alt=x.t;$("#lbCap").textContent=x.t+"  ("+(lbi+1)+"/"+gshown.length+")"}
+  $("#galPills").addEventListener("click",function(e){var b=e.target.closest("[data-gc]");if(b){gcat=b.dataset.gc;renderGal(true)}});
+  $("#galGrid").addEventListener("click",function(e){var b=e.target.closest("[data-gi]");if(!b)return;lbShow(+b.dataset.gi);if(lb.showModal)lb.showModal();else lb.setAttribute("open","")});
+  $("#lbPrev").onclick=function(){lbShow(lbi-1)};$("#lbNext").onclick=function(){lbShow(lbi+1)};$("#lbClose").onclick=function(){lb.close()};
+  lb.addEventListener("click",function(e){if(e.target===lb)lb.close()});
+  lb.addEventListener("keydown",function(e){if(e.key==="ArrowLeft")lbShow(lbi-1);if(e.key==="ArrowRight")lbShow(lbi+1)});
+  renderGal(false);
+
+  /* ---------- divisions: catalog ---------- */
+  var state={group:"all",brand:"all"};
+  var gp=$("#gpills"),bp=$("#bpills"),pg=$("#pgrid"),cnt=$("#count");
+  function gcount(k){return k==="all"?CATALOG.length:CATALOG.filter(function(c){return DIV[c.div].group===k}).length}
+  function renderG(){gp.innerHTML=GROUPS.map(function(g){return '<button class="pill" role="tab" data-g="'+g.k+'" aria-selected="'+(state.group===g.k)+'">'+g.label+'<small>'+gcount(g.k)+'</small></button>'}).join("")}
+  function renderB(){
+    var pool=CATALOG.filter(function(c){return state.group==="all"||DIV[c.div].group===state.group});
+    var br=[];pool.forEach(function(c){if(br.indexOf(c.brand)<0)br.push(c.brand)});
+    if(state.group==="all"||br.length<2){bp.innerHTML="";return}
+    bp.innerHTML=["all"].concat(br).map(function(b){return '<button class="pill brand" data-b="'+b+'" aria-pressed="'+(state.brand===b)+'">'+(b==="all"?"All brands":b)+'</button>'}).join("");
+  }
+  function renderP(animate){
+    var items=CATALOG.map(function(c,i){c._i=i;return c}).filter(function(c){return (state.group==="all"||DIV[c.div].group===state.group)&&(state.brand==="all"||c.brand===state.brand)});
+    pg.innerHTML=items.map(function(c){
+      var d=DIV[c.div],fig;
+      if(!c.img)fig='<figure class="panel"><img src="assets/logo/logo-mark-light.png" alt="" width="152" height="152"></figure>';
+      else{var scene=(c.div==="fmcg"||c.div==="yarn");fig='<figure'+(isCut(c)?' class="tint"':'')+'>'+imgTag(c,scene?"":"contain")+'</figure>'}
+      var desc=c.img?'<p class="by">by <b>'+c.brand+'</b></p>':'<p class="by">Custom-printed, moisture-resistant polypropylene woven sacks made in Tangail for feed, rice, flour, fertilizer and bulk packaging.</p>';
+      return '<article class="card lift pcard" data-i="'+c._i+'">'+fig+'<div class="inner"><span><span class="badge '+d.cls+'">'+d.badge+'</span></span><h3>'+c.name+'</h3>'+desc+'<span class="spacer"></span><div class="foot"><button class="link" data-open="'+c._i+'">View Details</button><button class="btn sm" data-open="'+c._i+'">Inquire</button></div></div></article>';
+    }).join("");
+    cnt.textContent=items.length+" product"+(items.length===1?"":"s");
+    if(animate&&hasGsap&&!reduce)gsap.from(pg.children,{autoAlpha:0,y:16,duration:.32,ease:"power2.out",stagger:{each:.03,amount:.3},clearProps:"all"});
+  }
+  function setGroup(k){state.group=k;state.brand="all";renderG();renderB();renderP(true)}
+  gp.addEventListener("click",function(e){var b=e.target.closest("[data-g]");if(b)setGroup(b.dataset.g)});
+  bp.addEventListener("click",function(e){var b=e.target.closest("[data-b]");if(!b)return;state.brand=b.dataset.b;renderB();renderP(true)});
+  renderG();renderB();renderP(false);
+
+  /* ---------- inquiry dialog + forms ---------- */
+  var dlg=$("#dlg");
+  function buildOut(box,msg,subject){
+    box.innerHTML="";var pre=document.createElement("pre");pre.textContent=msg;box.appendChild(pre);
+    var row=document.createElement("div");row.style.cssText="display:flex;flex-wrap:wrap;gap:10px";
+    var copy=document.createElement("button");copy.type="button";copy.className="btn sm out";copy.textContent="Copy Inquiry";
+    copy.onclick=function(){try{navigator.clipboard.writeText(msg).then(function(){copy.textContent="Copied"}).catch(function(){copy.textContent="Select the text and copy"})}catch(e){copy.textContent="Select the text and copy"}};
+    row.appendChild(copy);
+    if(CONFIG.email){var m=document.createElement("a");m.className="btn sm out";m.textContent="Open in Email";m.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg);row.appendChild(m)}
+    if(CONFIG.whatsapp){var w=document.createElement("a");w.className="btn sm";w.textContent="Send on WhatsApp";w.href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(msg);row.appendChild(w)}
+    box.appendChild(row);
+    if(!CONFIG.email&&!CONFIG.whatsapp){var n=document.createElement("p");n.className="note";n.textContent="Copy this inquiry and send it to our Dhaka commercial desk.";box.appendChild(n)}
+    box.classList.add("show");
+  }
+  function validate(f){var ok=true;$$("input[required],textarea[required]",f).forEach(function(i){var bad=!i.value.trim();i.setAttribute("aria-invalid",bad);if(bad&&ok)i.focus();ok=ok&&!bad});return ok}
+  function openDlg(title,o){
+    o=o||{};$("#dlgTitle").textContent=title;$("#dlgKicker").textContent=o.kicker||"Request Quote";
+    $("#dlgSub").textContent=o.sub||"Complete the brief details below and our Dhaka commercial desk will respond with product specifications and pricing.";
+    var img=$("#dlgImg"),wrap=$("#dlgImgWrap"),box=$("#dlgBox");
+    if(o.img){wrap.style.display="";box.classList.remove("noimg");img.src=o.img.src;img.alt=o.img.alt;img.className=o.img.cover?"cover":""}else{wrap.style.display="none";box.classList.add("noimg")}
+    $("#dOut").classList.remove("show");$("#d-msg").value=o.prefill||"";dlg.dataset.subject=title;
+    dlg.dataset.img=o.img?new URL(o.img.src,location.href).href:""; if(typeof dlgLinks==="function")dlgLinks();
+    if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");
+  }
+  $("#dlgClose").onclick=function(){dlg.close()};
+  dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close()});
+  /* inquiry dialog: WhatsApp + Email buttons carry the form text and the product photo link */
+  function dlgMsg(){var t=dlg.dataset.subject,im=dlg.dataset.img;
+    return "Inquiry: "+t+"\nName: "+$("#d-name").value.trim()+"\nContact: "+$("#d-contact").value.trim()+"\nMessage: "+$("#d-msg").value.trim()+(im?"\nProduct photo: "+im:"")+"\n(Sent from the Kazi Additive Limited website)"}
+  function dlgLinks(){var m=dlgMsg(),t=dlg.dataset.subject||"Inquiry";
+    $("#dWa").href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(m);
+    $("#dMail").href="mailto:"+(CONFIG.email||"")+"?subject="+encodeURIComponent("Inquiry: "+t)+"&body="+encodeURIComponent(m)}
+  $("#dlgForm").addEventListener("input",dlgLinks);
+  ["#dWa","#dMail"].forEach(function(id){$(id).addEventListener("click",function(e){dlgLinks();if(!validate($("#dlgForm")))e.preventDefault()})});
+  $("#dlgForm").addEventListener("submit",function(e){e.preventDefault();if(validate(this)){dlgLinks();$("#dWa").click()}});
+  $("#dWa").hidden=!CONFIG.whatsapp;
+  $("#dNote").textContent=(CONFIG.whatsapp?"WhatsApp: +"+CONFIG.whatsapp.replace(/^(\d{3})(\d{4})(\d+)$/,"$1 $2-$3"):"")+(CONFIG.whatsapp&&CONFIG.email?"  \u2022  ":"")+(CONFIG.email?"Email: "+CONFIG.email:"");
+  $("#contactForm").addEventListener("submit",function(e){e.preventDefault();if(!validate(this))return;
+    buildOut($("#cOut"),"Inquiry: "+$("#c-div").value+"\nName: "+$("#c-name").value.trim()+"\nContact: "+$("#c-contact").value.trim()+"\nRequirements: "+$("#c-msg").value.trim()+"\n(Sent from the Kazi Additive Limited website)",$("#c-div").value)});
+  function openProduct(i){var c=CATALOG[i],scene=(c.div==="fmcg"||c.div==="yarn");
+    openDlg(c.name,{kicker:DIV[c.div].badge,sub:c.img?("by "+c.brand+". Request specifications, pack sizes and pricing for this product."):"Tell us the size, print and quantity you need and we will send a custom quote.",prefill:"Product: "+(c.img?c.brand+" ":"")+c.name+"\nQuantity: ",img:c.img?{src:c.img,alt:c.brand+" "+c.name,cover:scene}:null})}
+  document.addEventListener("click",function(e){
+    var q=e.target.closest("[data-enquire]");if(q){openDlg(q.dataset.enquire);return}
+    var o=e.target.closest("[data-open]");if(o){openProduct(+o.dataset.open);return}
+    var g=e.target.closest("[data-go]");if(g){if(g.dataset.group)setGroup(g.dataset.group);go(g.dataset.go);return}
+    var pc=e.target.closest(".pcard");if(pc&&!e.target.closest("button"))openProduct(+pc.dataset.i);
+  });
+
+  /* ---------- theme switch ---------- */
+  function setTheme(t){document.body.classList.toggle("theme-hunter",t==="hunter");$$("[data-theme]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.theme===t)});
+    var m=document.querySelector('meta[name="theme-color"]');m&&m.setAttribute("content",t==="hunter"?"#566746":"#18334B");
+    try{localStorage.setItem("kazi-theme",t)}catch(e){}window.dispatchEvent(new Event("themechange"))}
+  $$("[data-theme]").forEach(function(b){b.addEventListener("click",function(){setTheme(b.dataset.theme)})});
+  
+
+  /* ---------- hero: auto-playing stages, highlighted division name, kinetic word, intro ---------- */
+  window.__hero={p:0};window.__reduce=reduce;
+  var STAGES=[
+    {word:"Feed & Additives",name:"FEED & ADDITIVES",p:0,c:"#A9C98A"},
+    {word:"Yarn",name:"YARN",p:0.5,c:"#EF8A6F"},
+    {word:"Consumer Goods",name:"CONSUMER GOODS",p:0.95,c:"#F2C66D"}
+  ];
+  var DUR=6500;
+  var heroEl=$(".hero"),stageEls=$$("#stages button[data-s]"), fills=$$("#stages i"), shots=$$(".hshot img"), hword=$("#hword"), hk=$("#hkword"), curStage=-1, playing=!reduce, autoT=null;
+  function split(el,t){el.innerHTML=t.split("").map(function(ch){return "<span>"+(ch===" "?"&nbsp;":ch.replace("&","&amp;"))+"</span>"}).join("")}
+  function fillTo(i){fills.forEach(function(f,k){f.style.transition="none";f.style.width=k<i?"100%":"0%";if(k===i){f.offsetWidth;f.style.transition=playing?"width "+DUR+"ms linear":"none";f.style.width="100%"}})}
+  function setStage(i){
+    if(i===curStage)return; var first=curStage<0, dir=i>curStage||(curStage===2&&i===0)?1:-1; curStage=i;
+    var S=STAGES[i]; window.__hero.p=S.p; window.__stageColor=S.c; heroEl.style.setProperty("--sc",S.c);
+    stageEls.forEach(function(s,k){if(k===i)s.setAttribute("aria-current","step");else s.removeAttribute("aria-current")});
+    shots.forEach(function(im,k){im.classList.toggle("on",k===i)});
+    $("#hnum").textContent="0"+(i+1); $("#hname").textContent=S.name; fillTo(i); window.__heroRender&&window.__heroRender();
+    if(!hasGsap||reduce||first){split(hword,S.word);split(hk,S.word);return}
+    /* giant word: letters flip out, new ones flip in */
+    var old=$$("span",hword); gsap.killTweensOf(old);
+    gsap.to(old,{rotateX:90*dir,yPercent:-40*dir,opacity:0,duration:.35,ease:"power2.in",stagger:.012,onComplete:function(){
+      split(hword,S.word);
+      gsap.fromTo($$("span",hword),{rotateX:-90*dir,yPercent:60*dir,opacity:0},{rotateX:0,yPercent:0,opacity:1,duration:1.1,ease:"back.out(1.4)",stagger:.04});
+    }});
+    /* highlighted name: marker wipes off, swaps, wipes on; letters bounce in */
+    var tl=gsap.timeline();
+    tl.to(".hk-bg",{scaleX:0,transformOrigin:"right center",duration:.3,ease:"power2.in"},0)
+      .to($$("span",hk),{yPercent:-120,opacity:0,duration:.25,stagger:.01,ease:"power2.in"},0)
+      .add(function(){split(hk,S.word)})
+      .fromTo(".hk-bg",{scaleX:0,transformOrigin:"left center"},{scaleX:1,duration:.8,ease:"expo.out"})
+      .add(function(){gsap.fromTo($$("span",hk),{yPercent:110,rotate:8,opacity:0},{yPercent:0,rotate:0,opacity:1,duration:.85,ease:"back.out(1.7)",stagger:.035})},"-=.35");
+    gsap.fromTo("#hnum",{yPercent:60,opacity:0},{yPercent:0,opacity:1,duration:.6,ease:"expo.out"});
+    gsap.fromTo(".hshot",{rotate:4+10*dir,y:40,scale:.9},{rotate:4,y:0,scale:1,duration:1.3,ease:"back.out(1.3)"});
+  }
+  window.__setStage=setStage;
+  function schedule(){clearTimeout(autoT);if(playing)autoT=setTimeout(function(){setStage((curStage+1)%3);schedule()},DUR)}
+  function setPlaying(on){playing=on;var b=$("#hplay");
+    b.setAttribute("aria-label",on?"Pause slideshow":"Play slideshow");
+    b.innerHTML=on?'<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>':'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11a.8.8 0 0 0 1.2.7l9-5.5a.8.8 0 0 0 0-1.4l-9-5.5A.8.8 0 0 0 4 2.5z"/></svg>';
+    fillTo(curStage);schedule()}
+  window.__heroAuto=function(on){clearTimeout(autoT);if(on)schedule()};
+  setStage(0);
+  stageEls.forEach(function(b,k){b.addEventListener("click",function(){setStage(k);fillTo(k);schedule()})});
+  $("#hplay").addEventListener("click",function(){setPlaying(!playing)});
+  if(reduce)setPlaying(false);
+  /* intro: headline words rise from masks */
+  (function(){
+    var h1=$("#hero-h1"); if(!h1)return;
+    function wrap(node){Array.prototype.slice.call(node.childNodes).forEach(function(n){
+      if(n.nodeType===3){var f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(function(w){if(!w)return;if(/^\s+$/.test(w)){f.appendChild(document.createTextNode(w));return}var o=document.createElement("span");o.className="w";var i=document.createElement("span");i.textContent=w;o.appendChild(i);f.appendChild(o)});n.parentNode.replaceChild(f,n)}
+      else if(n.nodeType===1)wrap(n)})}
+    wrap(h1);
+    if(!hasGsap||reduce)return;
+    var tl=gsap.timeline({defaults:{ease:"expo.out"}});
+    tl.from(".hero .badge",{y:16,opacity:0,duration:.6})
+      .from(".hk-bg",{scaleX:0,transformOrigin:"left center",duration:.8},"-=.2")
+      .from("#hkword span",{yPercent:110,opacity:0,duration:.7,stagger:.03,ease:"back.out(2)"},"-=.5")
+      .from($$(".w>span",h1),{yPercent:110,duration:.9,stagger:.04},"-=.5")
+      .from(".hero .lead,.hero .cta",{y:20,opacity:0,duration:.8,stagger:.1},"-=.7")
+      .from(".hstage",{opacity:0,x:40,duration:1},"-=.8")
+      .from("#hword span",{rotateX:-90,opacity:0,duration:.9,stagger:.03},"-=.9")
+      .from("#stages button",{y:24,opacity:0,duration:.7,stagger:.08},"-=.7");
+  })();
+  show(location.hash.replace("#","")||"home");
+})();
+</script>
+
+<script type="module">
+/* Hero: dots auto-form shapes. Feed sack + spilled granules -> ball of yarn -> consumer bottle, with a burst between shapes,
+   over an ambient field of drifting dots that link up (and reach for the pointer). Palette from CSS tokens + stage colour. */
+const canvas=document.getElementById("hero-canvas");
+const fail=()=>document.documentElement.classList.add("no-webgl");
+try{
+  const THREE=await import("three");
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"low-power"});
+  renderer.setClearColor(0x000000,0);
+  const dpr=Math.min(window.devicePixelRatio||1,2); renderer.setPixelRatio(dpr);
+  const small=window.innerWidth<760||(navigator.hardwareConcurrency||8)<=4;
+  const N=small?4200:9000, STR=28;
+  const A=new Float32Array(N*3),B=new Float32Array(N*3),C=new Float32Array(N*3),S=new Float32Array(N);
+  const rnd=()=>Math.random();
+  const smooth=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t)};
+  const prof=y=>{ if(y<-1.05){const t=(y+1.05)/0.2;return 0.8*Math.sqrt(Math.max(0,1-t*t))} if(y<0.45)return 0.8; if(y<0.95)return 0.8-(0.8-0.22)*smooth(0.45,0.95,y); if(y<1.2)return 0.22; if(y<1.5)return 0.3; return 0 };
+  /* yarn strands: random great circles */
+  const axes=[];for(let k=0;k<STR;k++){const n=new THREE.Vector3(rnd()-.5,rnd()-.5,rnd()-.5).normalize();const a=new THREE.Vector3(0,1,0).cross(n);if(a.lengthSq()<1e-3)a.set(1,0,0);a.normalize();const b=n.clone().cross(a);axes.push([a,b])}
+  for(let i=0;i<N;i++){
+    S[i]=rnd(); const r0=rnd();
+    /* A: feed sack (pillow) with crimped top seam and a pile of spilled granules */
+    if(r0<0.78){let u=rnd()*2-1,v=rnd()*2-1;const bul=Math.sqrt(Math.max(0,1-u*u))*Math.sqrt(Math.max(0,1-v**4));
+      A[i*3]=0.82*u*(1-0.06*v); A[i*3+1]=1.12*v; A[i*3+2]=(rnd()<.5?1:-1)*0.42*bul;}
+    else if(r0<0.86){const u=rnd()*2-1;A[i*3]=0.84*u;A[i*3+1]=1.14+0.05*Math.abs(Math.sin(u*28));A[i*3+2]=(rnd()-.5)*0.05;}
+    else{const r=Math.sqrt(rnd())*0.62,th=rnd()*Math.PI*2,h=0.42*(1-r/0.62);A[i*3]=1.25+r*Math.cos(th);A[i*3+1]=-1.16+rnd()*h;A[i*3+2]=r*Math.sin(th)*0.7;}
+    /* B: ball of yarn wound from strands, with a loose thread trailing away */
+    if(r0<0.84){const [a,b]=axes[i%STR],th=rnd()*Math.PI*2,R=1.02+(rnd()-.5)*0.04;
+      B[i*3]=-0.25+R*(Math.cos(th)*a.x+Math.sin(th)*b.x); B[i*3+1]=0.05+R*(Math.cos(th)*a.y+Math.sin(th)*b.y); B[i*3+2]=R*(Math.cos(th)*a.z+Math.sin(th)*b.z);}
+    else{const t=rnd();B[i*3]=0.72+t*1.25;B[i*3+1]=-0.45-0.75*t*t+0.12*Math.sin(t*10);B[i*3+2]=0.25*Math.sin(t*7);}
+    /* C: consumer-goods bottle with pump neck */
+    let y,r;do{y=-1.3+rnd()*2.85;r=prof(y)}while(r<=0||rnd()>r/0.8);
+    const th=rnd()*Math.PI*2; C[i*3]=1.2*r*Math.cos(th); C[i*3+1]=1.2*(y-0.1); C[i*3+2]=1.2*r*Math.sin(th);
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute("position",new THREE.BufferAttribute(A,3));
+  geo.setAttribute("aB",new THREE.BufferAttribute(B,3));
+  geo.setAttribute("aC",new THREE.BufferAttribute(C,3));
+  geo.setAttribute("aSeed",new THREE.BufferAttribute(S,1));
+  geo.boundingSphere=new THREE.Sphere(new THREE.Vector3(),20);
+  const css=n=>getComputedStyle(document.body).getPropertyValue(n).trim();
+  const mat=new THREE.ShaderMaterial({
+    transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    uniforms:{uS1:{value:0},uS2:{value:0},uTime:{value:0},uSize:{value:3.0*dpr},uC1:{value:new THREE.Color(css("--tan"))},uC2:{value:new THREE.Color(css("--bg"))},uIntro:{value:0},uBurst:{value:0}},
+    vertexShader:`attribute vec3 aB;attribute vec3 aC;attribute float aSeed;uniform float uS1,uS2,uTime,uSize,uIntro,uBurst;varying float vSeed;varying float vB;
+      void main(){
+        vec3 p=mix(position,aB,uS1);p=mix(p,aC,uS2);p*=mix(3.4+aSeed*2.5,1.,uIntro);
+        vec3 dir=normalize(vec3(sin(aSeed*91.7),cos(aSeed*53.3),sin(aSeed*37.1+1.)));
+        p+=dir*uBurst*(.35+aSeed*1.1);
+        p+=vec3(sin(uTime*.3+aSeed*40.),cos(uTime*.25+aSeed*31.),sin(uTime*.2+aSeed*23.))*0.035;
+        vec4 mv=modelViewMatrix*vec4(p,1.);
+        gl_Position=projectionMatrix*mv;
+        gl_PointSize=uSize*(7.5/-mv.z)*(.6+aSeed*.7)*(1.+uBurst*.6);
+        vSeed=aSeed;vB=uBurst;}`,
+    fragmentShader:`uniform vec3 uC1;uniform vec3 uC2;varying float vSeed;varying float vB;
+      void main(){vec2 c=gl_PointCoord-.5;float d=length(c);if(d>.5)discard;float a=smoothstep(.5,.0,d);
+        gl_FragColor=vec4(mix(uC1,uC2,vSeed*.8),a*(.8-vB*.25));
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>}`
+  });
+  window.addEventListener("themechange",()=>{mat.uniforms.uC1.value.set(css("--tan"));mat.uniforms.uC2.value.set(css("--bg"))});
+  const pts=new THREE.Points(geo,mat); pts.frustumCulled=false;
+  const group=new THREE.Group(); group.add(pts);
+  const scene=new THREE.Scene(); scene.add(group);
+  const camera=new THREE.PerspectiveCamera(38,1,.1,50); camera.position.set(0,0,7.5);
+  /* ambient field: layered, twinkling dots that drift and swirl, part away from the pointer, and parallax with it */
+  const M=small?90:180, ZP=-1, DIST=8.5;
+  const nodes=new Float32Array(M*3), vel=new Float32Array(M*2);
+  const nseed=new Float32Array(M); for(let k=0;k<M;k++)nseed[k]=rnd();
+  const ngeo=new THREE.BufferGeometry(); ngeo.setAttribute("position",new THREE.BufferAttribute(nodes,3)); ngeo.setAttribute("aSeed",new THREE.BufferAttribute(nseed,1));
+  const nmat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+    uniforms:{uTime:{value:0},uSize:{value:10.0*dpr},uC1:mat.uniforms.uC1,uC2:{value:new THREE.Color(css("--bg"))}},
+    vertexShader:`attribute float aSeed;uniform float uTime,uSize;varying float vA;varying float vS;
+      void main(){vec4 mv=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mv;
+        float tw=.55+.45*sin(uTime*(.8+aSeed*1.6)+aSeed*40.);
+        gl_PointSize=uSize*(.35+aSeed*aSeed*1.6)*(7.5/-mv.z)*(.75+.25*tw);
+        vA=(.35+.65*tw)*(.55+aSeed*.45);vS=aSeed;}`,
+    fragmentShader:`uniform vec3 uC1;uniform vec3 uC2;varying float vA;varying float vS;
+      void main(){vec2 c=gl_PointCoord-.5;float d=length(c);if(d>.5)discard;float a=smoothstep(.5,0.,d);a=a*a;
+        gl_FragColor=vec4(mix(uC2,uC1,step(.55,vS)),a*vA);
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>}`});
+  const npts=new THREE.Points(ngeo,nmat); npts.frustumCulled=false; scene.add(npts);
+  let halfW=5,halfH=3;
+  for(let k=0;k<M;k++){nodes[k*3]=(rnd()*2-1)*6;nodes[k*3+1]=(rnd()*2-1)*3.5;nodes[k*3+2]=ZP+(nseed[k]-.5)*3.2;const a=rnd()*Math.PI*2,sp=0.12+rnd()*0.22;vel[k*2]=Math.cos(a)*sp;vel[k*2+1]=Math.sin(a)*sp+0.05}
+  const holder=canvas.parentElement;
+  function resize(){
+    const w=holder.clientWidth,h=holder.clientHeight; if(!w||!h)return;
+    renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+    const visH=2*Math.tan(THREE.MathUtils.degToRad(19))*7.5, visW=visH*camera.aspect;
+    halfH=Math.tan(THREE.MathUtils.degToRad(19))*DIST; halfW=halfH*camera.aspect;
+    for(let k=0;k<M;k++){const sc=(7.5-nodes[k*3+2])/DIST;nodes[k*3]=(rnd()*2-1)*halfW*sc;nodes[k*3+1]=(rnd()*2-1)*halfH*sc}
+    if(w>900){group.scale.setScalar(Math.min(1.1,visW*0.32/2.6,visH*0.36/1.4)); group.position.set(visW*0.2,0.05,0)}
+    else{group.scale.setScalar(Math.min(0.55,visW*0.46/2.6)); group.position.set(visW*0.06,-visH*0.14,0)}
+  }
+  resize(); new ResizeObserver(resize).observe(holder);
+  const ease=t=>t*t*(3-2*t), state=window.__hero, reduce=window.__reduce;
+  let cur=state.p, burst=0;
+  const timer=new THREE.Timer(); timer.connect(document);
+  const tint=new THREE.Color(),lc=new THREE.Color();let mx=0,my=0,tx=0,ty=0,inside=false,intro=reduce?1:0;
+  holder.addEventListener("pointermove",e=>{const r=holder.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;inside=true},{passive:true});
+  holder.addEventListener("pointerleave",()=>{inside=false;tx=ty=0});
+  function field(dt,t){
+    const px=tx*2*halfW, py=-ty*2*halfH, R2=1.9*1.9;
+    for(let k=0;k<M;k++){const sc=(7.5-nodes[k*3+2])/DIST, hw=halfW*sc+.4, hh=halfH*sc+.4;
+      let x=nodes[k*3]+(vel[k*2]+Math.sin(nodes[k*3+1]*.7+t*.35+nseed[k]*6)*.12)*dt, y=nodes[k*3+1]+(vel[k*2+1]+Math.cos(nodes[k*3]*.6+t*.3)*.08)*dt;
+      if(inside){const dx=x-px*sc,dy=y-py*sc,d2=dx*dx+dy*dy;if(d2<R2&&d2>1e-4){const f=(1-d2/R2)*dt*1.4;x+=dx*f;y+=dy*f}}
+      if(x<-hw)x=hw;else if(x>hw)x=-hw; if(y<-hh)y=hh;else if(y>hh)y=-hh;
+      nodes[k*3]=x;nodes[k*3+1]=y}
+    npts.position.x=-mx*.5; npts.position.y=my*.3; nmat.uniforms.uTime.value=t;
+    ngeo.attributes.position.needsUpdate=true;
+  }
+  function frame(){
+    if(!holder.clientWidth)return;
+    timer.update(); const dt=Math.min(timer.getDelta(),.05), t=timer.getElapsed();
+    const target=state.p, gap=Math.abs(target-cur);
+    cur=reduce?target:cur+(target-cur)*Math.min(1,dt*1.3);
+    burst+=((reduce?0:Math.min(1,gap*1.8))-burst)*Math.min(1,dt*3);
+    const s1=ease(Math.min(1,Math.max(0,(cur-0.06)/0.34))), s2=ease(Math.min(1,Math.max(0,(cur-0.56)/0.34)));
+    mat.uniforms.uS1.value=s1; mat.uniforms.uS2.value=s2; mat.uniforms.uTime.value=reduce?0:t; mat.uniforms.uBurst.value=burst;
+    intro=Math.min(1,intro+dt*0.5); mat.uniforms.uIntro.value=1-Math.pow(1-intro,3);
+    if(window.__stageColor){tint.set(window.__stageColor);mat.uniforms.uC1.value.lerp(tint,Math.min(1,dt*2.5))}
+    mx+=(tx-mx)*Math.min(1,dt*3); my+=(ty-my)*Math.min(1,dt*3);
+    group.rotation.y=reduce?0.35:(Math.sin(t*.22)*.5+mx*.4);
+    group.rotation.x=reduce?0:(my*.2+s1*(1-s2)*Math.sin(t*.15)*.2);
+    if(!reduce)field(dt,t);
+    renderer.render(scene,camera);
+  }
+  frame();
+  if(!reduce){
+    renderer.setAnimationLoop(frame);
+    new IntersectionObserver(es=>{renderer.setAnimationLoop(es[0].isIntersecting?frame:null)},{threshold:0}).observe(holder);
+  }else window.__heroRender=()=>requestAnimationFrame(frame);
+}catch(err){console.warn("Hero 3D unavailable:",err);fail()}
+</script>
+<script>
+(function(){
+  var cv=document.getElementById('bgfx');if(!cv)return;var ctx=cv.getContext('2d'),W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2),t=0,run=true;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function cssv(n,d){var v=getComputedStyle(document.body).getPropertyValue(n).trim();return v||d}
+  function rgb(h){h=h.replace('#','');if(h.length===3)h=h.replace(/./g,'$&$&');return[parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)].join(',')}
+  var cols;function pal(){cols={a:rgb(cssv('--primary','#18334B')),b:rgb(cssv('--badge','#566746')),c:rgb(cssv('--tan','#C9B79F'))}}pal();
+  function size(){W=window.innerWidth;H=window.innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}size();window.addEventListener('resize',size);
+  var blobs=[{k:'a',x:.12,y:.25,r:.55,s:1,p:0,o:.13},{k:'b',x:.85,y:.18,r:.45,s:.8,p:2,o:.13},{k:'c',x:.6,y:.8,r:.6,s:1.1,p:4,o:.30},{k:'a',x:.95,y:.85,r:.4,s:.9,p:1,o:.10}];
+  var N=window.innerWidth<700?34:62,dots=[];
+  for(var i=0;i<N;i++)dots.push({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.00004,vy:-(.00003+Math.random()*.00005),r:1.3+Math.random()*2.2,k:Math.random()<.22?'b':'a',ph:Math.random()*6.28,a:.16+Math.random()*.22});
+  function draw(){
+    ctx.clearRect(0,0,W,H);var M=Math.max(W,H);
+    blobs.forEach(function(b){var x=(b.x+Math.sin(t*.00005*b.s+b.p)*.14)*W,y=(b.y+Math.cos(t*.00004*b.s+b.p)*.16)*H,r=b.r*M,g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba('+cols[b.k]+','+b.o+')');g.addColorStop(1,'rgba('+cols[b.k]+',0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H)});
+    dots.forEach(function(d){var x=d.x*W+Math.sin(t*.0003+d.ph)*6,y=d.y*H;var al=d.a*(.65+.35*Math.sin(t*.0006+d.ph));ctx.fillStyle='rgba('+cols[d.k]+','+al+')';ctx.beginPath();ctx.arc(x,y,d.r,0,6.283);ctx.fill()})
+  }
+  function step(ts){if(!run)return;var dt=Math.min(ts-t,50);t=ts;dots.forEach(function(d){d.x+=d.vx*dt;d.y+=d.vy*dt;if(d.y<-.02){d.y=1.02;d.x=Math.random()}if(d.x<-.02)d.x=1.02;if(d.x>1.02)d.x=-.02});draw();requestAnimationFrame(step)}
+  window.addEventListener('themechange',pal);
+  document.addEventListener('visibilitychange',function(){if(document.hidden)run=false;else if(!reduce){run=true;requestAnimationFrame(step)}});
+  if(reduce){t=1;draw()}else requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
