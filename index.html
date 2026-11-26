@@ -66,7 +66,8 @@ img{display:block;max-width:100%}
 a{color:inherit}
 p{margin:0;color:var(--text)}
 h1,h2,h3,h4{font-family:var(--font-head);font-weight:700;line-height:1.12;margin:0;color:var(--primary);letter-spacing:-.005em}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.wrap{max-width:none;margin:0;padding:0 30px}
+@media (max-width:640px){.wrap{padding:0 5px}}
 [hidden]{display:none !important}
 .skip{position:absolute;left:-999px;top:8px;background:var(--primary);color:var(--on-dark);padding:10px 16px;border-radius:var(--r-btn);z-index:100}
 .skip:focus{left:8px}
@@ -560,6 +561,9 @@ footer .since span{font-family:inherit;font-size:.78rem;font-weight:600;letter-s
 .dl h3{font:600 clamp(22px,2.6vw,28px)/1.15 var(--font-head);margin:0 0 4px;color:var(--on-dark)}
 .dl p{margin:0;font-size:14px;color:var(--on-dark)!important;opacity:.85}
 .dl .btn{background:var(--bg);color:var(--primary);border-color:var(--bg)}
+.dl .acts{display:flex;flex-wrap:wrap;gap:10px}
+.dl .btn.yel{background:#FFF3B0;color:var(--primary);border-color:#FFF3B0}
+.dl .btn.yel:hover{background:#FFE98A;border-color:#FFE98A}
 .faq details{background:#fff;border:1px solid var(--border);border-radius:14px;margin:0 0 10px;padding:0}
 .faq summary{cursor:pointer;list-style:none;padding:16px 18px;font:600 16px/1.35 var(--font-body);color:var(--primary);display:flex;justify-content:space-between;gap:12px;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
@@ -712,7 +716,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
 
   <section class="section" aria-label="Company profile download"><div class="wrap">
     <div class="dl reveal"><div><h3>Download our company profile</h3><p>Divisions, partners and contact details in one PDF.</p></div>
-    <a class="btn caps" href="assets/docs/kazi-additive-company-profile.pdf" download>Download PDF</a></div>
+    <div class="acts"><a class="btn caps yel" href="#contact" data-dealer>Become a Dealer</a><a class="btn caps" href="assets/docs/kazi-additive-company-profile.pdf" download>Download PDF</a></div></div>
   </div></section>
 
   <section class="section" aria-labelledby="partners-hp"><div class="wrap">
@@ -1307,7 +1311,7 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
     buildOut($("#dealerOut"),msg,"FMCG Dealership Application: "+v("d-biz"));
     if(CONFIG.whatsapp){try{window.open("https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(msg),"_blank","noopener")}catch(x){}}});
   document.addEventListener("click",function(e){var a=e.target.closest("[data-dealer]");if(!a)return;e.preventDefault();
-    go("contact");setTimeout(function(){var s=$("#dealer");if(s)s.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"})},120)});
+    go("contact");setTimeout(function(){var s=$("#dealer");if(s)s.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});var n=$("#d-name");if(n)setTimeout(function(){try{n.focus({preventScroll:true})}catch(x){n.focus()}},reduce?0:450)},120)});
   function openProduct(i){var c=CATALOG[i],scene=(c.div==="fmcg"||c.div==="yarn");
     openDlg(c.name,{kicker:DIV[c.div].badge,sub:c.img?("by "+c.brand+". Request specifications, pack sizes and pricing for this product."):"Tell us the size, print and quantity you need and we will send a custom quote.",prefill:"Product: "+(c.img?c.brand+" ":"")+c.name+"\nQuantity: ",img:c.img?{src:c.img,alt:c.brand+" "+c.name,cover:scene}:null})}
   document.addEventListener("click",function(e){
