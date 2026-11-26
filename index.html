@@ -493,6 +493,16 @@ dialog[open]{animation:dlg 280ms var(--ease)}
   *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
   .card.lift:hover{transform:none}
 }
+
+/* Business partners */
+.partners{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+@media (max-width:1000px){.partners{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.partners{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pcard{background:#fff;border:1px solid var(--line,rgba(0,32,64,.12));border-radius:14px;padding:22px 14px 16px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:14px;min-height:170px;text-align:center;transition:transform .35s cubic-bezier(.2,0,0,1),box-shadow .35s}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,32,64,.12)}
+.pcard .lg{flex:1;display:flex;align-items:center;justify-content:center;width:100%}
+.pcard img{max-width:100%;max-height:84px;width:auto;height:auto;object-fit:contain}
+.pcard b{font-size:.82rem;letter-spacing:.04em;color:var(--primary,#003153);font-weight:600}
 </style>
 </head>
 <body>
@@ -603,6 +613,11 @@ dialog[open]{animation:dlg 280ms var(--ease)}
       <div class="stack reveal"><div class="card person" data-person="md"></div><div class="card person" data-person="chairman"></div></div>
     </div>
   </section>
+
+  <section class="section" aria-labelledby="partners-hp"><div class="wrap">
+    <div class="shead reveal"><div><span class="badge tan">Trusted Relationships</span><h2 id="partners-hp">Business Partners</h2><p class="sub">The companies we grow with across Bangladesh&rsquo;s agro-nutrition and food value chain.</p></div></div>
+    <div class="partners"><div class="pcard reveal"><div class="lg"><img src="assets/partners/kazi-farms.png" alt="Kazi Farms logo" loading="lazy"></div><b>Kazi Farms</b></div><div class="pcard reveal"><div class="lg"><img src="assets/partners/nourish.png" alt="Nourish logo" loading="lazy"></div><b>Nourish</b></div><div class="pcard reveal"><div class="lg"><img src="assets/partners/aci.png" alt="ACI logo" loading="lazy"></div><b>ACI</b></div><div class="pcard reveal"><div class="lg"><img src="assets/partners/new-hope-liuhe.png" alt="New Hope Liuhe logo" loading="lazy"></div><b>New Hope Liuhe</b></div><div class="pcard reveal"><div class="lg"><img src="assets/partners/mgi.png" alt="MGI logo" loading="lazy"></div><b>MGI</b></div></div>
+  </div></section>
 </div>
 
 <!-- =================== ABOUT =================== -->
@@ -650,6 +665,11 @@ dialog[open]{animation:dlg 280ms var(--ease)}
       <article class="card lift tm reveal"><div class="av" data-p="tn">TN</div><h3>Technical &amp; Nutrition Lead</h3><div class="role">DVM / Animal Nutrition Specialist</div><span><span class="badge tan">Agro-Nutrition Division</span></span><p style="margin-top:14px">Leads feed formulation advisory, farm trials, and technical support for Dr. Eckel feed additives across Bangladesh.</p><div class="loc">Feed Additives &amp; Veterinary</div></article>
       <article class="card lift tm alt reveal"><div class="av" data-p="pm">PM</div><h3>Factory &amp; Production Head</h3><div class="role">Plant Manager (PP Bags, Yarn &amp; FMCG)</div><span><span class="badge navy">Industrial Manufacturing</span></span><p style="margin-top:14px">Directs extrusion, weaving, yarn spinning, and FMCG packaging quality control at our Tangail industrial facility.</p><div class="loc">Tangail Manufacturing Complex</div></article>
     </div>
+  </div></section>
+
+  <section class="section soft" aria-labelledby="partners-hsoft"><div class="wrap">
+    <div class="shead reveal"><div><span class="badge tan">Trusted Relationships</span><h2 id="partners-hsoft">Business Partners</h2><p class="sub">The companies we grow with across Bangladesh&rsquo;s agro-nutrition and food value chain.</p></div></div>
+    <div class="partners"><div class="pcard reveal"><div class="lg"><img src="assets/partners/kazi-farms.png" alt="Kazi Farms logo" loading="lazy"></div><b>Kazi Farms</b></div><div class="pcard reveal"><div class="lg"><img src="assets/partners/nourish.png" alt="Nourish logo" loading="lazy"></div><b>Nourish</b></div><div class="pcard reveal"><div class="lg"><img src="assets/partners/aci.png" alt="ACI logo" loading="lazy"></div><b>ACI</b></div><div class="pcard reveal"><div class="lg"><img src="assets/partners/new-hope-liuhe.png" alt="New Hope Liuhe logo" loading="lazy"></div><b>New Hope Liuhe</b></div><div class="pcard reveal"><div class="lg"><img src="assets/partners/mgi.png" alt="MGI logo" loading="lazy"></div><b>MGI</b></div></div>
   </div></section>
 </div>
 
