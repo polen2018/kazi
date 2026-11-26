@@ -20,9 +20,9 @@ jobs:
       - name: Upload dist/ to the site folder over FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          server: win8232.site4now.net
+          username: kazi
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_DIR || '/kazi/' }}
+          server-dir: /
           protocol: ftp
