@@ -21,6 +21,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+/* Motion override: many phones report "reduce motion" (battery saver / remove animations) and the site then shows no animation.
+   A visitor can turn animations on with the small pill; the choice is remembered. */
+(function(){var mm=window.matchMedia.bind(window),osReduce=false,on=false;
+try{osReduce=mm("(prefers-reduced-motion: reduce)").matches}catch(e){}
+try{var q=location.search.match(/[?&]motion=(on|off)/);if(q){localStorage.setItem("kazi-motion",q[1])}on=localStorage.getItem("kazi-motion")==="on"}catch(e){}
+window.__osReduce=osReduce;window.__motionOn=on;
+if(on&&osReduce){window.matchMedia=function(x){return /prefers-reduced-motion/.test(x)?{matches:false,media:x,addListener:function(){},removeListener:function(){},addEventListener:function(){},removeEventListener:function(){}}:mm(x)};
+ document.addEventListener("DOMContentLoaded",function(){try{for(var k=0;k<document.styleSheets.length;k++){var sh=document.styleSheets[k],r;try{r=sh.cssRules}catch(e){continue}for(var i=r.length-1;i>=0;i--){if(r[i].media&&/prefers-reduced-motion/.test(r[i].media.mediaText))sh.deleteRule(i)}}}catch(e){}})}
+document.addEventListener("DOMContentLoaded",function(){if(!osReduce)return;var b=document.createElement("button");b.type="button";b.className="motionpill";
+ b.textContent=on?"Animations on \u2022 Turn off":"Animations are off by your phone setting \u2022 Turn on";
+ b.onclick=function(){try{localStorage.setItem("kazi-motion",on?"off":"on")}catch(e){}location.reload()};document.body.appendChild(b)})})();
+</script>
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js" } }
 </script>
@@ -458,6 +471,10 @@ main,footer{position:relative;z-index:1}
 .field [aria-invalid="true"]{border-color:#9B2C2C}
 .two-f{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:560px){.two-f{grid-template-columns:1fr}}
+.dealer h2{font-size:clamp(24px,2.6vw,32px);margin:10px 0 8px}
+.dealer .dnote{margin:0 0 18px;color:var(--text)}
+.dealer .steps{margin:12px 0 0;padding-left:20px;display:grid;gap:10px;line-height:1.55}
+.faq details p a{color:var(--primary);font-weight:600;text-decoration:underline}
 .enq{display:none;margin-top:4px;padding:20px;border:1.5px solid var(--primary);border-radius:var(--r-in);background:#fff}
 .enq.show{display:block}
 .enq pre{white-space:pre-wrap;font:inherit;font-size:15px;margin:0 0 14px;color:var(--primary)}
@@ -546,6 +563,7 @@ footer .since span{font-family:inherit;font-size:.78rem;font-weight:600;letter-s
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq summary:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:12px}
 .faq details p{margin:0;padding:0 18px 16px;color:var(--text);line-height:1.6}
+.motionpill{position:fixed;left:12px;bottom:12px;z-index:60;max-width:calc(100vw - 100px);padding:9px 14px;border:1.5px solid var(--primary);border-radius:999px;background:#fff;color:var(--primary);font:600 12px/1.3 var(--font-body);cursor:pointer;box-shadow:0 4px 14px rgba(24,51,75,.18)}
 .fab{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;gap:10px;align-items:center}
 .fab a,.fab button{width:48px;height:48px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(24,51,75,.28);transition:transform .2s,opacity .2s}
 .fab a:hover,.fab button:hover{transform:translateY(-2px)}
@@ -834,6 +852,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
     <span class="crumb">Home / Contact</span>
     <h1>Connect With Kazi Additive Limited</h1>
     <p>Reach out for bulk feed additive orders, custom PP woven bags, yarn specifications, or FMCG dealership inquiries.</p>
+    <p style="margin-top:14px"><a class="btn sm" href="#contact" data-dealer>Apply for Dealership</a></p>
   </div></section>
   <section class="section"><div class="wrap cgrid">
     <div class="card reveal">
@@ -855,12 +874,58 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
       <div class="card"><span class="badge tan">Tangail Industrial Plant</span><h3>Tangail District</h3><p>Integrated extrusion, weaving, yarn and FMCG packaging facility in Tangail District, Dhaka Division.</p></div>
     </div>
   </div></section>
+  <section class="section dealer" id="dealer" aria-labelledby="dealer-h"><div class="wrap cgrid">
+    <div class="card reveal">
+      <span class="badge tan">Kazi Consumer Products (FMCG)</span>
+      <h2 id="dealer-h">Apply for a Dealership or Distributorship</h2>
+      <p class="dnote">Fill in the form and send it straight to our commercial desk on WhatsApp. We review every application and contact shortlisted partners.</p>
+      <form class="form" id="dealerForm" novalidate>
+        <div class="two-f">
+          <div class="field"><label for="d-name">Full Name</label><input id="d-name" autocomplete="name" required></div>
+          <div class="field"><label for="d-biz">Business / Shop Name</label><input id="d-biz" autocomplete="organization" required></div>
+        </div>
+        <div class="two-f">
+          <div class="field"><label for="d-phone">Mobile / WhatsApp</label><input id="d-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX" required></div>
+          <div class="field"><label for="d-mail">Email (optional)</label><input id="d-mail" type="email" autocomplete="email"></div>
+        </div>
+        <div class="two-f">
+          <div class="field"><label for="d-type">Applying As</label>
+            <select id="d-type"><option>Distributor (district level)</option><option>Dealer (upazila / area level)</option><option>Wholesaler</option><option>Retailer / Super shop</option></select></div>
+          <div class="field"><label for="d-years">Years in Business</label>
+            <select id="d-years"><option>New business</option><option>1 to 3 years</option><option>3 to 5 years</option><option>5 to 10 years</option><option>10+ years</option></select></div>
+        </div>
+        <div class="two-f">
+          <div class="field"><label for="d-dist">District</label><input id="d-dist" autocomplete="address-level1" required></div>
+          <div class="field"><label for="d-area">Area / Upazila to Cover</label><input id="d-area" required></div>
+        </div>
+        <div class="two-f">
+          <div class="field"><label for="d-store">Shop / Warehouse Space</label>
+            <select id="d-store"><option>Under 500 sq ft</option><option>500 to 1,500 sq ft</option><option>1,500 to 5,000 sq ft</option><option>Over 5,000 sq ft</option></select></div>
+          <div class="field"><label for="d-cap">Planned Monthly Purchase</label>
+            <select id="d-cap"><option>Under BDT 1 lakh</option><option>BDT 1 to 5 lakh</option><option>BDT 5 to 15 lakh</option><option>Over BDT 15 lakh</option></select></div>
+        </div>
+        <div class="two-f">
+          <div class="field"><label for="d-veh">Delivery Vehicles</label>
+            <select id="d-veh"><option>Own vehicle</option><option>Hired transport</option><option>None yet</option></select></div>
+          <div class="field"><label for="d-brands">Brands You Carry Now (optional)</label><input id="d-brands"></div>
+        </div>
+        <div class="field"><label for="d-msg">Tell Us About Your Business (optional)</label><textarea id="d-msg" rows="3"></textarea></div>
+        <button class="btn block caps" type="submit">Send Application on WhatsApp</button>
+        <div class="enq" id="dealerOut" role="status"></div>
+      </form>
+    </div>
+    <div class="stack info reveal">
+      <div class="card"><span class="badge">How It Works</span>
+        <ol class="steps"><li><strong>Apply.</strong> Complete the form and send it on WhatsApp.</li><li><strong>Review.</strong> Our commercial desk checks your area and capacity.</li><li><strong>Discuss.</strong> We call shortlisted applicants to agree products and terms.</li><li><strong>Start.</strong> Onboarding, first supply and pricing confirmation.</li></ol></div>
+      <div class="card"><span class="badge tan">Good to Have</span><p>A registered shop or trade licence, warehouse or storage space, a delivery vehicle, and local retail reach. Applications from every district are welcome.</p></div>
+    </div>
+  </div></section>
   <section class="section soft faq" aria-labelledby="faq-h"><div class="wrap">
     <div class="shead reveal"><div><span class="badge tan">Questions</span><h2 id="faq-h">Frequently Asked Questions</h2></div></div>
     <details><summary>What is the minimum order quantity?</summary><p>Quantities depend on the product and division. Send your requirement through the form above or on WhatsApp and our sales desk will confirm.</p></details>
     <details><summary>Do you supply across Bangladesh?</summary><p>Yes. We serve feed mills, livestock farms, textile producers and retail consumers nationwide. Share your location and we will confirm delivery details.</p></details>
     <details><summary>Can I get a sample or a technical datasheet?</summary><p>Tell us the product and your use case in the enquiry form, and we will arrange the datasheet or sample details.</p></details>
-    <details><summary>How do I apply for FMCG dealership?</summary><p>Choose the Consumer Products division in the enquiry form and describe your area and business. Our commercial desk will get back to you.</p></details>
+    <details><summary>How do I apply for FMCG dealership?</summary><p>Fill in the dealership application form on this page and send it to our commercial desk on WhatsApp. Tell us your area, business and capacity, and we will get back to you. <a href="#contact" data-dealer>Open the application form</a>.</p></details>
     <details><summary>What are your office hours?</summary><p>Saturday to Thursday, 9:30 AM to 6:30 PM.</p></details>
   </div></section>
 </div>
@@ -1228,6 +1293,13 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
   $("#dNote").textContent=(CONFIG.whatsapp?"WhatsApp: +"+CONFIG.whatsapp.replace(/^(\d{3})(\d{4})(\d+)$/,"$1 $2-$3"):"")+(CONFIG.whatsapp&&CONFIG.email?"  \u2022  ":"")+(CONFIG.email?"Email: "+CONFIG.email:"");
   $("#contactForm").addEventListener("submit",function(e){e.preventDefault();if(!validate(this))return;
     buildOut($("#cOut"),"Inquiry: "+$("#c-div").value+"\nName: "+$("#c-name").value.trim()+"\nContact: "+$("#c-contact").value.trim()+"\nRequirements: "+$("#c-msg").value.trim()+"\n(Sent from the Kazi Additive Limited website)",$("#c-div").value)});
+  $("#dealerForm").addEventListener("submit",function(e){e.preventDefault();if(!validate(this))return;
+    var v=function(id){return $("#"+id).value.trim()};
+    var msg="*FMCG Dealership Application*\nKazi Consumer Products\n\nName: "+v("d-name")+"\nBusiness: "+v("d-biz")+"\nMobile/WhatsApp: "+v("d-phone")+(v("d-mail")?"\nEmail: "+v("d-mail"):"")+"\nApplying as: "+v("d-type")+"\nYears in business: "+v("d-years")+"\nDistrict: "+v("d-dist")+"\nArea to cover: "+v("d-area")+"\nShop/warehouse space: "+v("d-store")+"\nPlanned monthly purchase: "+v("d-cap")+"\nDelivery vehicles: "+v("d-veh")+(v("d-brands")?"\nCurrent brands: "+v("d-brands"):"")+(v("d-msg")?"\nAbout the business: "+v("d-msg"):"")+"\n\n(Sent from the Kazi Additive Limited website)";
+    buildOut($("#dealerOut"),msg,"FMCG Dealership Application: "+v("d-biz"));
+    if(CONFIG.whatsapp){try{window.open("https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(msg),"_blank","noopener")}catch(x){}}});
+  document.addEventListener("click",function(e){var a=e.target.closest("[data-dealer]");if(!a)return;e.preventDefault();
+    go("contact");setTimeout(function(){var s=$("#dealer");if(s)s.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"})},120)});
   function openProduct(i){var c=CATALOG[i],scene=(c.div==="fmcg"||c.div==="yarn");
     openDlg(c.name,{kicker:DIV[c.div].badge,sub:c.img?("by "+c.brand+". Request specifications, pack sizes and pricing for this product."):"Tell us the size, print and quantity you need and we will send a custom quote.",prefill:"Product: "+(c.img?c.brand+" ":"")+c.name+"\nQuantity: ",img:c.img?{src:c.img,alt:c.brand+" "+c.name,cover:scene}:null})}
   document.addEventListener("click",function(e){
@@ -1474,7 +1546,7 @@ try{
 <script>
 (function(){
   var $=function(q,r){return (r||document).querySelector(q)};
-  var BN={"Home": "হোম", "About Us": "আমাদের সম্পর্কে", "Business Divisions": "ব্যবসায়িক বিভাগ", "Leadership & Team": "নেতৃত্ব ও টিম", "Gallery": "গ্যালারি", "Insights": "অন্তর্দৃষ্টি", "Contact": "যোগাযোগ", "Request Quote": "মূল্য জানুন", "Dhaka • Tangail • Global Partners": "ঢাকা • টাঙ্গাইল • আন্তর্জাতিক অংশীদার", "Advancing Agro-Nutrition, Industrial Packaging &": "কৃষি-পুষ্টি, শিল্প প্যাকেজিং ও", "Everyday Essentials.": "দৈনন্দিন প্রয়োজনীয় পণ্যে অগ্রযাত্রা।", "Explore Business Divisions": "ব্যবসায়িক বিভাগ দেখুন", "About Our Company": "আমাদের কোম্পানি", "Established": "প্রতিষ্ঠিত", "Core divisions": "মূল বিভাগ", "Products showcased": "প্রদর্শিত পণ্য", "Partner companies": "অংশীদার প্রতিষ্ঠান", "Group Portfolio • Three Core Pillars": "গ্রুপ পোর্টফোলিও • তিনটি মূল স্তম্ভ", "Our Three-Column Business Architecture": "আমাদের তিন স্তম্ভের ব্যবসায়িক কাঠামো", "Why Kazi": "কেন কাজী", "Quality and Partnerships": "মান ও অংশীদারিত্ব", "Authorized partner": "অনুমোদিত অংশীদার", "Dr. Eckel Animal Nutrition GmbH & Co. KG, Germany.": "ড. একেল অ্যানিম্যাল নিউট্রিশন, জার্মানি।", "Integrated plant": "সমন্বিত কারখানা", "Extrusion, weaving, yarn and FMCG packaging in Tangail.": "টাঙ্গাইলে এক্সট্রুশন, বুনন, সুতা ও এফএমসিজি প্যাকেজিং।", "International exposure": "আন্তর্জাতিক উপস্থিতি", "Exhibited at EuroTier, Hannover with technical partners.": "কারিগরি অংশীদারদের সাথে ইউরোটিয়ার, হ্যানোভারে অংশগ্রহণ।", "Nationwide reach": "সারাদেশে সরবরাহ", "Serving feed mills, farms, textile makers and retailers.": "ফিড মিল, খামার, টেক্সটাইল প্রস্তুতকারক ও খুচরা বিক্রেতাদের সেবা।", "Download our company profile": "আমাদের কোম্পানি প্রোফাইল ডাউনলোড করুন", "Divisions, partners and contact details in one PDF.": "বিভাগ, অংশীদার ও যোগাযোগের তথ্য এক পিডিএফে।", "Download PDF": "পিডিএফ ডাউনলোড", "Trusted Relationships": "বিশ্বস্ত সম্পর্ক", "Business Partners": "ব্যবসায়িক অংশীদার", "Banking & Finance": "ব্যাংকিং ও অর্থায়ন", "Financial Partners": "আর্থিক অংশীদার", "Connect With Kazi Additive Limited": "কাজী অ্যাডিটিভ লিমিটেডের সাথে যোগাযোগ করুন", "Submit Corporate Inquiry": "অনুসন্ধান পাঠান", "Questions": "প্রশ্ন", "Frequently Asked Questions": "সাধারণ জিজ্ঞাসা", "What is the minimum order quantity?": "ন্যূনতম অর্ডারের পরিমাণ কত?", "Quantities depend on the product and division. Send your requirement through the form above or on WhatsApp and our sales desk will confirm.": "পরিমাণ পণ্য ও বিভাগের ওপর নির্ভর করে। ফর্ম বা হোয়াটসঅ্যাপে আপনার চাহিদা জানান, আমাদের সেলস ডেস্ক নিশ্চিত করবে।", "Do you supply across Bangladesh?": "আপনারা কি সারা বাংলাদেশে সরবরাহ করেন?", "Yes. We serve feed mills, livestock farms, textile producers and retail consumers nationwide. Share your location and we will confirm delivery details.": "হ্যাঁ। আমরা সারাদেশে ফিড মিল, পশুপালন খামার, টেক্সটাইল প্রস্তুতকারক ও খুচরা ক্রেতাদের সেবা দিই। আপনার অবস্থান জানালে ডেলিভারির তথ্য জানানো হবে।", "Can I get a sample or a technical datasheet?": "আমি কি নমুনা বা টেকনিক্যাল ডেটাশিট পেতে পারি?", "Tell us the product and your use case in the enquiry form, and we will arrange the datasheet or sample details.": "অনুসন্ধান ফর্মে পণ্য ও ব্যবহারের ক্ষেত্র জানান, আমরা ডেটাশিট বা নমুনার বিষয়ে জানাব।", "How do I apply for FMCG dealership?": "এফএমসিজি ডিলারশিপের জন্য কীভাবে আবেদন করব?", "Choose the Consumer Products division in the enquiry form and describe your area and business. Our commercial desk will get back to you.": "অনুসন্ধান ফর্মে কনজিউমার প্রোডাক্টস বিভাগ বেছে নিয়ে আপনার এলাকা ও ব্যবসার বিবরণ দিন। আমাদের বাণিজ্যিক ডেস্ক যোগাযোগ করবে।", "What are your office hours?": "আপনাদের অফিস সময় কখন?", "Saturday to Thursday, 9:30 AM to 6:30 PM.": "শনিবার থেকে বৃহস্পতিবার, সকাল ৯:৩০ থেকে সন্ধ্যা ৬:৩০।", "Quick Links": "দ্রুত লিঙ্ক", "Group Concerns": "গ্রুপ প্রতিষ্ঠান", "Since": "প্রতিষ্ঠিত"};
+  var BN={"Home": "হোম", "About Us": "আমাদের সম্পর্কে", "Business Divisions": "ব্যবসায়িক বিভাগ", "Leadership & Team": "নেতৃত্ব ও টিম", "Gallery": "গ্যালারি", "Insights": "অন্তর্দৃষ্টি", "Contact": "যোগাযোগ", "Request Quote": "মূল্য জানুন", "Dhaka • Tangail • Global Partners": "ঢাকা • টাঙ্গাইল • আন্তর্জাতিক অংশীদার", "Advancing Agro-Nutrition, Industrial Packaging &": "কৃষি-পুষ্টি, শিল্প প্যাকেজিং ও", "Everyday Essentials.": "দৈনন্দিন প্রয়োজনীয় পণ্যে অগ্রযাত্রা।", "Explore Business Divisions": "ব্যবসায়িক বিভাগ দেখুন", "About Our Company": "আমাদের কোম্পানি", "Established": "প্রতিষ্ঠিত", "Core divisions": "মূল বিভাগ", "Products showcased": "প্রদর্শিত পণ্য", "Partner companies": "অংশীদার প্রতিষ্ঠান", "Group Portfolio • Three Core Pillars": "গ্রুপ পোর্টফোলিও • তিনটি মূল স্তম্ভ", "Our Three-Column Business Architecture": "আমাদের তিন স্তম্ভের ব্যবসায়িক কাঠামো", "Why Kazi": "কেন কাজী", "Quality and Partnerships": "মান ও অংশীদারিত্ব", "Authorized partner": "অনুমোদিত অংশীদার", "Dr. Eckel Animal Nutrition GmbH & Co. KG, Germany.": "ড. একেল অ্যানিম্যাল নিউট্রিশন, জার্মানি।", "Integrated plant": "সমন্বিত কারখানা", "Extrusion, weaving, yarn and FMCG packaging in Tangail.": "টাঙ্গাইলে এক্সট্রুশন, বুনন, সুতা ও এফএমসিজি প্যাকেজিং।", "International exposure": "আন্তর্জাতিক উপস্থিতি", "Exhibited at EuroTier, Hannover with technical partners.": "কারিগরি অংশীদারদের সাথে ইউরোটিয়ার, হ্যানোভারে অংশগ্রহণ।", "Nationwide reach": "সারাদেশে সরবরাহ", "Serving feed mills, farms, textile makers and retailers.": "ফিড মিল, খামার, টেক্সটাইল প্রস্তুতকারক ও খুচরা বিক্রেতাদের সেবা।", "Download our company profile": "আমাদের কোম্পানি প্রোফাইল ডাউনলোড করুন", "Divisions, partners and contact details in one PDF.": "বিভাগ, অংশীদার ও যোগাযোগের তথ্য এক পিডিএফে।", "Download PDF": "পিডিএফ ডাউনলোড", "Trusted Relationships": "বিশ্বস্ত সম্পর্ক", "Business Partners": "ব্যবসায়িক অংশীদার", "Banking & Finance": "ব্যাংকিং ও অর্থায়ন", "Financial Partners": "আর্থিক অংশীদার", "Connect With Kazi Additive Limited": "কাজী অ্যাডিটিভ লিমিটেডের সাথে যোগাযোগ করুন", "Submit Corporate Inquiry": "অনুসন্ধান পাঠান", "Questions": "প্রশ্ন", "Frequently Asked Questions": "সাধারণ জিজ্ঞাসা", "What is the minimum order quantity?": "ন্যূনতম অর্ডারের পরিমাণ কত?", "Quantities depend on the product and division. Send your requirement through the form above or on WhatsApp and our sales desk will confirm.": "পরিমাণ পণ্য ও বিভাগের ওপর নির্ভর করে। ফর্ম বা হোয়াটসঅ্যাপে আপনার চাহিদা জানান, আমাদের সেলস ডেস্ক নিশ্চিত করবে।", "Do you supply across Bangladesh?": "আপনারা কি সারা বাংলাদেশে সরবরাহ করেন?", "Yes. We serve feed mills, livestock farms, textile producers and retail consumers nationwide. Share your location and we will confirm delivery details.": "হ্যাঁ। আমরা সারাদেশে ফিড মিল, পশুপালন খামার, টেক্সটাইল প্রস্তুতকারক ও খুচরা ক্রেতাদের সেবা দিই। আপনার অবস্থান জানালে ডেলিভারির তথ্য জানানো হবে।", "Can I get a sample or a technical datasheet?": "আমি কি নমুনা বা টেকনিক্যাল ডেটাশিট পেতে পারি?", "Tell us the product and your use case in the enquiry form, and we will arrange the datasheet or sample details.": "অনুসন্ধান ফর্মে পণ্য ও ব্যবহারের ক্ষেত্র জানান, আমরা ডেটাশিট বা নমুনার বিষয়ে জানাব।", "How do I apply for FMCG dealership?": "এফএমসিজি ডিলারশিপের জন্য কীভাবে আবেদন করব?", "Apply for Dealership": "ডিলারশিপের জন্য আবেদন", "Apply for a Dealership or Distributorship": "ডিলারশিপ বা ডিস্ট্রিবিউটরশিপের জন্য আবেদন করুন", "Send Application on WhatsApp": "হোয়াটসঅ্যাপে আবেদন পাঠান", "Full Name": "পূর্ণ নাম", "Business / Shop Name": "ব্যবসা / দোকানের নাম", "Mobile / WhatsApp": "মোবাইল / হোয়াটসঅ্যাপ", "District": "জেলা", "How It Works": "কীভাবে কাজ করে", "What are your office hours?": "আপনাদের অফিস সময় কখন?", "Saturday to Thursday, 9:30 AM to 6:30 PM.": "শনিবার থেকে বৃহস্পতিবার, সকাল ৯:৩০ থেকে সন্ধ্যা ৬:৩০।", "Quick Links": "দ্রুত লিঙ্ক", "Group Concerns": "গ্রুপ প্রতিষ্ঠান", "Since": "প্রতিষ্ঠিত"};
   var HB={"#hero-h1":'কৃষি-পুষ্টি, শিল্প প্যাকেজিং ও <em>দৈনন্দিন প্রয়োজনীয় পণ্যে অগ্রযাত্রা।</em>',".hero .lead":'<strong>কাজী অ্যাডিটিভ লিমিটেড</strong> ইউরোপীয় ফিড অ্যাডিটিভ বিজ্ঞান (<strong>ড. একেল, জার্মানি</strong>), উচ্চ-টেনসাইল পিপি উভেন প্যাকেজিং, <strong>কাজী ইয়ার্ন ইন্ডাস্ট্রি</strong> এবং <strong>কাজী কনজিউমার প্রোডাক্টস (এফএমসিজি)</strong>-কে এক বিশ্বস্ত বাংলাদেশি প্রতিষ্ঠানের ছায়াতলে একত্র করেছে।'};
   function swapHtml(to){Object.keys(HB).forEach(function(q){var el=$(q);if(!el)return;if(to==="bn"){if(el.__en===undefined)el.__en=el.innerHTML;el.innerHTML=HB[q]}else if(el.__en!==undefined){el.innerHTML=el.__en;el.__en=undefined}})}
   var KEY="kazi-lang",lang="en",btn=$("#langBtn");
