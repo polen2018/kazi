@@ -22,7 +22,7 @@ jobs:
         with:
           server: win8232.site4now.net
           username: kazi
-          password: ${{ secrets.FTP_PASSWORD }}
+          password: ${{ secrets.KAZI }}
           local-dir: ./dist/
           server-dir: /
           protocol: ftp
