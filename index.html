@@ -585,6 +585,67 @@ footer .since span{font-family:inherit;font-size:.78rem;font-weight:600;letter-s
 .langbtn:focus-visible{outline:2px solid var(--tan);outline-offset:2px}
 html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,html[lang="bn"] .stats b{font-family:"Noto Sans Bengali",var(--font-body)}
 @media (prefers-reduced-motion:reduce){.fab a,.fab button,.faq summary::after{transition:none}}
+
+/* production plant page */
+.btn.ghost{background:transparent;color:var(--on-dark);border-color:rgba(250,238,229,.7)}
+.btn.ghost:hover{background:var(--on-dark);color:var(--primary)}
+.pl-hero{position:relative;min-height:min(78vh,720px);display:grid;align-items:end;overflow:hidden;background:#102436}
+.pl-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);will-change:transform}
+.pl-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(16,36,54,.94) 0%,rgba(16,36,54,.58) 36%,rgba(16,36,54,.1) 72%)}
+.pl-hero .wrap{position:relative;z-index:2;padding-top:120px;padding-bottom:44px}
+.pl-hero h1{color:var(--on-dark);font-size:clamp(42px,6.4vw,92px);margin:14px 0 12px}
+.pl-hero p{color:rgba(250,238,229,.92);max-width:42em;font-size:18px}
+.pl-hero .crumb{color:var(--tan)}
+.pl-hero .acts,.pl-cta .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.pl-stats b{font-size:clamp(22px,2.9vw,40px)}
+.pl-map{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:28px;align-items:start}
+.pl-stage{position:relative;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;background:var(--tan-soft)}
+.pl-stage>img{width:100%;height:100%;object-fit:cover}
+.hs{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:2px solid #fff;background:var(--primary);color:var(--on-dark);font:700 13px/1 var(--font-body);cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.4);padding:0;transition:background var(--t-micro) var(--ease),color var(--t-micro) var(--ease),scale var(--t-ui) var(--ease)}
+.hs::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid rgba(255,255,255,.8);animation:hsPulse 2.2s ease-out infinite}
+@keyframes hsPulse{0%{transform:scale(.55);opacity:.95}100%{transform:scale(1.5);opacity:0}}
+.hs[aria-pressed="true"]{background:#FFF3B0;color:var(--primary);scale:1.18}
+.hs[aria-pressed="true"]::before{animation:none;opacity:0}
+.pl-list{display:grid;gap:10px}
+.pl-li{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-in);padding:14px 16px;font:inherit;color:inherit;cursor:pointer;transition:background var(--t-ui) var(--ease),border-color var(--t-ui) var(--ease),transform var(--t-ui) var(--ease)}
+.pl-li:hover{transform:translateX(3px)}
+.pl-li .h{display:flex;align-items:center;gap:12px;font:600 17px/1.2 var(--font-head);font-size:21px;color:var(--primary)}
+.pl-li .h i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--primary);color:var(--on-dark);font:700 12px/1 var(--font-body);display:grid;place-items:center;font-style:normal}
+.pl-li p{display:none;margin-top:8px;font-size:15px;line-height:1.55}
+.pl-li[aria-pressed="true"]{background:var(--primary);border-color:var(--primary)}
+.pl-li[aria-pressed="true"] .h{color:var(--on-dark)}
+.pl-li[aria-pressed="true"] .h i{background:#FFF3B0;color:var(--primary)}
+.pl-li[aria-pressed="true"] p{display:block;color:rgba(250,238,229,.9)}
+.pl-tourbg{background:var(--tan-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pl-tour{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:20px}
+.pl-view{position:relative;border-radius:var(--r-card);overflow:hidden;aspect-ratio:16/10;background:#102436;box-shadow:0 18px 40px rgba(16,36,54,.22)}
+.pl-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .9s var(--ease),transform 8s linear}
+.pl-view img.on{opacity:1;transform:scale(1)}
+.pl-view .cap{position:absolute;left:0;right:0;bottom:0;padding:90px 28px 24px;background:linear-gradient(to top,rgba(16,36,54,.92),rgba(16,36,54,0));color:var(--on-dark);pointer-events:none}
+.pl-view .cap small{display:block;font:600 12px/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;color:var(--tan)}
+.pl-view .cap h3{color:var(--on-dark);font-size:clamp(26px,3vw,40px);margin:8px 0 6px}
+.pl-view .cap p{color:rgba(250,238,229,.92);max-width:38em;font-size:16px}
+.pl-chaps{display:grid;gap:8px;align-content:start}
+.pl-chap{position:relative;display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:center;text-align:left;width:100%;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-in);padding:8px;font:inherit;color:inherit;cursor:pointer;overflow:hidden;transition:background var(--t-ui) var(--ease),transform var(--t-ui) var(--ease)}
+.pl-chap:hover{transform:translateX(3px)}
+.pl-chap img{width:76px;height:54px;object-fit:cover;border-radius:10px}
+.pl-chap b{display:block;font:600 20px/1.15 var(--font-head);color:var(--primary)}
+.pl-chap small{display:block;font:500 11.5px/1.3 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin-bottom:2px}
+.pl-chap[aria-selected="true"]{background:var(--primary)}
+.pl-chap[aria-selected="true"] b{color:var(--on-dark)}
+.pl-chap[aria-selected="true"] small{color:var(--tan)}
+.pl-chap .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:#FFF3B0}
+.pl-chap.run .bar{animation:plBar var(--dur,6.5s) linear forwards}
+@keyframes plBar{to{width:100%}}
+.pl-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.pl-cards .card h3{font-size:26px;margin-bottom:8px}
+.pl-cta{display:flex;flex-wrap:wrap;gap:20px 40px;justify-content:space-between;align-items:center;background:var(--primary);border-radius:var(--r-card);padding:34px 40px}
+.pl-cta h2{color:var(--on-dark);font-size:clamp(28px,3.2vw,42px)}
+.pl-cta p{color:rgba(250,238,229,.9);margin-top:8px;max-width:40em}
+.pl-cta .acts{margin-top:0}
+@media (max-width:900px){.pl-map,.pl-tour{grid-template-columns:minmax(0,1fr)}.pl-cards{grid-template-columns:minmax(0,1fr)}.pl-chaps{grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);overflow-x:auto;padding-bottom:6px}.pl-view{aspect-ratio:4/3}.pl-cta{padding:26px 22px}}
+@media (max-width:640px){.pl-hero{min-height:70vh}.pl-hero .wrap{padding-top:90px}.hs{width:32px;height:32px}.pl-view .cap{padding:60px 16px 16px}.pl-view .cap p{font-size:14.5px}}
+@media (prefers-reduced-motion:reduce){.hs::before{animation:none}.pl-view img{transition:opacity .3s linear;transform:none}.pl-chap.run .bar{animation:none}}
 </style>
 </head>
 <body>
@@ -599,6 +660,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
       <a href="#home" data-v="home">Home</a>
       <a href="#about" data-v="about">About Us</a>
       <a href="#divisions" data-v="divisions">Business Divisions</a>
+      <a href="#plant" data-v="plant">Production Plant</a>
       <a href="#leadership" data-v="leadership">Leadership &amp; Team</a>
       <a href="#gallery" data-v="gallery">Gallery</a>
       <a href="#insights" data-v="insights">Insights</a>
@@ -844,6 +906,66 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
   <section class="section"><div class="wrap"><div class="masonry" id="galGrid"></div></div></section>
 </div>
 
+<!-- =================== PRODUCTION PLANT =================== -->
+<div class="page" id="page-plant" hidden data-title="Production Plant | KAZI ADDITIVE LIMITED">
+  <section class="pl-hero">
+    <img src="assets/plant/p01.jpg" alt="The Kazi Additive production plant in Tangail: steel production sheds, a landscaped lawn and stacked packaging containers under a blue sky" width="1280" height="960" fetchpriority="high" id="plHeroImg">
+    <div class="wrap">
+      <span class="crumb reveal">Home / Production Plant</span>
+      <h1 class="reveal">Production Plant</h1>
+      <p class="reveal">Our manufacturing campus in Ghatail, Tangail: steel production sheds, an office and guest block, and open, landscaped grounds lit by solar power.</p>
+      <div class="acts reveal">
+        <button type="button" class="btn light caps" data-scroll="#plTour">Take the plant tour</button>
+        <button type="button" class="btn ghost caps" data-enquire="Plant Visit Request">Request a plant visit</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats pl-stats"><div class="wrap">
+    <div class="reveal"><b>Tangail</b><span>Ghatail plant location</span></div>
+    <div class="reveal"><b>Steel-framed</b><span>Production sheds</span></div>
+    <div class="reveal"><b>Solar-lit</b><span>Roads &amp; grounds</span></div>
+    <div class="reveal"><b>Gated</b><span>Secure campus</span></div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="shead reveal"><div><span class="badge">Campus at a glance</span><h2>Where the work happens</h2><p class="sub">Tap a numbered marker to see what each part of the plant is for.</p></div></div>
+    <div class="pl-map reveal">
+      <div class="pl-stage" id="plStage"><img src="assets/plant/p01.jpg" alt="Overview of the plant with numbered markers" loading="lazy" width="1280" height="960"></div>
+      <div class="pl-list" id="plList" role="list"></div>
+    </div>
+  </div></section>
+
+  <section class="section pl-tourbg" id="plTour"><div class="wrap">
+    <div class="shead reveal"><div><span class="badge tan">Project view</span><h2>A walk through the plant</h2><p class="sub">Six stops, from the front gate to the upper-floor view over the campus.</p></div></div>
+    <div class="pl-tour reveal">
+      <div class="pl-view" id="plView" aria-live="polite"></div>
+      <div class="pl-chaps" id="plChaps" role="tablist" aria-label="Plant tour stops"></div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="shead reveal"><div><span class="badge">Why it matters</span><h2>Built for steady production</h2></div></div>
+    <div class="pl-cards">
+      <article class="card reveal"><h3>Room to work</h3><p>Large steel-clad sheds with roller-shutter bays give production, storage and loading their own space, with open ground around them.</p></article>
+      <article class="card reveal"><h3>Orderly and open</h3><p>Lawns, trees and a clear internal road keep the campus tidy, easy to move around and well lit after dark.</p></article>
+      <article class="card reveal"><h3>Ready for visitors</h3><p>A two-storey office and guest block faces the grounds, so partners and customers can be hosted on site.</p></article>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="shead reveal"><div><span class="badge tan">Photo wall</span><h2>Plant photographs</h2><p class="sub">Tap any photo to view it full size.</p></div></div>
+    <div class="masonry" id="plGrid"></div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="pl-cta reveal">
+      <div><h2>Plan a visit to our Tangail plant</h2><p>Partners, dealers and buyers are welcome. Tell us when you would like to come and what you would like to see.</p></div>
+      <div class="acts"><button type="button" class="btn light caps" data-enquire="Plant Visit Request">Request a plant visit</button><a class="btn ghost caps" href="#contact">Contact us</a></div>
+    </div>
+  </div></section>
+</div>
+
 <!-- =================== INSIGHTS =================== -->
 <div class="page" id="page-insights" hidden data-title="Insights | KAZI ADDITIVE LIMITED">
   <section class="banner"><div class="wrap">
@@ -1023,7 +1145,7 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
   var isCut=function(c){return c.img.slice(-4)==="webp"};
 
   /* ---------- views (hash routed: #home #about #divisions #leadership #insights #contact) ---------- */
-  var VIEWS=["home","about","divisions","leadership","gallery","insights","contact"], revealTriggers=[], heroST=null, current="";
+  var VIEWS=["home","about","divisions","plant","leadership","gallery","insights","contact"], revealTriggers=[], heroST=null, current="";
   function revealSetup(root){
     revealTriggers.forEach(function(t){t.kill()});revealTriggers=[];
     var els=$$(".reveal",root); if(!els.length)return;
@@ -1230,13 +1352,82 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
     if(anim&&hasGsap&&!reduce)gsap.from("#galGrid .gitem",{autoAlpha:0,y:14,duration:.32,ease:"power2.out",stagger:{each:.03,amount:.3},clearProps:"all"});
   }
   var lb=$("#lb"),lbi=0;
-  function lbShow(i){lbi=(i+gshown.length)%gshown.length;var x=gshown[lbi];$("#lbImg").src="assets/gallery/"+x.f+".jpg";$("#lbImg").alt=x.t;$("#lbCap").textContent=x.t+"  ("+(lbi+1)+"/"+gshown.length+")"}
+  function lbShow(i){lbi=(i+gshown.length)%gshown.length;var x=gshown[lbi];$("#lbImg").src=x.p||"assets/gallery/"+x.f+".jpg";$("#lbImg").alt=x.t;$("#lbCap").textContent=x.t+"  ("+(lbi+1)+"/"+gshown.length+")"}
   $("#galPills").addEventListener("click",function(e){var b=e.target.closest("[data-gc]");if(b){gcat=b.dataset.gc;renderGal(true)}});
-  $("#galGrid").addEventListener("click",function(e){var b=e.target.closest("[data-gi]");if(!b)return;lbShow(+b.dataset.gi);if(lb.showModal)lb.showModal();else lb.setAttribute("open","")});
+  $("#galGrid").addEventListener("click",function(e){var b=e.target.closest("[data-gi]");if(!b)return;gshown=GAL.filter(function(x){return gcat==="all"||x.c===gcat});lbShow(+b.dataset.gi);if(lb.showModal)lb.showModal();else lb.setAttribute("open","")});
   $("#lbPrev").onclick=function(){lbShow(lbi-1)};$("#lbNext").onclick=function(){lbShow(lbi+1)};$("#lbClose").onclick=function(){lb.close()};
   lb.addEventListener("click",function(e){if(e.target===lb)lb.close()});
   lb.addEventListener("keydown",function(e){if(e.key==="ArrowLeft")lbShow(lbi-1);if(e.key==="ArrowRight")lbShow(lbi+1)});
   renderGal(false);
+
+  /* ---------- production plant page ---------- */
+  var PL=[
+    {f:"p01",t:"Campus overview: production sheds, lawn and stacked packaging containers"},
+    {f:"p09",t:"Front of the two-storey office and guest block"},
+    {f:"p11",t:"Gated entrance and company signboard"},
+    {f:"p07",t:"Production sheds at twilight"},
+    {f:"p04",t:"Solar street lights on the approach to the production hall"},
+    {f:"p06",t:"Stepping-stone path and shade trees beside the boundary wall"},
+    {f:"p02",t:"The office and guest block at dusk"},
+    {f:"p05",t:"Production sheds seen across the lawn"},
+    {f:"p08",t:"View over the campus from the upper floor"},
+    {f:"p03",t:"Office and guest block facing the lawn"},
+    {f:"p10",t:"Solar-lit approach road at dusk"}
+  ];
+  var HS=[
+    {x:13,y:43,t:"Production shed",d:"A steel-framed shed with a roller-shutter bay for goods coming in and going out."},
+    {x:40,y:41,t:"Main production hall",d:"The largest steel-clad hall on the campus, set back behind a landscaped frontage."},
+    {x:76,y:53,t:"Packaging yard",d:"Blue plastic containers stacked in an open yard beside the sheds."},
+    {x:89,y:40,t:"Solar street lighting",d:"Solar-powered street lights line the internal road and light the campus after dark."},
+    {x:30,y:72,t:"Landscaped grounds",d:"A wide lawn with trees and shrubs keeps the plant open, cool and tidy."}
+  ];
+  var TOUR=[
+    {f:"p11",t:"Arrival",d:"The gated entrance, with the company signboard and security cameras."},
+    {f:"p07",t:"Production sheds",d:"Two steel-clad sheds stand side by side, one with a roller-shutter bay and one with a wide entrance."},
+    {f:"p09",t:"Office and guests",d:"A two-storey office and guest block with a covered upper terrace faces the lawn."},
+    {f:"p04",t:"After dark",d:"Twin solar street lights light the approach road to the production hall at dusk."},
+    {f:"p06",t:"Green grounds",d:"Stepping stones, shrubs and shade trees run along the boundary wall."},
+    {f:"p08",t:"From above",d:"The view over the lawn and sheds from an upper-floor window of the office block."}
+  ];
+  (function(){
+    var page=$("#page-plant");if(!page)return;
+    /* hotspots */
+    var stage=$("#plStage"),list=$("#plList"),hsSel=-1;
+    stage.insertAdjacentHTML("beforeend",HS.map(function(h,i){return '<button type="button" class="hs" data-h="'+i+'" style="left:'+h.x+'%;top:'+h.y+'%" aria-pressed="false" aria-label="'+(i+1)+'. '+h.t+'">'+(i+1)+'</button>'}).join(""));
+    list.innerHTML=HS.map(function(h,i){return '<button type="button" class="pl-li" data-h="'+i+'" aria-pressed="false"><span class="h"><i>'+(i+1)+'</i>'+h.t+'</span><p>'+h.d+'</p></button>'}).join("");
+    function pick(i){hsSel=i;$$("#page-plant [data-h]").forEach(function(b){b.setAttribute("aria-pressed",String(+b.dataset.h===i))})}
+    page.addEventListener("click",function(e){var b=e.target.closest("[data-h]");if(b)pick(+b.dataset.h===hsSel?-1:+b.dataset.h)});
+    pick(0);
+    /* tour */
+    var view=$("#plView"),chaps=$("#plChaps"),cur=0,timer=null,DUR=6500;
+    view.innerHTML=TOUR.map(function(x,i){return '<img src="assets/plant/'+x.f+'.jpg" alt="'+x.t+': '+x.d+'" loading="lazy" width="1280" height="960" class="'+(i===0?"on":"")+'">'}).join("")+'<div class="cap"><small></small><h3></h3><p></p></div>';
+    chaps.innerHTML=TOUR.map(function(x,i){return '<button type="button" class="pl-chap" role="tab" data-c="'+i+'" aria-selected="false"><img src="assets/plant/'+x.f+'.jpg" alt="" loading="lazy" width="76" height="54"><span><small>Stop '+(i+1)+' of '+TOUR.length+'</small><b>'+x.t+'</b></span><span class="bar"></span></button>'}).join("");
+    var imgs=view.querySelectorAll("img"),cap=view.querySelector(".cap");
+    function setTour(i,manual){
+      cur=(i+TOUR.length)%TOUR.length;
+      imgs.forEach(function(m,k){m.classList.toggle("on",k===cur)});
+      cap.querySelector("small").textContent="Stop "+(cur+1)+" of "+TOUR.length;
+      cap.querySelector("h3").textContent=TOUR[cur].t;
+      cap.querySelector("p").textContent=TOUR[cur].d;
+      $$("#plChaps .pl-chap").forEach(function(b,k){b.setAttribute("aria-selected",String(k===cur));b.classList.remove("run");if(k===cur&&!reduce){void b.offsetWidth;b.classList.add("run")}});
+      if(manual)restart();
+    }
+    function restart(){clearInterval(timer);if(reduce)return;timer=setInterval(function(){if(page.hidden||document.hidden)return;setTour(cur+1,false)},DUR)}
+    chaps.addEventListener("click",function(e){var b=e.target.closest("[data-c]");if(b)setTour(+b.dataset.c,true)});
+    var tourEl=$(".pl-tour");
+    tourEl.addEventListener("mouseenter",function(){clearInterval(timer)});
+    tourEl.addEventListener("mouseleave",restart);
+    setTour(0,false);restart();
+    /* photo wall + lightbox */
+    $("#plGrid").innerHTML=PL.map(function(x,i){return '<button type="button" class="gitem" data-pi="'+i+'" aria-label="Open photo: '+x.t+'"><img src="assets/plant/'+x.f+'.jpg" alt="'+x.t+'" loading="lazy" decoding="async"><span class="cap">'+x.t+'</span></button>'}).join("");
+    $("#plGrid").addEventListener("click",function(e){var b=e.target.closest("[data-pi]");if(!b)return;
+      gshown=PL.map(function(x){return {p:"assets/plant/"+x.f+".jpg",t:x.t}});
+      lbShow(+b.dataset.pi);if(lb.showModal)lb.showModal();else lb.setAttribute("open","")});
+    /* hero parallax + scroll buttons */
+    var hero=$("#plHeroImg");
+    if(!reduce)window.addEventListener("scroll",function(){if(page.hidden)return;var y=window.scrollY;if(y<1400)hero.style.transform="translate3d(0,"+(y*.16).toFixed(1)+"px,0) scale(1.08)"},{passive:true});
+    document.addEventListener("click",function(e){var a=e.target.closest("[data-scroll]");if(!a)return;var t=$(a.dataset.scroll);if(t)t.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"})});
+  })();
 
   /* ---------- divisions: catalog ---------- */
   var state={group:"all",brand:"all"};
