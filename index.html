@@ -590,7 +590,55 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
 .btn.ghost{background:transparent;color:var(--on-dark);border-color:rgba(250,238,229,.7)}
 .btn.ghost:hover{background:var(--on-dark);color:var(--primary)}
 .pl-hero{position:relative;min-height:min(78vh,720px);display:grid;align-items:end;overflow:hidden;background:#102436}
-.pl-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);will-change:transform}
+/* hero slider: every plant photo, cross-fading with a slow Ken Burns drift */
+.plsl{position:absolute;inset:0;transform:scale(1.08);will-change:transform;overflow:hidden}
+.plsl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;transform:scale(1.2);transition:transform 8s linear;filter:saturate(.7) brightness(.9)}
+.plsl img.on{z-index:2}.plsl img.prev{opacity:1;z-index:1;filter:none;transform:scale(1.04)}
+/* a different entrance for each photo */
+.plsl img.fx0{animation:fxFade 1.4s cubic-bezier(.4,0,.2,1) both}
+.plsl img.fx1{animation:fxWipe 1.3s cubic-bezier(.77,0,.18,1) both}
+.plsl img.fx2{animation:fxCircle 1.5s cubic-bezier(.65,0,.35,1) both}
+.plsl img.fx3{animation:fxDiag 1.4s cubic-bezier(.77,0,.18,1) both}
+.plsl img.fx4{animation:fxDoors 1.3s cubic-bezier(.77,0,.18,1) both}
+.plsl img.fx5{animation:fxSlide 1.3s cubic-bezier(.77,0,.18,1) both}
+.plsl img.fx6{animation:fxBlur 1.6s ease both}
+.plsl img.fx7{animation:fxRise 1.3s cubic-bezier(.77,0,.18,1) both}
+.plsl img.prev.out5{animation:fxSlideOut 1.3s cubic-bezier(.77,0,.18,1) both}
+@keyframes fxFade{from{opacity:0;filter:saturate(.6) brightness(.85)}to{opacity:1;filter:none}}
+@keyframes fxWipe{from{opacity:1;filter:none;clip-path:inset(0 100% 0 0)}to{opacity:1;filter:none;clip-path:inset(0 0 0 0)}}
+@keyframes fxCircle{from{opacity:1;filter:none;clip-path:circle(0% at 70% 45%)}to{opacity:1;filter:none;clip-path:circle(140% at 70% 45%)}}
+@keyframes fxDiag{from{opacity:1;filter:none;clip-path:polygon(0 0,0 0,0 0,0 0)}to{opacity:1;filter:none;clip-path:polygon(0 0,200% 0,0 200%,0 0)}}
+@keyframes fxDoors{from{opacity:1;filter:none;clip-path:inset(0 50% 0 50%)}to{opacity:1;filter:none;clip-path:inset(0 0 0 0)}}
+@keyframes fxSlide{from{opacity:1;filter:none;translate:100% 0}to{opacity:1;filter:none;translate:0 0}}
+@keyframes fxSlideOut{from{translate:0 0}to{translate:-35% 0;filter:brightness(.6)}}
+@keyframes fxBlur{from{opacity:0;filter:blur(24px) brightness(1.3)}to{opacity:1;filter:none}}
+@keyframes fxRise{from{opacity:1;filter:none;clip-path:inset(100% 0 0 0)}to{opacity:1;filter:none;clip-path:inset(0 0 0 0)}}
+.plsl img.on{opacity:1;transform:scale(1.04) translate3d(0,0,0);filter:none}
+.plsl img.on:nth-child(odd){transform:scale(1.04) translate3d(-1.6%,-1%,0)}
+.plsl img.on:nth-child(even){transform:scale(1.04) translate3d(1.6%,1%,0)}
+.pl-hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);column-gap:40px;align-items:end}
+.pl-hero .wrap>*{grid-column:1}
+.pl-hero .wrap>.plsl-ui{grid-column:2;grid-row:1/span 4;align-self:end}
+.plsl-ui{background:rgba(16,36,54,.55);backdrop-filter:blur(10px);border:1px solid rgba(250,238,229,.18);border-radius:18px;padding:14px;color:var(--on-dark);min-width:0}
+.plsl-top{display:flex;align-items:center;gap:12px}
+.plsl-count{font:700 15px/1 var(--font-body);color:rgba(250,238,229,.6);white-space:nowrap}
+.plsl-count b{font:700 28px/1 var(--font-head);color:var(--on-dark);margin-right:2px}
+.plsl-cap{flex:1;font-size:13.5px;line-height:1.35;color:rgba(250,238,229,.9)!important;margin:0;min-height:2.7em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.plsl-nav{display:flex;gap:6px}
+.plsl-nav button{all:unset;cursor:pointer;width:38px;height:38px;border-radius:50%;border:1px solid rgba(250,238,229,.35);display:grid;place-items:center;font-size:15px;color:var(--on-dark)}
+.plsl-nav button:hover{background:rgba(250,238,229,.15)}
+.plsl-nav button:focus-visible,.plsl-thumbs button:focus-visible{outline:3px solid var(--tan);outline-offset:2px}
+.plsl-bar{height:3px;border-radius:3px;background:rgba(250,238,229,.2);margin:12px 0 10px;overflow:hidden}
+.plsl-bar i{display:block;height:100%;width:0;background:var(--tan)}
+.plsl-thumbs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.plsl-thumbs::-webkit-scrollbar{display:none}
+.plsl-thumbs button{all:unset;cursor:pointer;flex:none;width:64px;height:46px;border-radius:8px;overflow:hidden;opacity:.5;outline:2px solid transparent;transition:opacity .3s,outline-color .3s,transform .3s}
+.plsl-thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.plsl-thumbs button:hover{opacity:.85}
+.plsl-thumbs button[aria-selected="true"]{opacity:1;outline-color:var(--tan);transform:translateY(-2px)}
+@media (max-width:900px){.pl-hero .wrap{grid-template-columns:1fr}.pl-hero .wrap>.plsl-ui{grid-column:1;grid-row:auto;margin-top:22px}}
+@media (max-width:600px){.plsl-ui{padding:10px}.plsl-count b{font-size:22px}.plsl-cap{font-size:12.5px}.plsl-nav button{width:34px;height:34px}.plsl-thumbs button{width:52px;height:38px}}
+@media (prefers-reduced-motion:reduce){.plsl img{transition:opacity .3s;transform:none!important}}
 .pl-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(16,36,54,.94) 0%,rgba(16,36,54,.58) 36%,rgba(16,36,54,.1) 72%)}
 .pl-hero .wrap{position:relative;z-index:2;padding-top:120px;padding-bottom:44px}
 .pl-hero h1{color:var(--on-dark);font-size:clamp(42px,6.4vw,92px);margin:14px 0 12px}
@@ -605,6 +653,14 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
 .hs::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid rgba(255,255,255,.8);animation:hsPulse 2.2s ease-out infinite}
 @keyframes hsPulse{0%{transform:scale(.55);opacity:.95}100%{transform:scale(1.5);opacity:0}}
 .hs[aria-pressed="true"]{background:#FFF3B0;color:var(--primary);scale:1.18}
+/* name tag above each marker, matching the list on the right */
+.hs-tag{position:absolute;bottom:calc(100% + 14px);left:50%;transform:translateX(-50%);white-space:nowrap;padding:5px 10px 5px;border-radius:8px;background:rgba(16,36,54,.88);color:var(--on-dark);font:600 12px/1.2 var(--font-body);letter-spacing:.01em;box-shadow:0 6px 16px rgba(0,0,0,.35);pointer-events:none;backdrop-filter:blur(4px)}
+.hs-tag::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:rgba(16,36,54,.88)}
+.hs-tag.l{left:-6px;transform:none}.hs-tag.l::after{left:22px}
+.hs-tag.r{left:auto;right:-6px;transform:none}.hs-tag.r::after{left:auto;right:16px;transform:translateX(50%)}
+.hs[aria-pressed="true"] .hs-tag{background:#FFF3B0;color:var(--primary);scale:.85}
+.hs[aria-pressed="true"] .hs-tag::after{border-top-color:#FFF3B0}
+@media (max-width:600px){.hs{width:28px;height:28px;font-size:11px}.hs-tag{display:none;font-size:10px;padding:3px 7px;bottom:calc(100% + 10px)}.hs[aria-pressed="true"] .hs-tag{display:block}}
 .hs[aria-pressed="true"]::before{animation:none;opacity:0}
 .pl-list{display:grid;gap:10px}
 .pl-li{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-in);padding:14px 16px;font:inherit;color:inherit;cursor:pointer;transition:background var(--t-ui) var(--ease),border-color var(--t-ui) var(--ease),transform var(--t-ui) var(--ease)}
@@ -909,7 +965,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
 <!-- =================== PRODUCTION PLANT =================== -->
 <div class="page" id="page-plant" hidden data-title="Production Plant | KAZI ADDITIVE LIMITED">
   <section class="pl-hero">
-    <img src="assets/plant/p01.jpg" alt="The Kazi Additive production plant in Tangail: steel production sheds, a landscaped lawn and stacked packaging containers under a blue sky" width="1280" height="960" fetchpriority="high" id="plHeroImg">
+    <div class="plsl" id="plHeroImg" aria-roledescription="carousel" aria-label="Plant photos"><img src="assets/plant/p01.jpg" alt="The Kazi Additive production plant in Tangail: steel production sheds, a landscaped lawn and stacked packaging containers under a blue sky" width="1280" height="960" fetchpriority="high" class="on"></div>
     <div class="wrap">
       <span class="crumb reveal">Home / Production Plant</span>
       <h1 class="reveal">Production Plant</h1>
@@ -917,6 +973,12 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
       <div class="acts reveal">
         <button type="button" class="btn light caps" data-scroll="#plTour">Take the plant tour</button>
         <button type="button" class="btn ghost caps" data-enquire="Plant Visit Request">Request a plant visit</button>
+      </div>
+      <div class="plsl-ui reveal">
+        <div class="plsl-top"><span class="plsl-count" aria-hidden="true"><b id="plslN">01</b>/<span id="plslT">11</span></span><p class="plsl-cap" id="plslCap" aria-live="polite"></p>
+          <div class="plsl-nav"><button type="button" id="plslPrev" aria-label="Previous photo">&larr;</button><button type="button" id="plslPlay" aria-label="Pause slideshow">&#10074;&#10074;</button><button type="button" id="plslNext" aria-label="Next photo">&rarr;</button></div></div>
+        <div class="plsl-bar"><i id="plslBar"></i></div>
+        <div class="plsl-thumbs" id="plslThumbs" role="tablist" aria-label="Choose a photo"></div>
       </div>
     </div>
   </section>
@@ -1393,7 +1455,7 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
     var page=$("#page-plant");if(!page)return;
     /* hotspots */
     var stage=$("#plStage"),list=$("#plList"),hsSel=-1;
-    stage.insertAdjacentHTML("beforeend",HS.map(function(h,i){return '<button type="button" class="hs" data-h="'+i+'" style="left:'+h.x+'%;top:'+h.y+'%" aria-pressed="false" aria-label="'+(i+1)+'. '+h.t+'">'+(i+1)+'</button>'}).join(""));
+    stage.insertAdjacentHTML("beforeend",HS.map(function(h,i){var side=h.x>80?" r":h.x<20?" l":"";return '<button type="button" class="hs" data-h="'+i+'" style="left:'+h.x+'%;top:'+h.y+'%" aria-pressed="false" aria-label="'+(i+1)+'. '+h.t+'">'+(i+1)+'<span class="hs-tag'+side+'" aria-hidden="true">'+h.t+'</span></button>'}).join(""));
     list.innerHTML=HS.map(function(h,i){return '<button type="button" class="pl-li" data-h="'+i+'" aria-pressed="false"><span class="h"><i>'+(i+1)+'</i>'+h.t+'</span><p>'+h.d+'</p></button>'}).join("");
     function pick(i){hsSel=i;$$("#page-plant [data-h]").forEach(function(b){b.setAttribute("aria-pressed",String(+b.dataset.h===i))})}
     page.addEventListener("click",function(e){var b=e.target.closest("[data-h]");if(b)pick(+b.dataset.h===hsSel?-1:+b.dataset.h)});
@@ -1425,6 +1487,40 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
       lbShow(+b.dataset.pi);if(lb.showModal)lb.showModal();else lb.setAttribute("open","")});
     /* hero parallax + scroll buttons */
     var hero=$("#plHeroImg");
+    /* hero slider */
+    (function(){
+      var box=hero,first=box.querySelector("img"),N=PL.length,cur=0,playing=!reduce,t=null,DURS=5500;
+      box.innerHTML="";
+      box.insertAdjacentHTML("beforeend",PL.map(function(x,i){return '<img src="assets/plant/'+x.f+'.jpg" alt="'+x.t+'" width="1280" height="960" decoding="async"'+(i?' loading="lazy"':' fetchpriority="high"')+(i===0?' class="on"':'')+'>'}).join(""));
+      var slides=box.querySelectorAll("img"),th=$("#plslThumbs");
+      th.innerHTML=PL.map(function(x,i){return '<button type="button" role="tab" data-sl="'+i+'" aria-selected="'+(i===0)+'" aria-label="Photo '+(i+1)+': '+x.t+'"><img src="assets/plant/'+x.f+'.jpg" alt="" loading="lazy" width="64" height="46"></button>'}).join("");
+      $("#plslT").textContent=(N<10?"0":"")+N;
+      var bar=$("#plslBar");
+      function bar0(){bar.style.transition="none";bar.style.width="0";void bar.offsetWidth;if(playing){bar.style.transition="width "+DURS+"ms linear";bar.style.width="100%"}}
+      var FX=8,fxN=0,prevT=null;
+      function go(i){var old=cur;cur=(i+N)%N;
+        var fx=reduce?0:(fxN++%FX);if(old===cur)fx=0;
+        clearTimeout(prevT);
+        slides.forEach(function(m,k){m.classList.remove("prev","out5");for(var f=0;f<FX;f++)m.classList.remove("fx"+f);if(k!==cur)m.classList.remove("on")});
+        if(old!==cur){slides[old].classList.add("prev");if(fx===5)slides[old].classList.add("out5")}
+        var inc=slides[cur];inc.classList.remove("on");void inc.offsetWidth;inc.classList.add("on","fx"+fx);
+        prevT=setTimeout(function(){slides.forEach(function(m){m.classList.remove("prev","out5")})},1700);
+        var nx=slides[(cur+1)%N];if(nx.loading==="lazy")nx.loading="eager";
+        $("#plslN").textContent=(cur<9?"0":"")+(cur+1);$("#plslCap").textContent=PL[cur].t;
+        $$("#plslThumbs button").forEach(function(b,k){b.setAttribute("aria-selected",String(k===cur))});
+        var tb=th.children[cur];th.scrollTo({left:tb.offsetLeft-th.clientWidth/2+tb.clientWidth/2,behavior:reduce?"auto":"smooth"});
+        bar0();sched()}
+      function sched(){clearTimeout(t);if(playing)t=setTimeout(function(){if(page.hidden||document.hidden){sched();return}go(cur+1)},DURS)}
+      function setPlay(on){playing=on;var b=$("#plslPlay");b.innerHTML=on?"&#10074;&#10074;":"&#9654;";b.setAttribute("aria-label",on?"Pause slideshow":"Play slideshow");bar0();sched()}
+      $("#plslPrev").addEventListener("click",function(){go(cur-1)});
+      $("#plslNext").addEventListener("click",function(){go(cur+1)});
+      $("#plslPlay").addEventListener("click",function(){setPlay(!playing)});
+      th.addEventListener("click",function(e){var b=e.target.closest("[data-sl]");if(b)go(+b.dataset.sl)});
+      var sx=null;box.parentElement.addEventListener("touchstart",function(e){sx=e.touches[0].clientX},{passive:true});
+      box.parentElement.addEventListener("touchend",function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)go(cur+(dx<0?1:-1));sx=null},{passive:true});
+      if(reduce)setPlay(false);
+      go(0);
+    })();
     if(!reduce)window.addEventListener("scroll",function(){if(page.hidden)return;var y=window.scrollY;if(y<1400)hero.style.transform="translate3d(0,"+(y*.16).toFixed(1)+"px,0) scale(1.08)"},{passive:true});
     document.addEventListener("click",function(e){var a=e.target.closest("[data-scroll]");if(!a)return;var t=$(a.dataset.scroll);if(t)t.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"})});
   })();
