@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kazi Additive Limited">
 <meta name="twitter:description" content="Agro-nutrition, industrial packaging, yarn and everyday consumer products from Bangladesh.">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kazi Additive Limited","url":"http://kazi.safeerp.xyz/","logo":"http://kazi.safeerp.xyz/assets/logo/logo-mark.png","foundingDate":"2009","telephone":"+8801971025000","address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"description":"Feed additives and ingredients, PP woven packaging, yarn and FMCG consumer products. Head office Dhaka, industrial plant Tangail, Bangladesh."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kazi Additive Limited","url":"http://kazi.safeerp.xyz/","logo":"http://kazi.safeerp.xyz/assets/logo/logo-mark.png","foundingDate":"2009","telephone":"+8801971025000","email":"info@kaziadditiveltd.com","address":[{"@type":"PostalAddress","streetAddress":"House 12, Appt A/2, Road 17, Sector 04, Uttara, Model Town","addressLocality":"Dhaka","postalCode":"1230","addressCountry":"BD"},{"@type":"PostalAddress","streetAddress":"Vill: Pakutia, PO: D-Pakutia, PS: Ghatail","addressLocality":"Tangail","postalCode":"1982","addressCountry":"BD"}],"description":"Feed additives and ingredients, PP woven packaging, yarn and FMCG consumer products. Head office Dhaka, industrial plant Tangail, Bangladesh."}</script>
 
 <link rel="icon" href="assets/logo/logo-mark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,10 +165,10 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 .card .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}
 
 /* ---------- Hero: one enterprise, three industries (auto-playing morph, 75% viewport) ---------- */
-.hero{position:relative;background:var(--primary);color:var(--on-dark);--sc:#A9C98A}
+.hero{position:relative;background:#4889CB;color:var(--on-dark);--sc:#A9C98A}
 .hero-stick{position:relative;height:calc((100vh - var(--header))*.75);height:calc((100svh - var(--header))*.75);min-height:560px;overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
 .hero-stick::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(55% 75% at 74% 45%,color-mix(in srgb,var(--sc) 26%,transparent),transparent 70%),radial-gradient(50% 60% at 8% 100%,rgba(86,103,70,.45),transparent 70%);transition:background 1s var(--ease)}
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:-1}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:-1}
 .hfallback{position:absolute;inset:0;display:none;place-items:center;z-index:-1}
 .hfallback img{width:min(30%,240px);opacity:.18;margin-left:40%}
 .no-webgl .hfallback{display:grid}
@@ -194,10 +194,12 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 .hero .btn.out{background:transparent;color:var(--on-dark);border-color:rgba(250,238,229,.5)}
 .hero .btn.out:hover{background:rgba(250,238,229,.1)}
 .hstage{position:relative;height:100%;max-height:440px;min-height:260px}
-.hshot{position:absolute;right:0;bottom:4%;width:clamp(110px,11vw,160px);aspect-ratio:3/4;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),0 0 0 3px var(--sc);background:var(--bg);transform:rotate(4deg);transition:box-shadow .6s var(--ease)}
+.hshot{position:absolute;right:0;bottom:4%;z-index:2;width:clamp(121px,12.1vw,176px);aspect-ratio:3/4;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55),0 0 0 3px var(--sc);background:var(--bg);transform:rotate(4deg);transition:box-shadow .6s var(--ease)}
 .hshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.15);transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
 .hshot img.on{opacity:1;transform:scale(1)}
-.hnum{position:absolute;left:0;top:2%;font:600 13px/1 var(--font-body);letter-spacing:.14em;color:var(--sc);transition:color .6s var(--ease)}
+.hmap{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+@media (max-width:900px){.hmap{left:-2%;top:-12%;width:104%;height:118%;z-index:1}}
+.hnum{display:none;z-index:3;position:absolute;left:0;top:2%;font:600 13px/1 var(--font-body);letter-spacing:.14em;color:var(--sc);transition:color .6s var(--ease)}
 .hnum b{font:700 clamp(50px,5.4vw,78px)/1 var(--font-head);letter-spacing:0;color:var(--on-dark);display:block;margin-bottom:6px}
 /* giant kinetic category word, filled with a moving sheen */
 .hword{position:absolute;left:40%;right:clamp(20px,4vw,40px);bottom:clamp(92px,13vh,118px);z-index:-1;pointer-events:none;white-space:nowrap;overflow:hidden;font:700 clamp(52px,7vw,124px)/.95 var(--font-head);letter-spacing:-.02em;text-align:right;perspective:800px;opacity:.32}
@@ -211,7 +213,7 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 .hrail b{display:flex;gap:10px;align-items:baseline;font:700 clamp(18px,1.6vw,23px)/1.15 var(--font-head);color:rgba(250,238,229,.5);transition:color var(--t-ui) var(--ease)}
 .hrail b small{font:600 11px/1 var(--font-body);letter-spacing:.14em;color:var(--tan)}
 .hrail span{display:block;font-size:13px;line-height:1.45;color:rgba(250,238,229,.6);margin-top:5px;max-width:30em}
-.hrail button[aria-current="step"] b{color:var(--on-dark)}
+.hero .hrail b{color:rgba(250,238,229,.78)}.hero .hrail span{color:rgba(250,238,229,.9)}.hero .hrail b small{color:#fff}.hrail button[aria-current="step"] b{color:var(--on-dark)}
 .hrail button[aria-current="step"] b small{color:var(--sc)}
 .hrail button:focus-visible{outline:3px solid var(--tan);outline-offset:4px;border-radius:6px}
 .hplay{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,238,229,.3);display:grid;place-items:center;color:var(--on-dark);margin-top:6px}
@@ -226,7 +228,7 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
   .hero .cta{margin-top:14px}
   .hero .cta .btn.out{display:none}
   .hstage{height:clamp(170px,30svh,240px);min-height:0}
-  .hshot{width:clamp(84px,22vw,116px);bottom:0}
+  .hshot{width:clamp(92px,24.2vw,128px);bottom:0}
   .hnum b{font-size:40px}
   .hword{left:0;right:0;font-size:clamp(30px,9vw,72px);bottom:84px;text-align:center}
   .hrail{grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px}
@@ -353,7 +355,7 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 .quote{font:600 clamp(26px,3vw,36px)/1.25 var(--font-head);color:var(--primary);margin:18px 0}
 .person{display:grid;grid-template-columns:84px 1fr;gap:20px;align-items:center}
 .mono{width:84px;height:84px;border-radius:var(--r-in);background:var(--primary);display:grid;place-items:center;font:700 28px/1 var(--font-head);letter-spacing:.06em;color:var(--on-dark);overflow:hidden}
-.mono img{width:100%;height:100%;object-fit:cover}
+.mono img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
 .person h3{font-size:26px;margin:6px 0 4px}
 .person p{font-size:14.5px}
 .stack{display:grid;gap:20px}
@@ -425,7 +427,11 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 .mdmsg{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);align-items:stretch}
 .portrait{border-radius:var(--r-card);background:var(--primary);color:var(--on-dark);display:flex;flex-direction:column;justify-content:flex-end;min-height:420px;padding:28px;position:relative;overflow:hidden}
 .portrait::before{content:attr(data-ini);position:absolute;top:50%;left:50%;transform:translate(-50%,-62%);font:700 clamp(96px,12vw,150px)/1 var(--font-head);color:rgba(250,238,229,.14);letter-spacing:.04em}
-.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.portrait:has(img){min-height:0;aspect-ratio:472/591;align-self:start;width:100%;background:#eef1f4}
+.portrait:has(img)::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(24,51,75,.92) 0%,rgba(24,51,75,.55) 32%,rgba(24,51,75,0) 58%)}
+.portrait:has(img)::before{display:none}
+.portrait .badge,.portrait h3,.portrait p{z-index:1}
 .portrait h3{color:var(--on-dark);font-size:30px;position:relative}
 .portrait p{color:rgba(250,238,229,.82);font-size:14.5px;position:relative}
 .portrait .badge{align-self:flex-start;margin-bottom:14px;position:relative;background:var(--bg);color:var(--primary)}
@@ -447,7 +453,7 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 .tm .loc{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);font:600 11.5px/1.3 var(--font-body);letter-spacing:.12em;text-transform:uppercase;color:var(--text)}
 .tm p{margin-bottom:16px}
 .tm .badge{letter-spacing:.08em;font-size:10.5px}
-@media (max-width:900px){.mdmsg{grid-template-columns:1fr}.portrait{min-height:300px}}
+@media (max-width:900px){.mdmsg{grid-template-columns:1fr}.portrait{min-height:300px}.portrait:has(img){min-height:0;max-width:420px;margin:0 auto;padding:20px}.portrait:has(img) h3{font-size:24px}}
 
 /* Gallery */
 .masonry{columns:3 320px;column-gap:20px}
@@ -555,11 +561,12 @@ dialog[open]{animation:dlg 280ms var(--ease)}
 .partners .pcard.txt .lg b{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;letter-spacing:.01em;line-height:1.1;font-weight:700}
 .partners .pcard.txt .lg small{display:block;margin-top:6px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#5b6b7b)}
 .partners.one{grid-template-columns:minmax(0,190px)}
-.section.fin{padding:24px 0}.section.fin .shead{margin-bottom:12px}.section.fin h2{font-size:clamp(26px,3vw,34px)}.partners.one.gp{grid-template-columns:minmax(0,260px)}
-.duo{display:grid;grid-template-columns:repeat(2,max-content);grid-template-rows:auto auto;grid-auto-flow:column;column-gap:56px;justify-content:start;align-items:start}
-.duo .partners.one,.duo .partners.one.gp{grid-template-columns:minmax(0,240px)}
-@media (max-width:640px){.duo{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}}
-.partners.one .pcard{min-height:84px;padding:10px 10px 8px;gap:6px}.partners.one .pcard img{max-height:44px}
+.section.fin{padding:14px 0}.section.fin .shead{margin:0 0 6px}.section.fin .shead h2{font-size:clamp(20px,2vw,26px);margin-top:4px}.section.fin .badge{padding:4px 10px;font-size:10px}.partners.one.gp{grid-template-columns:minmax(0,260px)}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto;grid-auto-flow:column;column-gap:clamp(16px,3vw,40px);justify-items:center;align-items:start}
+.duo .shead{justify-content:center;text-align:center;width:100%}
+.duo .partners.one,.duo .partners.one.gp{grid-template-columns:minmax(0,320px);justify-content:center;width:100%}
+@media (max-width:640px){.duo{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}.duo .partners{margin-bottom:16px}.duo .partners:last-child{margin-bottom:0}}
+.partners.one .pcard{min-height:60px;padding:8px 10px 6px;gap:4px}.partners.one .pcard img{max-height:34px}
 footer .since{margin-top:16px;display:inline-flex;align-items:baseline;gap:10px;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.9rem;font-weight:700;line-height:1;color:var(--linen,#f3ece1);padding-top:14px;border-top:1px solid rgba(255,255,255,.22)}
 footer .since span{font-family:inherit;font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
 
@@ -668,26 +675,26 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
 .pl-map{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:28px;align-items:start}
 .pl-stage{position:relative;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;background:var(--tan-soft)}
 .pl-stage>img{width:100%;height:100%;object-fit:cover}
-.hs{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:2px solid #fff;background:var(--primary);color:var(--on-dark);font:700 13px/1 var(--font-body);cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.4);padding:0;transition:background var(--t-micro) var(--ease),color var(--t-micro) var(--ease),scale var(--t-ui) var(--ease)}
+.hs{position:absolute;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;border:3px solid #fff;background:var(--primary);color:var(--on-dark);font:700 21px/1 var(--font-body);cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.4);padding:0;transition:background var(--t-micro) var(--ease),color var(--t-micro) var(--ease),scale var(--t-ui) var(--ease)}
 .hs::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid rgba(255,255,255,.8);animation:hsPulse 2.2s ease-out infinite}
 @keyframes hsPulse{0%{transform:scale(.55);opacity:.95}100%{transform:scale(1.5);opacity:0}}
-.hs[aria-pressed="true"]{background:#FFF3B0;color:var(--primary);scale:1.18}
+.hs[aria-pressed="true"]{background:#FFF3B0;color:var(--primary);scale:1.3;z-index:5;border-color:var(--primary);box-shadow:0 0 0 5px rgba(255,243,176,.9),0 0 26px 8px rgba(255,243,176,.7),0 8px 18px rgba(0,0,0,.45)}
 /* name tag above each marker, matching the list on the right */
-.hs-tag{position:absolute;bottom:calc(100% + 14px);left:50%;transform:translateX(-50%);white-space:nowrap;padding:5px 10px 5px;border-radius:8px;background:rgba(16,36,54,.88);color:var(--on-dark);font:600 12px/1.2 var(--font-body);letter-spacing:.01em;box-shadow:0 6px 16px rgba(0,0,0,.35);pointer-events:none;backdrop-filter:blur(4px)}
+.hs-tag{position:absolute;bottom:calc(100% + 14px);left:50%;transform:translateX(-50%);white-space:nowrap;padding:6px 12px 6px;border-radius:8px;background:rgba(16,36,54,.88);color:var(--on-dark);font:600 14px/1.2 var(--font-body);letter-spacing:.01em;box-shadow:0 6px 16px rgba(0,0,0,.35);pointer-events:none;backdrop-filter:blur(4px)}
 .hs-tag::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:rgba(16,36,54,.88)}
 .hs-tag.l{left:-6px;transform:none}.hs-tag.l::after{left:22px}
 .hs-tag.r{left:auto;right:-6px;transform:none}.hs-tag.r::after{left:auto;right:16px;transform:translateX(50%)}
-.hs[aria-pressed="true"] .hs-tag{background:#FFF3B0;color:var(--primary);scale:.85}
+.hs[aria-pressed="true"] .hs-tag{background:#FFF3B0;color:var(--primary);scale:.8;font-weight:700}
 .hs[aria-pressed="true"] .hs-tag::after{border-top-color:#FFF3B0}
-@media (max-width:600px){.hs{width:28px;height:28px;font-size:11px}.hs-tag{display:none;font-size:10px;padding:3px 7px;bottom:calc(100% + 10px)}.hs[aria-pressed="true"] .hs-tag{display:block}}
+@media (max-width:600px){.hs{width:34px;height:34px;font-size:16px;border-width:2px}.hs-tag{font-size:9px;padding:2px 6px;bottom:calc(100% + 7px)}}
 .hs[aria-pressed="true"]::before{animation:none;opacity:0}
 .pl-list{display:grid;gap:10px}
 .pl-li{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-in);padding:14px 16px;font:inherit;color:inherit;cursor:pointer;transition:background var(--t-ui) var(--ease),border-color var(--t-ui) var(--ease),transform var(--t-ui) var(--ease)}
 .pl-li:hover{transform:translateX(3px)}
 .pl-li .h{display:flex;align-items:center;gap:12px;font:600 17px/1.2 var(--font-head);font-size:21px;color:var(--primary)}
-.pl-li .h i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--primary);color:var(--on-dark);font:700 12px/1 var(--font-body);display:grid;place-items:center;font-style:normal}
+.pl-li .h i{flex:none;width:36px;height:36px;border-radius:50%;background:var(--primary);color:var(--on-dark);font:700 18px/1 var(--font-body);display:grid;place-items:center;font-style:normal}
 .pl-li p{display:none;margin-top:8px;font-size:15px;line-height:1.55}
-.pl-li[aria-pressed="true"]{background:var(--primary);border-color:var(--primary)}
+.pl-li[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,243,176,.85),0 12px 24px -12px rgba(24,51,75,.6)}
 .pl-li[aria-pressed="true"] .h{color:var(--on-dark)}
 .pl-li[aria-pressed="true"] .h i{background:#FFF3B0;color:var(--primary)}
 .pl-li[aria-pressed="true"] p{display:block;color:rgba(250,238,229,.9)}
@@ -770,6 +777,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
           </div>
         </div>
         <div class="hstage" aria-hidden="true">
+          <canvas class="hmap" id="hmap"></canvas>
           <div class="hnum"><b id="hnum">01</b>OF 03 &bull; <span id="hname">FEED &amp; ADDITIVES</span></div>
           <div class="hshot">
             <img class="on" src="assets/products/additives-01.jpg" alt="">
@@ -883,13 +891,26 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
         <h2 style="font-size:clamp(30px,3.4vw,44px);margin:14px 0 18px">Committed to Quality, Integrity &amp; Sustainable Growth</h2>
       </div>
       <div class="prose">
-        <p><strong>Kazi Additive Limited</strong> was founded with a clear commitment: to raise the standard of animal nutrition, industrial packaging, and daily consumer essentials in Bangladesh. Headquartered in <strong>Dhaka</strong> with a modern industrial plant in <strong>Tangail</strong>, we operate across three synergistic verticals.</p>
-        <p>As an authorized partner of <strong>Dr. Eckel Animal Nutrition GmbH &amp; Co. KG (Germany)</strong>, we bring research-backed phytogenic feed additives and toxin binders to Bangladesh&rsquo;s leading poultry, dairy, and aqua feed mills, while manufacturing durable PP woven bags, multi-filament yarn, and household FMCG products locally.</p>
+        <p>Since its inception in 2009, our group has established itself as a benchmark of trust, innovation, and uncompromising quality across Bangladesh&rsquo;s agro-industrial, manufacturing, and consumer goods sectors. Anchored by our corporate headquarters in <strong>Dhaka</strong> and modern production facilities in <strong>Tangail</strong>, we lead industrial and commercial operations nationwide through four dynamic group entities.</p>
+        <p>Our core mission is bridging global technological excellence with local market needs. We are the <strong>Exclusive Distributor in Bangladesh</strong> for the German enterprise <strong>Dr. Eckel Animal Nutrition</strong>. By directly importing their specialized, German-manufactured feed additives and veterinary products, we ensure timely, reliable delivery to leading feed mills and commercial farms nationwide through the Kazi Additive Limited distribution network.</p>
+        <p>Alongside our import and distribution leadership, the group maintains diversified sourcing and manufacturing capabilities:</p>
+        <p><strong>Kazi Trustlink:</strong> directly imports and supplies high-grade raw materials essential for the poultry and animal feed industries from trusted global sources.</p>
+        <p><strong>Kazi Yarn Industry:</strong> manufactures high-tenacity multifilament yarn and commercial threads engineered to international benchmarks for the textile and industrial sectors.</p>
+        <p><strong>Kazi Consumer Products:</strong> produces and markets safe, hygienic household and personal care (FMCG) essentials designed to elevate everyday living standards.</p>
+        <p>Backed by over fifteen years of industry experience, punctual delivery, and an enduring commitment to international standards, we continue to contribute steadily to Bangladesh&rsquo;s industrial growth and economic progress.</p>
       </div>
     </div>
     <div class="two" style="margin-top:48px">
-      <div class="card reveal"><span class="badge">Our Mission</span><h3>Serving farmers, businesses and families</h3><p>To deliver safe, innovative, and cost-effective nutritional, industrial, and consumer solutions that empower farmers, businesses, and families nationwide.</p></div>
-      <div class="card reveal"><span class="badge tan">Our Vision</span><h3>A benchmark Bangladeshi industrial group</h3><p>To be recognized as a benchmark Bangladeshi industrial group synonymous with international quality compliance, ethical governance, and manufacturing self-reliance.</p></div>
+      <div class="card reveal"><span class="badge">Our Mission</span><h3>Serving farmers, industry and households</h3><p>To empower Bangladesh&rsquo;s agricultural, industrial, and consumer sectors by delivering world-class feed additives, essential raw materials, high-tenacity industrial yarns, and safe, hygienic everyday consumer goods (FMCG) with uncompromising quality and on-time reliability. Through strategic global partnerships and modern local manufacturing, we are committed to creating sustainable value and lasting trust for our farmers, feed mills, industrial partners, and households nationwide.</p></div>
+      <div class="card reveal"><span class="badge tan">Our Vision</span><h3>A premier, benchmark-setting group</h3><p>To be recognized as a premier, benchmark-setting conglomerate across Bangladesh&rsquo;s agro-industrial, textile, and FMCG sectors, driving sustainable growth, technological excellence, and nationwide well-being while upholding global standards of integrity and quality.</p></div>
+    </div>
+    
+    <div class="shead reveal" style="margin-top:48px"><div><span class="badge tan">Group Portfolio</span><h2 style="font-size:clamp(26px,2.8vw,36px)">Four Core Business Pillars</h2><p class="sub">Our integrated corporate architecture is anchored by four foundational business pillars.</p></div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+      <div class="card lift reveal"><span class="badge">Pillar 01</span><h3>Animal Feed &amp; Additives — Kazi Additive Limited</h3><p>As the Exclusive Distributor of Germany&rsquo;s Dr. Eckel Animal Nutrition and a trusted partner to global suppliers, we import international-grade feed additives and veterinary medicines, ensuring due-time delivery of superior products to feed mills and farms nationwide.</p></div>
+      <div class="card lift reveal"><span class="badge tan">Pillar 02</span><h3>Kazi Yarn Industry</h3><p>Dedicated to spinning and supplying high-grade multifilament yarn and industrial threads adhering to strict international tensile strength and durability benchmarks for weaving, knitting, and packaging applications.</p></div>
+      <div class="card lift reveal"><span class="badge">Pillar 03</span><h3>Kazi Consumer Products (FMCG)</h3><p>Manufactures and distributes specialized hygienic, household, skin care, toilet care, and kitchen care products crafted with rigorous safety and hygiene standards for daily consumer accessibility across Bangladesh.</p></div>
+      <div class="card lift reveal"><span class="badge tan">Pillar 04</span><h3>Kazi Trustlink</h3><p>Specializes in global sourcing, direct importation, and uninterrupted supply chain management of premium-quality raw materials and essential inputs for Bangladesh&rsquo;s poultry feed industry.</p></div>
     </div>
     <div class="card reveal" style="margin-top:24px;background:var(--tan-soft)"><span class="badge navy">Infrastructure &amp; Compliance</span><h3>Dhaka warehousing, Tangail production</h3><p>Active member of <strong>BAFIITA</strong> (Bangladesh Agro Feed Ingredients Importers &amp; Traders Association), operating temperature-controlled warehousing in Dhaka and high-capacity extrusion, weaving, and packaging lines in Tangail.</p></div>
   </div></section>
@@ -1084,9 +1105,10 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
       </form>
     </div>
     <div class="stack info reveal">
-      <div class="card"><span class="badge">Corporate Headquarters</span><h3>Dhaka, Bangladesh</h3><p>Executive management, international trade &amp; import operations, and commercial sales desk.</p><p><strong>Phone / WhatsApp:</strong> <a href="https://wa.me/8801971025000">+880 1971-025000</a></p>
-      <p><strong>Hours:</strong> Sat &ndash; Thu, 9:30 AM &ndash; 6:30 PM</p><p><strong>Websites:</strong> www.kaziagro.com &bull; www.kaziagroltd.com</p></div>
-      <div class="card"><span class="badge tan">Tangail Industrial Plant</span><h3>Tangail District</h3><p>Integrated extrusion, weaving, yarn and FMCG packaging facility in Tangail District, Dhaka Division.</p></div>
+      <div class="card"><span class="badge">Corporate Headquarters</span><h3>Dhaka, Bangladesh</h3><p><strong>Address:</strong> House 12, Appt A/2, Road 17, Sector 04, Uttara, Model Town, Dhaka-1230, Bangladesh</p><p>Executive management, international trade &amp; import operations, and commercial sales desk.</p><p><strong>Phone / WhatsApp:</strong> <a href="https://wa.me/8801971025000">+880 1971-025000</a></p>
+      <p><strong>Email:</strong> <a href="mailto:info@kaziadditiveltd.com">info@kaziadditiveltd.com</a></p>
+      <p><strong>Hours:</strong> Sat &ndash; Thu, 9:30 AM &ndash; 6:30 PM</p><p><strong>Websites:</strong> www.kaziagro.com &bull; www.kaziagroltd.com</p><p><a class="btn sm out" href="https://www.google.com/maps/search/?api=1&query=Road%2017%2C%20Sector%204%2C%20Uttara%2C%20Dhaka%201230%2C%20Bangladesh" target="_blank" rel="noopener noreferrer">Get directions to Head Office</a></p></div>
+      <div class="card"><span class="badge tan">Tangail Industrial Plant</span><h3>Ghatail, Tangail</h3><p><strong>Address:</strong> Vill: Pakutia, PO: D-Pakutia, Post Code 1982, PS: Ghatail, District: Tangail, Bangladesh</p><p>Integrated extrusion, weaving, yarn and FMCG packaging facility in Tangail District, Dhaka Division.</p><p><a class="btn sm out" href="https://www.google.com/maps/search/?api=1&query=Pakutia%2C%20Ghatail%2C%20Tangail%201982%2C%20Bangladesh" target="_blank" rel="noopener noreferrer">Get directions to the Factory</a></p></div>
     </div>
   </div></section>
   <section class="section dealer" id="dealer" aria-labelledby="dealer-h"><div class="wrap cgrid">
@@ -1138,7 +1160,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
   <section class="section soft faq" aria-labelledby="faq-h"><div class="wrap">
     <div class="shead reveal"><div><span class="badge tan">Questions</span><h2 id="faq-h">Frequently Asked Questions</h2></div></div>
     <details><summary>What is the minimum order quantity?</summary><p>Quantities depend on the product and division. Send your requirement through the form above or on WhatsApp and our sales desk will confirm.</p></details>
-    <details><summary>Do you supply across Bangladesh?</summary><p>Yes. We serve feed mills, livestock farms, textile producers and retail consumers nationwide. Share your location and we will confirm delivery details.</p></details>
+    <details><summary>Do you supply across Bangladesh?</summary><p>Yes. We deliver all over Bangladesh to feed mills, livestock farms, textile producers and retail consumers. Standard delivery time is 72 hours. Share your location and we will confirm delivery details.</p></details>
     <details><summary>Can I get a sample or a technical datasheet?</summary><p>Tell us the product and your use case in the enquiry form, and we will arrange the datasheet or sample details.</p></details>
     <details><summary>How do I apply for FMCG dealership?</summary><p>Fill in the dealership application form on this page and send it to our commercial desk on WhatsApp. Tell us your area, business and capacity, and we will get back to you. <a href="#contact" data-dealer>Open the application form</a>.</p></details>
     <details><summary>What are your office hours?</summary><p>Saturday to Thursday, 9:30 AM to 6:30 PM.</p></details>
@@ -1152,7 +1174,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
     <div class="cols">
       <div><img src="assets/logo/logo-full-light.png" alt="Kazi Additive Limited" width="258" height="36"><p>Providing Premium Feed Additives, Feed Nutrition, Multifilament Yarn, Feed Packaging and Consumer Products (FMCG) across Bangladesh.</p><p class="since"><span>Since</span> 2009</p></div>
       <div><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#divisions">Business Divisions</a></li><li><a href="#leadership">Leadership &amp; Team</a></li><li><a href="#contact">Contact</a></li></ul></div>
-      <div><h4>Group Concerns</h4><ul><li>Kazi Additive Limited</li><li>Kazi Yarn Industry</li><li>Kazi Consumer Products (FMCG)</li><li>Head Office: Dhaka &nbsp;|&nbsp; Plant: Tangail</li></ul></div>
+      <div><h4>Group Concerns</h4><ul><li>Kazi Additive Limited</li><li>Kazi Yarn Industry</li><li>Kazi Consumer Products (FMCG)</li><li>Head Office: Dhaka &nbsp;|&nbsp; Plant: Tangail</li><li><a href="mailto:info@kaziadditiveltd.com">info@kaziadditiveltd.com</a></li></ul></div>
     </div>
     <div class="legal">
       <span>&copy; 2026 KAZI ADDITIVE LIMITED. All Rights Reserved.</span>
@@ -1199,7 +1221,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
    team     : optional photo paths, e.g. "assets/team/md.jpg"
    Both email and whatsapp empty = the inquiry text is shown with a Copy button.
    ===================================================================== */
-var CONFIG = { email:"", whatsapp:"8801971025000", team:{ md:"", chairman:"" } };
+var CONFIG = { email:"info@kaziadditiveltd.com", whatsapp:"8801971025000", team:{ md:"assets/team/md.jpg", chairman:"" } };
 
 var GROUPS = [
   {k:"all", label:"All Divisions"},
@@ -1905,6 +1927,71 @@ try{
   window.addEventListener("scroll",function(){up.classList.toggle("on",window.scrollY>600)},{passive:true});
   up.addEventListener("click",function(){window.scrollTo({top:0,behavior:reduce?"auto":"smooth"})});
   var wa=$("#fabWa");try{if(CONFIG&&CONFIG.whatsapp)wa.href="https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent("Hello Kazi Additive Limited, I would like to know more about your products.")}catch(e){}
+})();
+</script>
+<script>
+/* Hero stage: full dotted world map. Countries blink one after another with their name; Germany -> Dhaka supply route; dot ring around the product */
+(function(){
+  var cv=document.getElementById("hmap"); if(!cv||!cv.getContext) return;
+  var cx=cv.getContext("2d"), hero=document.querySelector(".hero"), shot=document.querySelector(".hshot");
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches && !window.__motionOn;
+  var GRID="...............................nn.nnnnnnnn.######################..........................g..................gg..................................|...........................nn.n.nnnnnnn.#######################.............###..................................gg...............................|....................n.nn.n..nn..n.............#################.................................ggg...........gggggggg..........gg................|...................nnnn...n..n.nn.n.nn.........###############...............................gg.........gggggggggggggggg..g......g................|.....e.............n..nnnnn....n..nnnnnnn........#############...............................g.....gggggggggggggggggggggggggg.gggggggg...........g|..eeeeeeeeeennnnnnnnnnnnn.......nn.nn..nnn.......###########..................#####ggg.......g..gg..g.ggggggggggggggggggggggggggggggggggggggg.gggg|..eeeeeeeeeennnnnnnnnnnnnnnnnnnnnnnn....nnnnn....#######........#...........#######gg.gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg|....eeeeeeeennnnnnnnnnnnnnnnnnnnn..nn...nnnn.....#####.......###...........####.###gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg.|..eeeeeeeeeennnnnnnnnnnnnnnnnnnn......nnn.........###....................#####..###gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg...|...eeee......nennnnnnnnnnnnnnnn.......nnnn.n.............................#####...##gggggggggggggggggggggggggggggggggggggggggggggggg...g..gg.......|...............ennnnnnnnnnnnnnnnnn.....nnnnnn.......................jj....#.##..##ggggggggggggggggggggggggggggggggggggggggggggggg.......ggg.......|................nnnnnnnnnnnnnnnnnnnn..nnnnnnnnn....................#.jj...d..##g####gggggggggggggguugggggggggggggggggggggggggggg........gg........|..................nnnnnnnnnnnnnnnnnnn.nnnnnnnnnn...................#.jj..#ddd########ggggggggggguuuuuuuugggggggggggggggggcccggggggg.....g.........|..................nnnnnnnnnnnnnnnnnnnnnnnnn.n..n.......................ttddd############gguuuuuuuuuuuuuuuuug########gg#cccccggggg.g...............|...................eeeeeeeeeeeeeeeennnnnn.en....n.....................tttt#############gggguuuuuuuuuuuuuucccc############ccccccgg.................|...................eeeeeeeeeeeeeeeeennneeee.n.........................tttt##.######...gggg..uu##uuuuuuuucccccc#######ccccccccggg..................|...................eeeeeeeeeeeeeeeeeneeee..........................#####..t##..###......##g..u####uu####ccccccccc###ccccccccc....kk...............|...................eeeeeeeeeeeeeeeeeeeee...........................####...#..#.#..ppppppp##..#########ccccccccccccccccccc.c#.....k................|....................eeeeeeeeeeeeeeeeeee............................###......#...#.ppppppp##..#########cccccccccccccccccc...##....k................|.....................eeeeeeeeeeeeeeeeee.............................#######......#....#################cccccccccccccccccc...#.kkk.................|......................eeeeeeeeeeeeeeee.............................#########.........#################bbccccccccccccccccc....k....................|......................v.vvveeeeeeeeee..............................##############llll##ii#############bbccccccccccccccccc.........................|.......................vvvvvve......e.............................###############lllliiiiii.#########bbbb##c#bb#ccccccccc.........................|........................vvvvvv...................................################llll.iiiiii...#####bbbbbbbbbb##ccccccccc.........................|..........................vvvv..................................#################lllll.iiiii###.....bbbbbbbbab##ccccccc...........................|...........................vvv...vv...#.........................######################.iiiiiii#.....bbbbbbb..######...............................|............................vvv.vv....#.##......................#######################.iii###.......bbbbb....#qq##.c.............................|..............................v.v#..............................#######################..####........bbbb.....#.qqq#.....#........................|.................................###............................########################.##...........bb........qq##..............................|...................................#....##......................########rrrrr############..#..........bb..........##..............................|....................................##########...................#######rrrr################............#.......q.................................|.......................................########...................######rrr################.............#..............#..........................|.......................................######f##t..........................################....................o.#....#o..........................|......................................####f#ff#fff.........................###############......................o...o##o..........................|.....................................#####fffffffff........................#############.........................o..oooo......o...................|.....................................#####ffffffffffff.....................#############.........................oo..oo.oo.oo.oooo................|.....................................###ffffffffffffffff....................###########...........................o.............oo##.#............|......................................##ffffffffffffffff....................###########..............................oo.........oo#.#.............|......................................###ff#ffffffffffff....................############.............................................#............|.......................................######ffffffffff.....................############...#.................................hhh..h...............|.......................................#######fffffffff.....................############..##...............................hhhh...h...............|.........................................######fffffff......................##########...##...............................hhhhhhhhhh..............|..........................................#####fffffff......................#########....##.............................hhhhhhhhhhhhh.............|..........................................#ss###fffff........................######m##...##...........................hhhhhhhhhhhhhhh.............|.........................................#ssss##fff..........................#####mm#....#............................hhhhhhhhhhhhhhhh............|.........................................#sssss#fff..........................##mmmmm..................................hhhhhhhhhhhhhhhhh...........|.........................................#sssssfff............................mmmm#m...................................hhhhhhhhhhhhhhhh...........|.........................................#sssss#f.............................mmmmm....................................hhhhh..hhhhhhhh............|.........................................#ssss.#.......................................................................hh......hhhhhhh............|........................................#ssssss..................................................................................hhhh..........#..|........................................#ssss..................................................................................................##.|........................................#sss.......................................................................................hh.........#...|........................................#sss.................................................................................................##...|.......................................##ss..................................................................................................#....|.......................................##ss.......................................................................................................|........................................#s....#...................................................................................................|........................................##s.......................................................................................................|..................................................................................................................................................".split("|"), COLS=146, ROWS=58, LON0=-170, LAT0=82, STEP=2.4;
+  var FEAT=[["Bangladesh",108,24],["India",103.6,24.2],["China",113.4,18.3],["Germany",74.4,12.3],["USA",29.3,17.3],["Brazil",48.2,38.1],["Russia",111.8,7.8],["Australia",126.2,44.3],["Saudi Arabia",88.7,23.6],["UK",69.2,11],["Japan",127.9,18],["Egypt",82.6,22.6],["South Africa",80.8,45.6],["Canada",29,8.1],["Indonesia",118.2,34],["Turkey",85,17.5],["Thailand",112.4,27],["Nigeria",73.6,29.8],["Argentina",43.1,48.3],["France",71.7,14.4],["Kazakhstan",98.1,13.6],["Mexico",26.7,23.3]];
+  var land=[], byC=[]; FEAT.forEach(function(){byC.push([])});
+  GRID.forEach(function(row,r){for(var c=0;c<COLS;c++){var ch=row.charAt(c); if(ch==="."||!ch)continue; var k=ch==="#"?-1:ch.charCodeAt(0)-97; var o=[c,r,k]; land.push(o); if(k>=0)byC[k].push(o)}});
+  var BL=[]; FEAT.forEach(function(f,k){if(f&&f[0]!=="Germany"&&f[0]!=="Bangladesh")BL.push(k)});
+  for(var q=BL.length-1;q>0;q--){var z=(q*7+3)%(q+1),tmp=BL[q];BL[q]=BL[z];BL[z]=tmp}
+  var DE=[(7.4-LON0)/STEP,(LAT0-50.5)/STEP], BD=[(90.4-LON0)/STEP,(LAT0-23.8)/STEP];
+  var W=0,H=0,cell=4,ox=0,oy=0,fs=10,dpr=Math.min(window.devicePixelRatio||1,2),run=false,raf=0,t0=performance.now(),sc="#A9C98A",fr=0,PER=1.7;
+  function size(){var hr=hero.getBoundingClientRect(),pr=cv.parentElement.getBoundingClientRect();cv.style.left=(hr.left-pr.left)+'px';cv.style.top=(hr.top-pr.top)+'px';cv.style.width=hr.width+'px';cv.style.height=hr.height+'px';var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cx.setTransform(dpr,0,0,dpr,0,0);
+    cell=Math.min(W*.99/COLS,(H*.92)/ROWS);ox=Math.max(1,(W-cell*COLS)/2);oy=H*(W<700?.43:.05);fs=W<700?8:11}
+  function P(g){return [ox+g[0]*cell,oy+g[1]*cell]}
+  function pill(txt,x,y,al){cx.font="700 "+fs+"px Inter,system-ui,sans-serif";var w=cx.measureText(txt).width+10,h=fs+7,lx=al==="r"?x-w:al==="c"?x-w/2:x;
+    cx.fillStyle="rgba(16,36,54,.82)";cx.beginPath();if(cx.roundRect)cx.roundRect(lx,y-h,w,h,5);else cx.rect(lx,y-h,w,h);cx.fill();
+    cx.fillStyle="#fff";cx.textAlign="left";cx.fillText(txt,lx+5,y-5)}
+  function draw(now){
+    var t=(now-t0)/1000; cx.clearRect(0,0,W,H);
+    if(fr++%30===0){var v=getComputedStyle(hero).getPropertyValue("--sc").trim(); if(v)sc=v}
+    var rr=Math.max(.8,cell*.36), cur=-1,glow=0,u=0;
+    if(reduce){cur=BL[2%BL.length];glow=1}else{var n=Math.floor(t/PER);cur=BL[n%BL.length];u=(t%PER)/PER;glow=Math.pow(Math.sin(Math.PI*u),.8)*(.55+.45*Math.sin(u*Math.PI*6-1.2))}
+    cx.fillStyle="#FAEEE5";
+    for(var i=0;i<land.length;i++){var d=land[i],x=ox+d[0]*cell,y=oy+d[1]*cell;
+      var wave=reduce?.5:.5+.5*Math.sin(t*1.4-d[0]*.09+d[1]*.12);
+      cx.globalAlpha=.15+.3*wave*wave; cx.beginPath(); cx.arc(x,y,rr,0,6.2832); cx.fill()}
+    /* blinking country */
+    if(cur>=0){var cs=byC[cur]; cx.fillStyle=sc; cx.shadowColor=sc; cx.shadowBlur=8*glow;
+      for(var a2=0;a2<cs.length;a2++){var dd=cs[a2]; cx.globalAlpha=.25+.75*Math.max(0,glow); cx.beginPath(); cx.arc(ox+dd[0]*cell,oy+dd[1]*cell,rr*(1+.55*glow),0,6.2832); cx.fill()}
+      cx.shadowBlur=0; cx.globalAlpha=1}
+    cx.globalAlpha=1;
+    var de=P(DE), bd=P(BD);
+    /* route Germany -> Dhaka */
+    var mx=(de[0]+bd[0])/2, my=Math.min(de[1],bd[1])-cell*9;
+    cx.strokeStyle=sc; cx.globalAlpha=.6; cx.lineWidth=1.3; cx.setLineDash([2,4]); cx.lineDashOffset=reduce?0:-t*14;
+    cx.beginPath(); cx.moveTo(de[0],de[1]); cx.quadraticCurveTo(mx,my,bd[0],bd[1]); cx.stroke(); cx.setLineDash([]); cx.globalAlpha=1;
+    var w=reduce?.6:(t%3.6)/3.6, a=(1-w)*(1-w), b=2*(1-w)*w, c=w*w;
+    cx.fillStyle="#fff"; cx.shadowColor=sc; cx.shadowBlur=10; cx.beginPath(); cx.arc(a*de[0]+b*mx+c*bd[0],a*de[1]+b*my+c*bd[1],2.8,0,6.2832); cx.fill(); cx.shadowBlur=0;
+    [de,bd].forEach(function(m,k){var ph=reduce?.4:((t*.7+k*.5)%1);
+      cx.strokeStyle=sc; cx.globalAlpha=1-ph; cx.lineWidth=1.5; cx.beginPath(); cx.arc(m[0],m[1],4+ph*16,0,6.2832); cx.stroke(); cx.globalAlpha=1;
+      cx.fillStyle=sc; cx.beginPath(); cx.arc(m[0],m[1],3.8,0,6.2832); cx.fill()});
+    pill("Germany",de[0]+6,de[1]-8,"l"); pill("Dhaka, Bangladesh",bd[0]+6,bd[1]+22,"l");
+    /* name of the blinking country */
+    if(cur>=0&&glow>.12){var f=FEAT[cur],fp=P([f[1],f[2]]); cx.globalAlpha=Math.min(1,glow*1.6); pill(f[0],fp[0],fp[1]-6,"c"); cx.globalAlpha=1}
+    /* product: dots flowing in from Dhaka + ring around the photo */
+    var sr=shot.getBoundingClientRect(), pr=cv.getBoundingClientRect(), pcx=sr.left-pr.left+sr.width/2, pcy=sr.top-pr.top+sr.height/2;
+    if(sr.width>0){
+      for(var k=0;k<7;k++){var ff=reduce?(k+.5)/7:((t*.35+k/7)%1), px=bd[0]+(pcx-bd[0])*ff, py=bd[1]+(pcy-bd[1])*ff;
+        cx.globalAlpha=.25+.55*Math.sin(ff*3.1416); cx.fillStyle=sc; cx.beginPath(); cx.arc(px,py,1.8,0,6.2832); cx.fill()}
+      var rx=sr.width*.78, ry=sr.height*.68, N=30;
+      for(var j=0;j<N;j++){var ang=j/N*6.2832+(reduce?0:t*.45), qq=reduce?1:.55+.45*Math.sin(t*2+j);
+        cx.globalAlpha=.25+.6*qq; cx.fillStyle=j%5?"#FAEEE5":sc; cx.beginPath(); cx.arc(pcx+Math.cos(ang)*rx,pcy+Math.sin(ang)*ry,1.7,0,6.2832); cx.fill()}
+      cx.globalAlpha=1}
+  }
+  function loop(now){draw(now);raf=run?requestAnimationFrame(loop):0}
+  function start(){if(reduce){draw(performance.now());return} if(!run){run=true;raf=requestAnimationFrame(loop)}}
+  function stop(){run=false;if(raf)cancelAnimationFrame(raf)}
+  size(); window.addEventListener("resize",function(){size();if(reduce)draw(performance.now())});
+  if("IntersectionObserver" in window)new IntersectionObserver(function(e){e[0].isIntersecting&&!document.hidden?start():stop()},{threshold:.05}).observe(hero); else start();
+  document.addEventListener("visibilitychange",function(){document.hidden?stop():start()});
 })();
 </script>
 </body>
