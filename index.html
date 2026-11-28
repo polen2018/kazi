@@ -206,7 +206,7 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 .hword span{display:inline-block;will-change:transform;background:linear-gradient(100deg,var(--sc) 0%,var(--bg) 45%,var(--sc) 90%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 9s linear infinite}
 @keyframes sheen{from{background-position:0 0}to{background-position:-300% 0}}
 /* progress rail */
-.hrail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:clamp(12px,2vw,28px);padding-top:14px;padding-bottom:clamp(16px,2.6vh,24px);align-items:start}
+.hrail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:clamp(12px,2vw,28px);padding-top:14px;padding-bottom:clamp(16px,2.6vh,24px);align-items:start}
 .hrail button[data-s]{all:unset;cursor:pointer;display:block;padding-top:14px;position:relative;min-height:44px}
 .hrail button[data-s]::before,.hrail i{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:rgba(250,238,229,.18);border-radius:3px}
 .hrail i{background:var(--sc);width:0}
@@ -231,7 +231,7 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
   .hshot{width:clamp(92px,24.2vw,128px);bottom:0}
   .hnum b{font-size:40px}
   .hword{left:0;right:0;font-size:clamp(30px,9vw,72px);bottom:84px;text-align:center}
-  .hrail{grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px}
+  .hrail{grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:10px}
   .hrail span{display:none}
   .hrail b{font-size:15px;flex-direction:column;gap:4px}
 }
@@ -778,18 +778,20 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
         </div>
         <div class="hstage" aria-hidden="true">
           <canvas class="hmap" id="hmap"></canvas>
-          <div class="hnum"><b id="hnum">01</b>OF 03 &bull; <span id="hname">FEED &amp; ADDITIVES</span></div>
+          <div class="hnum"><b id="hnum">01</b>OF 04 &bull; <span id="hname">FEED &amp; ADDITIVES</span></div>
           <div class="hshot">
             <img class="on" src="assets/products/additives-01.jpg" alt="">
+            <img src="assets/products/additives-04.jpg" alt="">
             <img src="assets/products/yarn-01.jpg" alt="">
             <img src="assets/products/fmcg-06.jpg" alt="">
           </div>
         </div>
       </div>
       <div class="wrap hrail" id="stages" aria-label="Group portfolio">
-        <button type="button" data-s="0" aria-current="step"><i></i><b><small>01</small>Feed &amp; Additives</b><span>Dr. Eckel additives, premixes, minerals and PP woven packaging for poultry, aqua and dairy.</span></button>
-        <button type="button" data-s="1"><i></i><b><small>02</small>Yarn</b><span>Kazi Yarn Industry: dyed, multi-filament and specialty yarns for textile makers.</span></button>
-        <button type="button" data-s="2"><i></i><b><small>03</small>Consumer Goods</b><span>Kazi Consumer Products: Manha and L&eacute;ya soaps, face washes, shower gels and home care.</span></button>
+        <button type="button" data-s="0" aria-current="step"><i></i><b><small>01</small>Trustlink</b><span>Kazi Trustlink: imports and trades Dr. Eckel (Germany) products and more from the USA and China.</span></button>
+        <button type="button" data-s="1"><i></i><b><small>02</small>Feed &amp; Premix</b><span>Kazi Additive Limited: premix, feed additives and PP woven bags for Bangladesh&rsquo;s poultry industry.</span></button>
+        <button type="button" data-s="2"><i></i><b><small>03</small>Yarn</b><span>Kazi Yarn Industry: multifilament and monofilament yarn for textile, PP bag and agro-feed makers.</span></button>
+        <button type="button" data-s="3"><i></i><b><small>04</small>Consumer Goods</b><span>Kazi Consumer Product Ltd: FMCG products supplied across all of Bangladesh.</span></button>
         <button type="button" class="hplay" id="hplay" aria-label="Pause slideshow"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg></button>
       </div>
     </div>
@@ -797,7 +799,7 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
 
   <section class="stats" aria-label="Kazi Additive Limited at a glance"><div class="wrap">
     <div><b data-count="2009" data-plain="1">2009</b><span>Established</span></div>
-    <div><b data-count="3">3</b><span>Core divisions</span></div>
+    <div><b data-count="4">4</b><span>Group companies</span></div>
     <div><b data-count="45" data-suffix="+">45+</b><span>Products showcased</span></div>
     <div><b data-count="6">6</b><span>Partner companies</span></div>
   </div></section>
@@ -805,10 +807,12 @@ html[lang="bn"] body,html[lang="bn"] h1,html[lang="bn"] h2,html[lang="bn"] h3,ht
   <section class="section soft" aria-labelledby="pillars-h">
     <div class="wrap">
       <div class="shead reveal">
-        <div><span class="badge">Group Portfolio &bull; Three Core Pillars</span><h2 id="pillars-h">Our Three-Column Business Architecture</h2></div>
+        <div><span class="badge">Kazi Group &bull; Four Companies</span><h2 id="pillars-h">Our Companies &amp; What They Do</h2></div>
         <button class="link" data-go="divisions">View Full Division Details &rarr;</button>
       </div>
-      <div class="cards3" id="pillars"></div>
+      <div class="cards3" id="pillars" hidden></div>
+      <div class="reveal" id="companies" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px"><div class="card lift"><span class="badge tan">Import &amp; Trade</span><h3>Kazi Trustlink</h3><p>Imports and trades Dr. Eckel (Germany) company products, plus products from other countries including the USA and China.</p></div><div class="card lift"><span class="badge tan">Import &amp; Trade</span><h3>Kazi Additive Limited</h3><p>Feed additives for Bangladesh&rsquo;s poultry industry: premix, feed additives, RAM and all kinds of PP woven bags.</p></div><div class="card lift"><span class="badge tan">Manufacturing</span><h3>Kazi Yarn Industry Limited</h3><p>Multifilament and monofilament yarn for the textile industry, PP bag industry, agro-feed manufacturing and other sectors.</p></div><div class="card lift"><span class="badge tan">FMCG</span><h3>Kazi Consumer Product Ltd</h3><p>FMCG products supplied across all of Bangladesh.</p></div></div>
+      <div class="reveal" style="margin-top:26px"><p style="font-weight:700;margin:0 0 10px">Our products</p><div style="display:flex;flex-wrap:wrap;gap:10px"><span class="badge navy">Feed Additives</span><span class="badge navy">Premix</span><span class="badge navy">Consumer Goods (FMCG)</span><span class="badge navy">Yarn</span><span class="badge navy">PP Woven Bag</span></div></div>
     </div>
   </section>
 
@@ -1659,8 +1663,9 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
   /* ---------- hero: auto-playing stages, highlighted division name, kinetic word, intro ---------- */
   window.__hero={p:0};window.__reduce=reduce;
   var STAGES=[
-    {word:"Feed & Additives",name:"FEED & ADDITIVES",p:0,c:"#A9C98A"},
-    {word:"Yarn",name:"YARN",p:0.5,c:"#EF8A6F"},
+    {word:"Trustlink",name:"KAZI TRUSTLINK",p:0,c:"#A9C98A"},
+    {word:"Feed & Premix",name:"FEED & PREMIX",p:0.25,c:"#7FC4E8"},
+    {word:"Yarn",name:"YARN",p:0.55,c:"#EF8A6F"},
     {word:"Consumer Goods",name:"CONSUMER GOODS",p:0.95,c:"#F2C66D"}
   ];
   var DUR=6500;
@@ -1668,7 +1673,7 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
   function split(el,t){el.innerHTML=t.split("").map(function(ch){return "<span>"+(ch===" "?"&nbsp;":ch.replace("&","&amp;"))+"</span>"}).join("")}
   function fillTo(i){fills.forEach(function(f,k){f.style.transition="none";f.style.width=k<i?"100%":"0%";if(k===i){f.offsetWidth;f.style.transition=playing?"width "+DUR+"ms linear":"none";f.style.width="100%"}})}
   function setStage(i){
-    if(i===curStage)return; var first=curStage<0, dir=i>curStage||(curStage===2&&i===0)?1:-1; curStage=i;
+    if(i===curStage)return; var first=curStage<0, dir=i>curStage||(curStage===3&&i===0)?1:-1; curStage=i;
     var S=STAGES[i]; window.__hero.p=S.p; window.__stageColor=S.c; heroEl.style.setProperty("--sc",S.c);
     stageEls.forEach(function(s,k){if(k===i)s.setAttribute("aria-current","step");else s.removeAttribute("aria-current")});
     shots.forEach(function(im,k){im.classList.toggle("on",k===i)});
@@ -1691,7 +1696,7 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
     gsap.fromTo(".hshot",{rotate:4+10*dir,y:40,scale:.9},{rotate:4,y:0,scale:1,duration:1.3,ease:"back.out(1.3)"});
   }
   window.__setStage=setStage;
-  function schedule(){clearTimeout(autoT);if(playing)autoT=setTimeout(function(){setStage((curStage+1)%3);schedule()},DUR)}
+  function schedule(){clearTimeout(autoT);if(playing)autoT=setTimeout(function(){setStage((curStage+1)%4);schedule()},DUR)}
   function setPlaying(on){playing=on;var b=$("#hplay");
     b.setAttribute("aria-label",on?"Pause slideshow":"Play slideshow");
     b.innerHTML=on?'<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>':'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11a.8.8 0 0 0 1.2.7l9-5.5a.8.8 0 0 0 0-1.4l-9-5.5A.8.8 0 0 0 4 2.5z"/></svg>';
