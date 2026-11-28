@@ -360,9 +360,10 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 @media (max-width:900px){.md{grid-template-columns:1fr}}
 
 /* Product / division grid */
-.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-@media (max-width:1000px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.pgrid{grid-template-columns:1fr}}
+.pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:1200px){.pgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:900px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.pgrid{grid-template-columns:1fr}}
 .pcard{display:flex;flex-direction:column;padding:16px 16px 22px;cursor:pointer}
 .pcard figure{margin:0 0 16px;aspect-ratio:10/11;border-radius:var(--r-in);overflow:hidden;background:#fff;border:1px solid var(--border);display:grid;place-items:center}
 .pcard figure.tint{background:var(--tan-soft)}
@@ -376,6 +377,24 @@ body.theme-hunter header :focus-visible,body.theme-hunter footer :focus-visible{
 .pcard .by b{color:var(--primary);font-weight:600}
 .pcard .foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .pcard .spacer{flex:1;min-height:14px}
+/* product card: photo card on the left, product info on the right */
+.pcard figure{position:relative;box-shadow:0 14px 26px -18px rgba(24,51,75,.45);transition:box-shadow .35s var(--ease),transform .35s var(--ease)}
+.pcard figure::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,rgba(255,255,255,.35),transparent 40%);pointer-events:none}
+.pcard figure img{border-radius:10px;transition:transform .6s var(--ease)}
+.pcard:hover figure{box-shadow:0 22px 36px -18px rgba(24,51,75,.55);transform:translateY(-3px)}
+.pcard:hover figure img{transform:scale(1.06)}
+.pgrid .pcard{display:grid;grid-template-columns:minmax(0,40%) minmax(0,1fr);gap:12px;align-items:stretch;padding:10px;text-align:left}
+.pgrid .pcard figure{margin:0;aspect-ratio:1;align-self:center;padding:5px}
+.pgrid .pcard .inner{padding:2px 0;justify-content:center;min-width:0;align-items:flex-start}
+.pgrid .pcard .badge{font-size:9px;padding:4px 8px;letter-spacing:.1em;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.pgrid .pcard h3{font-size:18px;line-height:1.15;margin:8px 0 2px}
+.pgrid .pcard .by{font-size:12.5px}
+.pgrid .pcard .pdiv{font-size:11.5px;font-weight:600;color:var(--primary);margin-top:4px;line-height:1.3}
+.pgrid .pcard .spacer{min-height:6px}
+.pgrid .pcard .foot{width:100%;padding-top:8px;gap:8px;flex-wrap:wrap}
+.pgrid .pcard .foot .link{font-size:10.5px}
+.pgrid .pcard .foot .btn{min-height:34px;padding:0 14px;font-size:12.5px}
+@media (max-width:600px){.pgrid .pcard{grid-template-columns:minmax(0,38%) minmax(0,1fr);gap:14px;padding:12px}.pgrid .pcard h3{font-size:20px}.pgrid .pcard .pdiv{font-size:12.5px}}
 .count{font-size:14px;color:var(--text)}
 .toolrow{display:flex;flex-wrap:wrap;gap:12px 20px;justify-content:space-between;align-items:center;margin-bottom:14px}
 .brandrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px;min-height:34px}
@@ -527,14 +546,14 @@ dialog[open]{animation:dlg 280ms var(--ease)}
 .partners{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
 @media (max-width:1000px){.partners{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:560px){.partners{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.pcard{background:#fff;border:1px solid var(--line,rgba(0,32,64,.12));border-radius:14px;padding:14px 12px 10px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:8px;min-height:110px;text-align:center;transition:transform .35s cubic-bezier(.2,0,0,1),box-shadow .35s}
-a.pcard{text-decoration:none;color:inherit;cursor:pointer}
-.pcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,32,64,.12)}
-.pcard .lg{flex:1;display:flex;align-items:center;justify-content:center;width:100%}
-.pcard img{max-width:100%;max-height:56px;width:auto;height:auto;object-fit:contain}
-.pcard b{font-size:.82rem;letter-spacing:.04em;color:var(--primary,#003153);font-weight:600}
-.pcard.txt .lg b{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;letter-spacing:.01em;line-height:1.1;font-weight:700}
-.pcard.txt .lg small{display:block;margin-top:6px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#5b6b7b)}
+.partners .pcard{background:#fff;border:1px solid var(--line,rgba(0,32,64,.12));border-radius:14px;padding:14px 12px 10px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:8px;min-height:110px;text-align:center;transition:transform .35s cubic-bezier(.2,0,0,1),box-shadow .35s}
+.partners a.pcard{text-decoration:none;color:inherit;cursor:pointer}
+.partners .pcard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,32,64,.12)}
+.partners .pcard .lg{flex:1;display:flex;align-items:center;justify-content:center;width:100%}
+.partners .pcard img{max-width:100%;max-height:56px;width:auto;height:auto;object-fit:contain}
+.partners .pcard b{font-size:.82rem;letter-spacing:.04em;color:var(--primary,#003153);font-weight:600}
+.partners .pcard.txt .lg b{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;letter-spacing:.01em;line-height:1.1;font-weight:700}
+.partners .pcard.txt .lg small{display:block;margin-top:6px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#5b6b7b)}
 .partners.one{grid-template-columns:minmax(0,190px)}
 .section.fin{padding:24px 0}.section.fin .shead{margin-bottom:12px}.section.fin h2{font-size:clamp(26px,3vw,34px)}.partners.one.gp{grid-template-columns:minmax(0,260px)}
 .duo{display:grid;grid-template-columns:repeat(2,max-content);grid-template-rows:auto auto;grid-auto-flow:column;column-gap:56px;justify-content:start;align-items:start}
@@ -1542,7 +1561,7 @@ CATALOG.push({div:"bags",brand:"Kazi Packaging",name:"PP Woven Sacks & BOPP Bags
       var d=DIV[c.div],fig;
       if(!c.img)fig='<figure class="panel"><img src="assets/logo/logo-mark-light.png" alt="" width="152" height="152"></figure>';
       else{var scene=(c.div==="fmcg"||c.div==="yarn");fig='<figure'+(isCut(c)?' class="tint"':'')+'>'+imgTag(c,scene?"":"contain")+'</figure>'}
-      var desc=c.img?'<p class="by">by <b>'+c.brand+'</b></p>':'<p class="by">Custom-printed, moisture-resistant polypropylene woven sacks made in Tangail for feed, rice, flour, fertilizer and bulk packaging.</p>';
+      var desc=c.img?'<p class="by">by <b>'+c.brand+'</b></p><p class="pdiv">'+d.full+'</p>':'<p class="by">Custom-printed, moisture-resistant polypropylene woven sacks made in Tangail for feed, rice, flour, fertilizer and bulk packaging.</p>';
       return '<article class="card lift pcard" data-i="'+c._i+'">'+fig+'<div class="inner"><span><span class="badge '+d.cls+'">'+d.badge+'</span></span><h3>'+c.name+'</h3>'+desc+'<span class="spacer"></span><div class="foot"><button class="link" data-open="'+c._i+'">View Details</button><button class="btn sm" data-open="'+c._i+'">Inquire</button></div></div></article>';
     }).join("");
     cnt.textContent=items.length+" product"+(items.length===1?"":"s");
